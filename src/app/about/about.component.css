@@ -1,0 +1,210 @@
+.education{
+    display: flex;
+    justify-content: center;
+  }
+  .group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+  }
+  .fixed {
+    z-index: 10; /* or any number higher than other elements */
+  }
+  
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+  }
+  
+  #sendbtn,.morebtn{
+      padding: 1em 2em;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 500;
+      color: #000;
+      background-color: #fff;
+      border: none;
+      border-radius: 45px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      outline: none;
+    }
+  #sendbtn:hover,.morebtn:hover{
+      background-color: rgb(0, 0, 0);
+      box-shadow: 0px 15px 20px rgba(229, 46, 46, 0.4);
+      color: #fff;
+      transform: translateY(-7px);
+    }
+  #sendbtn:active,.morebtn:active{
+      transform: translateY(-1px);
+    }
+  
+  #mep{
+    width: 50%;
+  }
+    #namelab,#mail,#mess,#cm{
+      color: red;
+    }
+    #cm{
+      font-family: "Tiny5", sans-serif;
+      font-weight: 700;
+    }
+    .morebtn-container {
+      margin-top: 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  #contact{
+      margin-top: 15vh;
+  }
+  #lm:hover{
+    transition: ease-in;
+    color: gray;
+  }
+  
+  /* #AboutMe{
+      margin-top: 2%;
+  
+  } */
+  #education{
+      margin-top:10%;
+  }
+  
+  #ed{
+      padding: 45px;
+      font-weight: 700;
+      color: red;
+      font-family: "Tiny5", sans-serif;
+      font-size: 70px;
+  }
+  .hobbiecon{
+      display: flex;
+      justify-content: center; 
+  }
+  #mh{
+      margin-top: 10%;
+      padding: 25px;
+      font-weight: 700;
+      color: red;
+      font-family: "Tiny5", sans-serif;
+  }
+  span{
+      color: red;
+      font-weight: 800;
+  }
+  .hiden{
+      opacity: 0;
+      transition: all 1s;
+  }
+  .show{
+    opacity: 1;
+  }
+  #am{
+      margin-top: 10%;
+      padding: 25px;
+      font-weight: 700;
+      color: red;
+      font-family: "Tiny5", sans-serif; 
+      font-size: 70px;
+  }
+  #sndicon{
+      margin-top: 2px;
+      padding: 2px;
+  }
+  .button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+  }
+  
+  .svgIcon path {
+    fill: rgb(0, 0, 0);
+  }
+  
+  .button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0px 15px 20px rgba(229, 46, 46, 0.4);
+    align-items: center;
+  }
+  
+  .button:hover .svgIcon {
+    
+    transition-duration: 0.3s;
+    transform: translateY(-200%);
+  }
+  
+  .button::before {
+    position: absolute;
+    bottom: -20px;
+    content: "Back to Top";
+    color: white;
+    font-size: 0px;
+  }
+  
+  .button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    bottom: unset;
+    
+    transition-duration: 0.3s;
+  }
+  
+  @media screen and (max-width: 570px){
+    #AboutMe{
+      transform: scale(0.7);
+  
+    }
+    #steper{
+      display: none;
+    }
+    #mep{
+      width: 130%;
+    }
+    #education{
+      transform: scale(0.7);
+    }
+    #hobbies{
+      transform: scale(0.7);
+    }
+    #mh,#am,#ed,#cm{
+      font-size: 40px;
+    }
+    #mh{
+      margin-bottom: 4vh;
+    }
+    .hli{
+      width: 130%;
+    }
+    .hobbiecon{
+      justify-content: flex-start; 
+      text-align: left;
+  }
+  #contact{
+    transform: scale(0.8);
+  }
+  input::placeholder,textarea::placeholder{
+    font-size: x-small;
+  }
+  button{
+    transform: scale(0.6);
+  }
+  }

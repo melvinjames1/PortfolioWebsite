@@ -1,0 +1,112 @@
+
+
+<div class="fixed inset-y-0 left-0 flex items-center justify-center" id="steper">
+  
+    <div class="relative flex flex-col space-y-8 ml-4">
+      
+  
+      <div class="group relative" (click)="scrollToSection('home')">
+        <div class="flex items-center justify-center w-12 h-12 bg-red-600 opacity-50 scale-90 rounded-full transition-all duration-300 group-hover:opacity-100 group-hover:scale-110  cursor-pointer">
+          <i class="fas fa-home text-white text-2xl"></i>
+        </div>
+      </div>
+      
+      
+      <div class="group relative" (click)="scrollToSection('skills')">
+        <div class="flex items-center justify-center w-12 h-12 bg-red-600 opacity-50 scale-90 rounded-full transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 cursor-pointer">
+          <i class="fas fa-cogs text-white text-2xl"></i>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+  <section class="Homepage section-content" id="home">
+      <div class="container">
+        <h1 class="intro">Hi, I'm <span id="name">Melvin James</span></h1>
+        <h2 class="tw" id="desc" >A Full Stack Developer</h2>
+      </div>
+      <div class="button-container">
+        <button class="b1"><a href="https://github.com/melvinjames1" target="_blank"><i class="fa-brands fa-github"></i></a></button>
+        <button class="b2"><a href="https://www.linkedin.com/in/melvin-james-303561255/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></button>
+        <button class ="b3"><a href="https://www.instagram.com/melvin._.james/" target="_blank"><i class="fa-brands fa-instagram"></i></a></button>
+       </div>
+       <div class="icon-container">
+          <button class="b4"(click)="scrollToSection('skills')" >My Skills <i class="fa-solid fa-circle-down"></i></button>
+      </div>
+    </section>
+    
+    <section class="skills section-content flex flex-col items-center" id="skills">
+      <p id="em" class="text-center text-l text-white">Explore My</p>
+      <h1 id="skillhead" class="title text-center mb-8 text-7xl text-red-600 section-content">Skills</h1>
+      <div class="holder flex flex-wrap justify-center gap-6">
+        <div class="container3 bg-gray-200 p-4 flex flex-col items-center animate-slide">
+          <h2 class="mb-4 text-white text-2xl font-bold">Programing <br> Languages</h2>
+          <div class="ic">1
+            <ul class="list-decimal list-inside text-left text-2xl">
+              <li class="skill-element">C--C++--C#</li>
+              <li class="skill-element">Java</li>
+              <li class="skill-element">Javascript</li>
+              <li class="skill-element">Python</li>
+              <li class="skill-element">Go</li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 bg-gray-200 p-4 flex flex-col items-center  section-content">
+          <h2 class="mb-4 text-white text-2xl font-bold">Frontend</h2>
+          <div class="ic">
+            <ul class="list-decimal list-inside text-left text-xl ">
+              <li class="skill-element">HTML--CSS</li>
+              <li class="skill-element">Javascript</li>
+              <li class="skill-element">Angular</li>
+              <li class="skill-element">React</li>
+              <li class="skill-element">Tailwind</li>
+              <li class="skill-element">Bootstrap</li>
+            </ul>
+          </div>
+        </div>
+        <div class="container3 bg-gray-200 p-4 flex flex-col items-center  section-content">
+          <h2 class="mb-4 text-white text-2xl font-bold">Backend</h2>
+          <div class="ic ">
+            <ul class="list-decimal list-inside text-left text-xl">
+              <li class="skill-element">MongoDB</li>
+              <li class="skill-element">Firebase</li>
+              <li class="skill-element">NodeJS</li>
+              <li class="skill-element">Microsoft Sql Server</li>
+              <li class="skill-element">MySql</li>
+            </ul>
+          </div>
+        </div>
+      <div class="container4 bg-gray-200 p-4 flex flex-col items-center animate-slide">
+        <h2 class="mb-4 text-white text-2xl font-bold">Design</h2>
+        <div class="ic ">
+          <ul class="list-decimal list-inside text-left text-xl">
+            <li class="skill-element">Figma</li>
+            <li class="skill-element">Canva</li>
+            <li class="skill-element">Davinci Resolve</li>
+            <li class="skill-element">Blender</li>
+            <li class="skill-element">PhotoShop</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container4 bg-gray-200 p-4 flex flex-col items-center section-content">
+        <h2 class="mb-4 text-white text-2xl font-bold">Miscellaneous</h2>
+        <div class="ic ">
+          <ul class="list-decimal list-inside text-left text-xl">
+            <li class="skill-element">Unity</li>
+            <li class="skill-element">Git--GitHub</li>
+            <li class="skill-element">Microsoft Office</li>
+            <li class="skill-element">Arduino</li>
+            <li class="skill-element">Raspberry Pi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      <div class="icon-container mt-8">
+        <button class="b5 bg-blue-500 text-white py-2 px-4 rounded" (click)="scrollToSection('home')">
+          Back to Home <i class="fa-solid fa-circle-up"></i>
+        </button>
+      </div>
+    </section>
+    
