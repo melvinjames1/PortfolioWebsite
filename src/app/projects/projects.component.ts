@@ -41,7 +41,7 @@ export class ProjectsComponent {
     {
       title: "Travellers Guide",
       image: "assets/Tg.png",
-      description: "A simple website built using React and Random Joke API to render random jokes from the API database using Axios.With a click of a button, you can generate random jokes fetched from an API and displayed on the page.",
+      description: "A simple Website Built Using HTML, CSS, JavaScript to allow users to gt details of a entered Country that they  want to travell to or are currently in, Th Details are fetched from  3rd party country api",
       link: "https://main--travellersguide576.netlify.app/",
       repoLink: "https://github.com/melvinjames1",
       details: "With a click of a button, you can generate random jokes fetched from an API and displayed on the page.",
