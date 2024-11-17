@@ -1,0 +1,49 @@
+{
+  "hash": "d0cd3a7d",
+  "configHash": "b5a9424c",
+  "lockfileHash": "3ca848fd",
+  "browserHash": "5166839e",
+  "optimized": {
+    "@angular/common": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "1865840c",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "b6c6b0c3",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "6b4a024e",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "b0f96b3d",
+      "needsInterop": false
+    },
+    "intersection-observer": {
+      "src": "../../../../../node_modules/intersection-observer/intersection-observer.js",
+      "file": "intersection-observer.js",
+      "fileHash": "0f380d50",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-HJRTXLLH": {
+      "file": "chunk-HJRTXLLH.js"
+    },
+    "chunk-HQXNB4SY": {
+      "file": "chunk-HQXNB4SY.js"
+    },
+    "chunk-VE4PK55K": {
+      "file": "chunk-VE4PK55K.js"
+    }
+  }
+}

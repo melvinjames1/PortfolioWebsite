@@ -1,12 +1,12 @@
 import { Component , ElementRef, Renderer2 } from '@angular/core';
-import { NavbarComponent } from "../navbar/navbar.component";
+
 
 @Component({
     selector: 'app-about',
     standalone: true,
     templateUrl: './about.component.html',
     styleUrl: './about.component.css',
-    imports: [NavbarComponent]
+    
 })
 export class AboutComponent {
 

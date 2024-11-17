@@ -1,3 +1,13 @@
+.skill-element {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-element svg {
+  width: 24px;
+  height: 24px;
+}
 
 .skill-element:hover{
   color: #ff0000;

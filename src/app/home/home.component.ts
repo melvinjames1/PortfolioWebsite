@@ -8,7 +8,6 @@ import { NavbarComponent } from "../navbar/navbar.component";
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    imports: [NavbarComponent]
 })
 
 
