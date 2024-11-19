@@ -40,69 +40,23 @@
     <section class="skills section-content flex flex-col items-center" id="skills">
       <p id="em" class="text-center text-l text-white">Explore My</p>
       <h1 id="skillhead" class="title text-center mb-8 text-7xl text-red-600 section-content">Skills</h1>
-      <!-- <div class="holder flex flex-wrap justify-center gap-6">
-        <div class="container3 bg-gray-200 p-4 flex flex-col items-center animate-slide">
-          <h2 class="mb-4 text-white text-2xl font-bold">Programing <br> Languages</h2>
-          <div class="ic">
-            <ul class="list-decimal list-inside text-left text-2xl">
-              <li class="skill-element">C--C++--C#</li>
-              <li class="skill-element">Java</li>
-              <li class="skill-element">Javascript</li>
-              <li class="skill-element">Python</li>
-              <li class="skill-element">Go</li>
-            </ul>
+      <div class="skills-container bg-black text-white py-8 px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div *ngFor="let category of skills" class="category-card bg-gray-800 p-6 rounded-lg shadow-lg" >
+            <h2 class="text-2xl font-semibold text-[#FF0000] text-center mb-4">{{ category.title }}</h2>
+            <div class="skills-list grid grid-cols-2 gap-6">
+              <div *ngFor="let skill of category.skills" class="skill text-center bg-gray-900 p-4 rounded-lg shadow-lg" style="width: 100px;">
+                <img [src]="skill.image" [alt]="skill.name" class="skill-icon w-12 h-12 mx-auto mb-2" />
+                <p class="text-white text-sm font-medium">{{ skill.name }}</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="container2 bg-gray-200 p-4 flex flex-col items-center  section-content">
-          <h2 class="mb-4 text-white text-2xl font-bold">Frontend</h2>
-          <div class="ic">
-            <ul class="list-decimal list-inside text-left text-xl ">
-              <li class="skill-element">HTML--CSS</li>
-              <li class="skill-element">Javascript</li>
-              <li class="skill-element">Angular</li>
-              <li class="skill-element">React</li>
-              <li class="skill-element">Tailwind</li>
-              <li class="skill-element">Bootstrap</li>
-            </ul>
-          </div>
-        </div>
-        <div class="container3 bg-gray-200 p-4 flex flex-col items-center  section-content">
-          <h2 class="mb-4 text-white text-2xl font-bold">Backend</h2>
-          <div class="ic ">
-            <ul class="list-decimal list-inside text-left text-xl">
-              <li class="skill-element">MongoDB</li>
-              <li class="skill-element">Firebase</li>
-              <li class="skill-element">NodeJS</li>
-              <li class="skill-element">Microsoft Sql Server</li>
-              <li class="skill-element">MySql</li>
-            </ul>
-          </div>
-        </div>
-      <div class="container4 bg-gray-200 p-4 flex flex-col items-center animate-slide">
-        <h2 class="mb-4 text-white text-2xl font-bold">Design</h2>
-        <div class="ic ">
-          <ul class="list-decimal list-inside text-left text-xl">
-            <li class="skill-element">Figma</li>
-            <li class="skill-element">Canva</li>
-            <li class="skill-element">Davinci Resolve</li>
-            <li class="skill-element">Blender</li>
-            <li class="skill-element">PhotoShop</li>
-          </ul>
         </div>
       </div>
-      <div class="container4 bg-gray-200 p-4 flex flex-col items-center section-content">
-        <h2 class="mb-4 text-white text-2xl font-bold">Miscellaneous</h2>
-        <div class="ic ">
-          <ul class="list-decimal list-inside text-left text-xl">
-            <li class="skill-element">Unity</li>
-            <li class="skill-element">Git--GitHub</li>
-            <li class="skill-element">Microsoft Office</li>
-            <li class="skill-element">Arduino</li>
-            <li class="skill-element">Raspberry Pi</li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
+      
+      
+      
+      
       <div class="icon-container mt-8">
         <button class="b5 bg-blue-500 text-white py-2 px-4 rounded" (click)="scrollToSection('home')">
           Back to Home <i class="fa-solid fa-circle-up"></i>
