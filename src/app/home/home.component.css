@@ -1,4 +1,4 @@
-.skill-element {
+/* .skill-element {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -12,7 +12,7 @@
 .skill-element:hover{
   color: #ff0000;
   transition: ease-in .3s;
-}
+} */
 #step1{
   color: #ffffff44;
 }
@@ -166,7 +166,7 @@ ul{
     font-weight: 600;
     padding: 25px;
   }
-  .container1,.container2,.container3,.container4,.container5{
+  /* .container1,.container2,.container3,.container4,.container5{
     margin-top: 5%;
     width: 275px;
     height: 400px;
@@ -180,7 +180,7 @@ ul{
   transform: translateY(-25px) scale(1.05);
   box-shadow: 0px 15px 20px rgba(255, 0, 0, 0.4);
   transition: ease-in 0.3s;
-}
+} */
 @media screen and (max-width: 450px){
     .intro{
         margin-top: 70%;
