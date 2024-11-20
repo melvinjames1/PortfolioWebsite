@@ -1,5 +1,5 @@
 <section>
-    <h1 id="mw" class="text-center text-6xl font-bold mt-[15vh] mb-10" style="color: #ff0000;">My Websites</h1>
+    <h1 id="mw" class="text-center text-5xl font-bold mt-[15vh] mb-2 sm:text-7xl sm:mb-10" style="color: #ff0000;">My Websites</h1>
     
     <div *ngFor="let project of projects; let i = index" 
          class="flex flex-col md:flex-row items-center gap-7 ustify-between min-h-[60%] mb-[15%] p-8 section-content bg-black"
@@ -12,7 +12,7 @@
   
       <!-- Project Details Section -->
       <div class="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center text-center order-2 md:order-2">
-        <h2 class="text-4xl font-bold mb-4" style="color: #ff0000;">{{ project.title }}</h2>
+        <h2 class="sm:text-4xl text-2xl font-bold mb-4" style="color: #ff0000;">{{ project.title }}</h2>
         <p class="mb-4 text-white">{{ project.description }}</p>
         
         <div class="space-x-14 flex justify-center">
