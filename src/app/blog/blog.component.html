@@ -1,0 +1,29 @@
+<div class="max-w-4xl mx-auto p-6">
+    <!-- Blog List -->
+    <div *ngIf="!currentPost; else postDetails">
+      <h1 class="text-4xl font-bold mb-8 text-center">Blog</h1>
+      <div *ngFor="let post of posts" class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-2">{{ post.title }}</h2>
+        <p class="text-gray-600 mb-4">{{ post.summary }}</p>
+        <button 
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" 
+          (click)="viewPost(post.id)">
+          Read More
+        </button>
+      </div>
+    </div>
+  
+    <!-- Post Details -->
+    <ng-template #postDetails>
+      <div class="bg-white shadow-md rounded-lg p-6">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ currentPost?.title }}</h1>
+        <p class="text-gray-600 mb-6">{{ currentPost?.content }}</p>
+        <button 
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" 
+          (click)="goBack()">
+          Back to Blog
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  
