@@ -40,9 +40,9 @@
     <section class="skills section-content flex flex-col items-center" id="skills">
       <p id="em" class="text-center text-l text-white">Explore My</p>
       <h1 id="skillhead" class="title text-center mb-8 text-7xl text-red-600 section-content">Skills</h1>
-      <div class="skills-container bg-black text-white py-8 px-4">
+      <div class="skills-container  bg-black text-white py-8 px-4">
         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
-          <div *ngFor="let category of skills" class="category-card  bg- backdrop-blur-lg border-[2px] border-white/50  p-6 rounded-lg shadow-lg hover:translate-y-[-25px] hover:scale-105 hover:shadow-[0px_15px_20px_rgba(255,0,0,0.4)] transition-all duration-300 ease-in" >
+          <div *ngFor="let category of skills" class="category-card section-content  backdrop-blur-lg border-[2px] border-white/50  p-6 rounded-lg shadow-lg hover:translate-y-[-25px] hover:scale-105 hover:shadow-[0px_15px_20px_rgba(255,0,0,0.4)] transition-all duration-300 ease-in" >
             <h2 class="text-2xl font-semibold text-[#FF0000] text-center mb-4">{{ category.title }}</h2>
             <div class="skills-list grid grid-cols-2 gap-6">
               <div *ngFor="let skill of category.skills" class="skill text-center bg-black border  border-white/50  p-4 rounded-lg shadow-lg flex items-center" style="width: 150px;">
