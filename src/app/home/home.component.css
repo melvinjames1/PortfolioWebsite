@@ -13,15 +13,13 @@
   color: #ff0000;
   transition: ease-in .3s;
 } */
-#step1{
+/* #step1{
   color: #ffffff44;
 }
-.fixed{
-  z-index: 10;
-}
+
 #step1:hover{
   color: #fff;
-}
+} */
 .intro{
     color: whitesmoke;
     font-size: 95px;
