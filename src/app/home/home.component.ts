@@ -143,7 +143,7 @@ export class HomeComponent implements AfterViewInit {
         {
           name: "C#",
           image:
-            "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg",
+            "https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Languages/csharp-original.svg",
         },
       
         {
