@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 , Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent {
   posts = [
     { id: 1, title: 'DevOps: Bridging the Gap Between Development and Operationst Post', summary: 'In today’s fast-paced digital world, delivering high-quality software rapidly and reliably is no longer optional—it’s a necessity. This is where DevOps shines. By uniting development and operations teams, DevOps transforms how organizations build, test, deploy, and monitor applications.' ,link:'https://medium.com/@saranipeiris17/an-introduction-to-devops-bridging-development-and-operations-for-faster-reliable-software-c94046c624e5' },
     { id: 2, title: 'The Transformative Power of AI: Shaping the Future', summary: 'Artificial Intelligence (AI) is no longer a concept confined to science fiction or research labs. It has emerged as a powerful force driving change across industries, reshaping the way we work, live, and interact with the world. From chatbots assisting customers online to algorithms predicting natural disasters, AI is a technological revolution with profound implications.', link: 'https://blogs.nvidia.com/blog/2024-ai-predictions/' },
@@ -18,21 +18,24 @@ export class BlogComponent implements OnInit {
   ];
   currentPost: any = null;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private el: ElementRef, private renderer: Renderer2){
 
-  ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.currentPost = this.posts.find((post) => post.id === +id);
-    }
   }
 
-  viewPost(id: number) {
-    this.router.navigate(['/blog', id]);
-  }
+  ngAfterViewInit() {
+    const sections = this.el.nativeElement.querySelectorAll('.section-content') as NodeListOf<HTMLElement>;
 
-  goBack() {
-    this.router.navigate(['/blog']);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.renderer.addClass(entry.target as HTMLElement, 'fade-in');
+        } else {
+          this.renderer.removeClass(entry.target as HTMLElement, 'fade-in');
+        }
+      });
+    });
+
+    sections.forEach((section: HTMLElement) => observer.observe(section));
   }
 }
 
