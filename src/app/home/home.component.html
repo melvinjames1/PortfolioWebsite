@@ -1,6 +1,6 @@
 
 
-<div class="fixed inset-y-0 left-0 flex items-center justify-center" id="steper">
+<div class="fixed z-10 inset-y-0 left-0 flex items-center justify-center" id="steper">
   
     <div class="relative flex flex-col space-y-8 ml-4">
       
@@ -28,9 +28,9 @@
         <h2 class="tw" id="desc" >A Full Stack Developer</h2>
       </div>
       <div class="button-container">
-        <button class="b1"><a href="https://github.com/melvinjames1" target="_blank"><i class="fa-brands fa-github"></i></a></button>
-        <button class="b2"><a href="https://www.linkedin.com/in/melvin-james-303561255/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></button>
-        <button class ="b3"><a href="https://www.instagram.com/melvin._.james/" target="_blank"><i class="fa-brands fa-instagram"></i></a></button>
+        <a href="https://github.com/melvinjames1" target="_blank"><button class="b1"><i class="fa-brands fa-github"></i></button></a>
+        <a href="https://www.linkedin.com/in/melvin-james-303561255/" target="_blank"><button class="b2"><i class="fa-brands fa-linkedin-in"></i></button></a>
+        <a href="https://www.instagram.com/melvin._.james/" target="_blank"><button class ="b3"><i class="fa-brands fa-instagram"></i></button></a>
        </div>
        <div class="icon-container">
           <button class="b4"(click)="scrollToSection('skills')" >My Skills <i class="fa-solid fa-circle-down"></i></button>
@@ -40,14 +40,14 @@
     <section class="skills section-content flex flex-col items-center" id="skills">
       <p id="em" class="text-center text-l text-white">Explore My</p>
       <h1 id="skillhead" class="title text-center mb-8 text-7xl text-red-600 section-content">Skills</h1>
-      <div class="skills-container bg-black text-white py-8 px-4">
+      <div class="skills-container  bg-black text-white py-8 px-4">
         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
-          <div *ngFor="let category of skills" class="category-card  bg- backdrop-blur-lg border-[2px] border-white/50  p-6 rounded-lg shadow-lg hover:translate-y-[-25px] hover:scale-105 hover:shadow-[0px_15px_20px_rgba(255,0,0,0.4)] transition-all duration-300 ease-in" >
+          <div *ngFor="let category of skills" class="category-card section-content  backdrop-blur-lg border-[2px] border-white/50  p-6 rounded-lg shadow-lg hover:translate-y-[-25px] hover:scale-105 hover:shadow-[0px_15px_20px_rgba(255,0,0,0.4)] transition-all duration-300 ease-in" >
             <h2 class="text-2xl font-semibold text-[#FF0000] text-center mb-4">{{ category.title }}</h2>
-            <div class="skills-list grid grid-cols-2 gap-6">
-              <div *ngFor="let skill of category.skills" class="skill text-center bg-black border  border-white/50  p-4 rounded-lg shadow-lg flex items-center" style="width: 150px;">
+            <div class="skills-list grid grid-cols-2 gap-4">
+              <div *ngFor="let skill of category.skills" class="skill text-center bg-black border  border-white/50  p-4 px-4 rounded-lg shadow-lg flex items-center" style="width: 150px;">
                 <p class="text-white text-sm font-medium mr-2 flex-grow">{{ skill.name }}</p>
-                <img [src]="skill.image" [alt]="skill.name" class="skill-icon w-12 h-12 mx-auto mb-2" />
+                <img [src]="skill.image" [alt]="skill.name" class="skill-icon w-10 h-10 mx-auto " />
               </div>
             </div>
           </div>
