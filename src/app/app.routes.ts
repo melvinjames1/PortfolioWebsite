@@ -8,7 +8,5 @@ import { BlogComponent } from './blog/blog.component';
 export const routes: Routes = [
     {'path':'',component:HomeComponent},
     {'path':'\projects',component:ProjectsComponent},
-    {'path':'\about',component:AboutComponent},
-    { 'path': 'blog/:id', component: BlogComponent },
-    {'path':'blog',component:BlogComponent},
+    {'path':'\about',component:AboutComponent}
 ];
