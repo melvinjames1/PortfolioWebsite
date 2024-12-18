@@ -59,9 +59,11 @@ i:active{
 }
 nav a:hover{
     color: rgb(94, 94, 94);
+    transition: ease-in .2s;
 }
 .active{
     color: red;
+    transition: ease-in .2s;
 }
 @media (max-width: 762px){
     .icons{
