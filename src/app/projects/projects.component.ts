@@ -51,7 +51,7 @@ if __name__ == '__main__':
     
     },
     {
-      title: "PyTube",
+      title: "Recipe Generator",
       code: `import requests
 
 def get_recipes(api_key, ingredients):
