@@ -1,6 +1,6 @@
 import { Component, ElementRef, Renderer2, AfterViewInit, Inject, PLATFORM_ID} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-
+import Typed from 'typed.js';
 import 'intersection-observer';
 
 @Component({
@@ -220,4 +220,17 @@ export class HomeComponent implements AfterViewInit {
       ],
     },
   ];
+
+
+
+  ngOnInit(): void {
+    const options = {
+      strings: ['Full-Stack Developer', 'UI Designer', 'Student','Tech Enthusiast'],
+      typeSpeed: 150,
+      backSpeed: 75,      
+      loop: true,
+    };
+
+    const typed = new Typed('.type', options);
+  }
 }
