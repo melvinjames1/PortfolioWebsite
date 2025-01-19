@@ -226,8 +226,8 @@ export class HomeComponent implements AfterViewInit {
   ngOnInit(): void {
     const options = {
       strings: ['UI Designer', 'Student','Tech Enthusiast'],
-      typeSpeed: 150,
-      backSpeed: 75,      
+      typeSpeed: 250,
+      backSpeed: 200,      
       loop: true,
     };
 
