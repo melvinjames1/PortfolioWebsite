@@ -200,5 +200,22 @@ print("\nPredictions saved to 'sentiment_predictions.csv'.")`,
       (window as any).hljs.highlightElement(block);
     });
   }
+  copyToClipboard(code: string): void {
+    navigator.clipboard.writeText(code).then(() => {
+      const message = document.getElementById('message');
+      
+      if (message) {
+        message.textContent = 'Copied';
+  
+        // After 5 seconds, change the message back to "Copy"
+        setTimeout(() => {
+          message.textContent = 'Copy';
+        }, 2000);  // 5000 milliseconds = 5 seconds
+      }
+    }).catch(err => {
+      console.error('Error copying text: ', err);
+    });
+  }
+  
 
 }
