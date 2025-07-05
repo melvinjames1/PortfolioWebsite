@@ -1,55 +1,55 @@
 {
-  "hash": "9cd99d75",
+  "hash": "08440784",
   "configHash": "bd96222c",
-  "lockfileHash": "39485b53",
-  "browserHash": "1922e468",
+  "lockfileHash": "3e759cff",
+  "browserHash": "c35d55f6",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "a36d0a91",
+      "fileHash": "470ccff0",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "ddf367d9",
+      "fileHash": "f2df188f",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "dd5ff53b",
+      "fileHash": "08622a35",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "55aa7f43",
-      "needsInterop": false
-    },
-    "intersection-observer": {
-      "src": "../../../../../node_modules/intersection-observer/intersection-observer.js",
-      "file": "intersection-observer.js",
-      "fileHash": "11b544be",
-      "needsInterop": true
-    },
-    "typed.js": {
-      "src": "../../../../../node_modules/typed.js/dist/typed.module.js",
-      "file": "typed__js.js",
-      "fileHash": "c388e941",
+      "fileHash": "ae663f2c",
       "needsInterop": false
     },
     "gsap": {
       "src": "../../../../../node_modules/gsap/index.js",
       "file": "gsap.js",
-      "fileHash": "71e9bfdf",
+      "fileHash": "6ac1c0f6",
       "needsInterop": false
     },
     "gsap/ScrollTrigger": {
       "src": "../../../../../node_modules/gsap/ScrollTrigger.js",
       "file": "gsap_ScrollTrigger.js",
-      "fileHash": "731a4827",
+      "fileHash": "a88bfbd7",
+      "needsInterop": false
+    },
+    "intersection-observer": {
+      "src": "../../../../../node_modules/intersection-observer/intersection-observer.js",
+      "file": "intersection-observer.js",
+      "fileHash": "4b591dfe",
+      "needsInterop": true
+    },
+    "typed.js": {
+      "src": "../../../../../node_modules/typed.js/dist/typed.module.js",
+      "file": "typed__js.js",
+      "fileHash": "b3c5b306",
       "needsInterop": false
     }
   },
