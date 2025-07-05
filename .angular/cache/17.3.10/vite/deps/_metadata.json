@@ -1,43 +1,55 @@
 {
-  "hash": "345ab007",
-  "configHash": "02866d67",
+  "hash": "9cd99d75",
+  "configHash": "bd96222c",
   "lockfileHash": "39485b53",
-  "browserHash": "ec672000",
+  "browserHash": "1922e468",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "4a35f865",
+      "fileHash": "a36d0a91",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "ba9edc5b",
+      "fileHash": "ddf367d9",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "deaf627f",
+      "fileHash": "dd5ff53b",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "9006ed69",
+      "fileHash": "55aa7f43",
       "needsInterop": false
     },
     "intersection-observer": {
       "src": "../../../../../node_modules/intersection-observer/intersection-observer.js",
       "file": "intersection-observer.js",
-      "fileHash": "6331df21",
+      "fileHash": "11b544be",
       "needsInterop": true
     },
     "typed.js": {
       "src": "../../../../../node_modules/typed.js/dist/typed.module.js",
       "file": "typed__js.js",
-      "fileHash": "ce0da751",
+      "fileHash": "c388e941",
+      "needsInterop": false
+    },
+    "gsap": {
+      "src": "../../../../../node_modules/gsap/index.js",
+      "file": "gsap.js",
+      "fileHash": "71e9bfdf",
+      "needsInterop": false
+    },
+    "gsap/ScrollTrigger": {
+      "src": "../../../../../node_modules/gsap/ScrollTrigger.js",
+      "file": "gsap_ScrollTrigger.js",
+      "fileHash": "731a4827",
       "needsInterop": false
     }
   },

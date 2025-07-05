@@ -204,3 +204,44 @@ ul{
 }
 
 
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Hover Effects */
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -5px rgba(255, 0, 0, 0.1);
+}
+
+.skill:hover {
+  box-shadow: 0 5px 15px -3px rgba(255, 0, 0, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .skills-list {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}

@@ -2,7 +2,8 @@ import { Component, ElementRef, Renderer2, AfterViewInit, Inject, PLATFORM_ID} f
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import Typed from 'typed.js';
 import 'intersection-observer';
-
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
     selector: 'app-home',
     standalone: true,
@@ -26,6 +27,29 @@ export class HomeComponent implements AfterViewInit {
       
       }
     }
+
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate cards on scroll
+    gsap.utils.toArray('.category-card').forEach((card: any) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      });
+    });
+
+    // Button hover effect
+    gsap.to('.back-button', {
+      '--border-opacity': 0.1,
+      duration: 0.3
+    });
   }
 
 

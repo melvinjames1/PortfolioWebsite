@@ -37,26 +37,56 @@
       </div>
     </section>
     
-    <section class="skills section-content flex flex-col items-center" id="skills">
-      <p id="em" class="text-center text-l text-white">Explore My</p>
-      <h1 id="skillhead" class="title text-center mb-8 text-7xl text-red-600 section-content">Skills</h1>
-      <div class="skills-container  bg-black text-white py-8 px-4">
-        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
-          <div *ngFor="let category of skills" class="category-card section-content  backdrop-blur-lg border-[2px] border-white/50  p-6 rounded-lg shadow-lg hover:translate-y-[-25px] hover:scale-105 hover:shadow-[0px_15px_20px_rgba(255,0,0,0.4)] transition-all duration-300 ease-in" >
-            <h2 class="text-2xl font-semibold text-[#FF0000] text-center mb-4">{{ category.title }}</h2>
-            <div class="skills-list grid grid-cols-2 gap-4">
-              <div *ngFor="let skill of category.skills" class="skill text-center bg-black border  border-white/50  p-4 px-4 rounded-lg shadow-lg flex items-center" style="width: 150px;">
-                <p class="text-white text-sm font-medium mr-2 flex-grow">{{ skill.name }}</p>
-                <img [src]="skill.image" [alt]="skill.name" class="skill-icon w-10 h-10 mx-auto " />
+    <section class="skills section-content flex flex-col items-center py-16" id="skills">
+      <!-- Animated Header -->
+      <div class="overflow-hidden">
+        <p id="em" class="text-center text-lg text-white/80 mb-2 animate-fade-in">Explore My</p>
+      </div>
+      <div class="overflow-hidden">
+        <h1 id="skillhead" class="title text-center mb-8 text-7xl text-red-600 section-content">Skills</h1>
+      </div>
+    
+      <!-- Skills Grid -->
+      <div class="skills-container w-full max-w-6xl px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div *ngFor="let category of skills" 
+               class="category-card group relative overflow-hidden rounded-xl bg-black/50 backdrop-blur-lg border border-white/10 hover:border-red-500/30 transition-all duration-500 p-6 shadow-lg hover:shadow-red-500/10">
+            
+            <!-- Gradient Border Effect -->
+            <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            
+            <div class="relative h-full">
+              <!-- Category Title -->
+              <h2 class="text-2xl font-bold mb-6 text-center text-white">
+                <span class="relative inline-block">
+                  <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                  {{ category.title }}
+                </span>
+              </h2>
+              
+              <!-- Skills List -->
+              <div class="skills-list grid grid-cols-2 gap-4">
+                <div *ngFor="let skill of category.skills" 
+                     class="skill flex items-center justify-between p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1">
+                  <p class="text-white/90 text-sm font-medium">{{ skill.name }}</p>
+                  <img [src]="skill.image" [alt]="skill.name" 
+                       class="skill-icon w-8 h-8 object-contain transition-transform duration-300 group-hover:rotate-6" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="icon-container mt-8">
-        <button class="b5 py-2 px-4 rounded" (click)="scrollToSection('home')">
-          Back to Home <i class="fa-solid fa-circle-up"></i>
+    
+      <!-- Back Button -->
+      <div class="icon-container mt-16 animate-fade-in">
+        <button class="back-button relative overflow-hidden px-6 py-3 rounded-full bg-black border border-white/10 hover:border-red-600 transition-all duration-300 group"
+                (click)="scrollToSection('home')">
+          <span class="relative z-10 text-white/90 group-hover:text-white flex items-center gap-2">
+            Back to Home 
+            <i class="fa-solid fa-arrow-up transition-transform duration-300 group-hover:-translate-y-0.5"></i>
+          </span>
+          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
         </button>
       </div>
     </section>
-    
