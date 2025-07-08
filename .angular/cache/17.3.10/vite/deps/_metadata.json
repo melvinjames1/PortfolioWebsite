@@ -1,55 +1,43 @@
 {
-  "hash": "08440784",
-  "configHash": "bd96222c",
+  "hash": "697ec92d",
+  "configHash": "02866d67",
   "lockfileHash": "3e759cff",
-  "browserHash": "c35d55f6",
+  "browserHash": "5ed6e90e",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "470ccff0",
+      "fileHash": "dc9f6a69",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "f2df188f",
+      "fileHash": "9fb549ac",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "08622a35",
+      "fileHash": "8d27cf93",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "ae663f2c",
-      "needsInterop": false
-    },
-    "gsap": {
-      "src": "../../../../../node_modules/gsap/index.js",
-      "file": "gsap.js",
-      "fileHash": "6ac1c0f6",
-      "needsInterop": false
-    },
-    "gsap/ScrollTrigger": {
-      "src": "../../../../../node_modules/gsap/ScrollTrigger.js",
-      "file": "gsap_ScrollTrigger.js",
-      "fileHash": "a88bfbd7",
+      "fileHash": "57c1fdd6",
       "needsInterop": false
     },
     "intersection-observer": {
       "src": "../../../../../node_modules/intersection-observer/intersection-observer.js",
       "file": "intersection-observer.js",
-      "fileHash": "4b591dfe",
+      "fileHash": "6edfc9ea",
       "needsInterop": true
     },
     "typed.js": {
       "src": "../../../../../node_modules/typed.js/dist/typed.module.js",
       "file": "typed__js.js",
-      "fileHash": "b3c5b306",
+      "fileHash": "8a6d7ef8",
       "needsInterop": false
     }
   },
