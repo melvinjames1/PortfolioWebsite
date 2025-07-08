@@ -20,6 +20,12 @@
 #step1:hover{
   color: #fff;
 } */
+#test1:hover{
+#test{
+  --tw-translate-y: 0.25rem /* -10px */;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+}
 .intro{
     color: whitesmoke;
     font-size: 95px;

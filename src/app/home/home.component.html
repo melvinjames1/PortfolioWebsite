@@ -28,12 +28,19 @@
         <h2 class="tw" id="desc" ><span class="type"></span></h2>
       </div>
       <div class="button-container">
-        <a href="https://github.com/melvinjames1" target="_blank"><button class="b1"><i class="fa-brands fa-github"></i></button></a>
-        <a href="https://www.linkedin.com/in/melvin-james-303561255/" target="_blank"><button class="b2"><i class="fa-brands fa-linkedin-in"></i></button></a>
-        <a href="https://www.instagram.com/melvin._.james/" target="_blank"><button class ="b3"><i class="fa-brands fa-instagram"></i></button></a>
+        <a href="https://github.com/melvinjames1" target="_blank"><button class="b1"><i class="fa-brands p-2 text-2xl fa-github"></i></button></a>
+        <a href="https://www.linkedin.com/in/melvin-james-303561255/" target="_blank"><button class="b2"><i class="fa-brands  p-2 text-2xl fa-linkedin-in"></i></button></a>
+        <a href="https://www.instagram.com/melvin._.james/" target="_blank"><button class ="b3"><i class="fa-brands p-2 text-2xl fa-instagram"></i></button></a>
        </div>
-       <div class="icon-container">
-          <button class="b4"(click)="scrollToSection('skills')" >My Skills <i class="fa-solid fa-circle-down"></i></button>
+       <div class="icon-container mt-16 animate-fade-in">
+        <button id="test1" class="back-button relative overflow-hidden px-6 py-3 rounded-full bg-black border border-white/10 hover:border-red-600 transition-all duration-300 group"
+                (click)="scrollToSection('skills')">
+          <span class="relative z-10 text-white/90 group-hover:text-white flex items-center gap-2">
+            My Skills
+            <i id="test" class="fa-solid fa-arrow-down transition-transform duration-300 "></i>
+          </span>
+          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+        </button>
       </div>
     </section>
     
@@ -84,7 +91,7 @@
                 (click)="scrollToSection('home')">
           <span class="relative z-10 text-white/90 group-hover:text-white flex items-center gap-2">
             Back to Home 
-            <i class="fa-solid fa-arrow-up transition-transform duration-300 group-hover:-translate-y-0.5"></i>
+            <i class="fa-solid fa-arrow-up transition-transform duration-300 group-hover:-translate-y-2.5"></i>
           </span>
           <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
         </button>
