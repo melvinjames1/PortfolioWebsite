@@ -2,7 +2,8 @@ import { Component, ElementRef, Renderer2, AfterViewInit, Inject, PLATFORM_ID} f
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import Typed from 'typed.js';
 import 'intersection-observer';
-
+// import { gsap } from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
     selector: 'app-home',
     standalone: true,
@@ -25,7 +26,30 @@ export class HomeComponent implements AfterViewInit {
         console.warn('IntersectionObserver is not supported in this browser.');
       
       }
-    }
+   }
+
+    // gsap.registerPlugin(ScrollTrigger);
+    
+    // // Animate cards on scroll
+    // gsap.utils.toArray('.category-card').forEach((card: any) => {
+    //   gsap.from(card, {
+    //     scrollTrigger: {
+    //       trigger: card,
+    //       start: "top 80%",
+    //       toggleActions: "play none none none"
+    //     },
+    //     y: 30,
+    //     opacity: 0,
+    //     duration: 0.8,
+    //     ease: "power2.out"
+    //   });
+    // });
+
+    // // Button hover effect
+    // gsap.to('.back-button', {
+    //   '--border-opacity': 0.1,
+    //   duration: 0.3
+    // });
   }
 
 
@@ -59,6 +83,10 @@ export class HomeComponent implements AfterViewInit {
     {
       title: "Frontend",
       skills: [
+        {
+          name: "Angular",
+          image: "assets/angular-icon.svg"
+        },
         {
           name: "React Js",
           image:
@@ -167,7 +195,7 @@ export class HomeComponent implements AfterViewInit {
       skills: [
         {
           name: "Canva",
-          image: "https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg",
+          image: "assets/canva-icon.svg",
         },
         {
           name: "Figma",
@@ -225,9 +253,9 @@ export class HomeComponent implements AfterViewInit {
 
   ngOnInit(): void {
     const options = {
-      strings: ['UI Designer', 'Student','Tech Enthusiast'],
-      typeSpeed: 250,
-      backSpeed: 200,      
+      strings: ['AI Researcher','Cyber Security Student','Full-Stack Developer', 'UI Designer', 'Student','Tech Enthusiast'],
+      typeSpeed: 150,
+      backSpeed: 75,      
       loop: true,
     };
 
