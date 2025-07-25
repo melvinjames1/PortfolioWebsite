@@ -51,7 +51,14 @@
         and I'm eager to continue growing in the field of computer science.
     </div>
     <div class="morebtn-container">
-      <button class="morebtn fixed" (click)="scrollToSection('contact')">Say Hi <i class="fa-regular fa-hand"></i></button>
+            <button class="morebtn back-button relative overflow-hidden px-6 py-3 rounded-full bg-black border border-white/10 hover:border-red-600 transition-all duration-300 group"
+              (click)="scrollToSection('contact')">
+        <span id="movebtn" class="relative z-10 text-black group-hover:text-white flex items-center gap-2">
+          Say Hi 
+          <i class="fa-regular fa-hand"></i>
+        </span>
+        <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+      </button>
   </div>
   </section>
   <section id="education" >
@@ -91,7 +98,13 @@
   </ol> 
   </div>   
   <div class="morebtn-container">
-      <button class="morebtn" (click)="scrollToSection('experience')">My Experience</button>
+    <button class="morebtn back-button relative overflow-hidden px-6 py-3 rounded-full bg-black border border-white/10 hover:border-red-600 transition-all duration-300 group"
+    (click)="scrollToSection('experience')">
+         <span id="movebtn" class="relative z-10 text-black group-hover:text-white flex items-center gap-2">
+            My Experience 
+         </span>
+    <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+    </button>
   </div>
   </section>
   <section id="experience" class="pt-14">
@@ -123,7 +136,14 @@
     </ol> 
     </div>   
     <div class="morebtn-container">
-        <button class="morebtn" (click)="downloadResume()">Resume <i class="fa-solid fa-scroll"></i></button>
+      <button class="morebtn back-button relative overflow-hidden px-6 py-3 rounded-full bg-black border border-white/10 hover:border-red-600 transition-all duration-300 group"
+      (click)="downloadResume()">
+           <span id="movebtn" class="relative z-10 text-black group-hover:text-white flex items-center gap-2">
+              My Resume 
+              <i class="fa-solid fa-scroll"></i>
+           </span>         
+      <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+      </button>
     </div>
     </section>
     <section id="hobbies" class="section-content py-16 mt-3">
@@ -147,7 +167,7 @@
                 <h2 class="text-2xl font-bold mb-6 text-white flex items-center justify-center gap-2">
                   <i class="fas fa-laptop-code text-white"></i>
                   <span class="relative inline-block">
-                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#ff0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                     Development Related
                   </span>
                 </h2>
@@ -155,19 +175,19 @@
                 <!-- Hobbies List -->
                 <div class="hobbies-list grid gap-4 flex-grow">
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Web Development using <span class="text-[#ff0000] font-medium">Angular</span> and <span class="text-[#ff0000] font-medium">React</span></p>
+                    <p class="text-white/90">Web Development using <span class="text-[#ff0000] font-bold">Angular</span> and <span class="text-[#ff0000] font-medium">React</span></p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Game Development using <span class="text-[#ff0000] font-medium">Unity</span></p>
+                    <p class="text-white/90">Game Development using <span class="text-[#ff0000] font-bold">Unity</span></p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Solving problems on <span class="text-[#ff0000] font-medium">Leetcode</span> and <span class="text-[#ff0000] font-medium">Hackerrank</span></p>
+                    <p class="text-white/90">Solving problems on <span class="text-[#ff0000] font-bold">Leetcode</span> and <span class="text-[#ff0000] font-bold">Hackerrank</span></p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Working on <span class="text-[#ff0000] font-medium">Arduino</span> or <span class="text-[#ff0000] font-medium">Raspberry Pi</span></p>
+                    <p class="text-white/90">Working on <span class="text-[#ff0000] font-bold">Arduino</span> or <span class="text-[#ff0000] font-bold">Raspberry Pi</span></p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90"><span class="text-[#ff0000] font-medium">Python</span> Automation projects</p>
+                    <p class="text-white/90"><span class="text-[#ff0000] font-bold">Python</span> Automation projects</p>
                   </div>
                 </div>
               </div>
@@ -182,20 +202,20 @@
                 <h2 class="text-2xl font-bold mb-6 text-white flex items-center justify-center gap-2">
                   <i class="fas fa-globe text-white"></i>
                   <span class="relative inline-block">
-                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#ff0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                     Online Hobbies
                   </span>
                 </h2>
                 
                 <div class="hobbies-list grid gap-4 flex-grow">
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Watching <span class="text-[#ff0000] font-medium">Anime</span> and <span class="text-[#ff0000] font-medium">Movies</span></p>
+                    <p class="text-white/90">Watching <span class="text-[#ff0000] font-bold">Anime</span> and <span class="text-[#ff0000] font-bold">Movies</span></p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Reading <span class="text-[#ff0000] font-medium">Mangas</span> and <span class="text-[#ff0000] font-medium">Manwhas</span></p>
+                    <p class="text-white/90">Reading <span class="text-[#ff0000] font-bold">Mangas</span> and <span class="text-[#ff0000] font-bold">Manwhas</span></p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Playing <span class="text-[#ff0000] font-medium">God of War</span>, <span class="text-[#ff0000] font-medium">Uncharted</span>, <span class="text-[#ff0000] font-medium">GTA</span></p>
+                    <p class="text-white/90">Playing <span class="text-[#ff0000] font-bold">God of War</span>, <span class="text-[#ff0000] font-bold">Uncharted</span>, <span class="text-[#ff0000] font-bold">GTA</span></p>
                   </div>
                 </div>
               </div>
@@ -210,23 +230,23 @@
                 <h2 class="text-2xl font-bold mb-6 text-white flex items-center justify-center gap-2">
                   <i class="fas fa-running text-white"></i>
                   <span class="relative inline-block">
-                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#ff0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                     Offline Hobbies
                   </span>
                 </h2>
                 
                 <div class="hobbies-list grid gap-4 flex-grow">
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Occasional <span class="text-[#ff0000] font-medium">Bike Rides</span> for thrill</p>
+                    <p class="text-white/90">Occasional <span class="text-[#ff0000] font-bold">Bike Rides</span> for thrill</p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90"><span class="text-[#ff0000] font-medium">Singing</span>, playing <span class="text-[#ff0000] font-medium">Guitar</span> and <span class="text-[#ff0000] font-medium">Keyboard</span></p>
+                    <p class="text-white/90"><span class="text-[#ff0000] font-bold">Singing</span>, playing <span class="text-[#ff0000] font-bold">Guitar</span> and <span class="text-[#ff0000] font-bold">Keyboard</span></p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Hitting the <span class="text-[#ff0000] font-medium">GYM</span> 3x weekly</p>
+                    <p class="text-white/90">Hitting the <span class="text-[#ff0000] font-bold">GYM</span> 3x weekly</p>
                   </div>
                   <div class="hobby flex items-center p-3 rounded-lg bg-gradient-to-br from-black to-gray-900/80 border border-white/5 hover:border-[#ff0000]/50 transition-all duration-300 hover:-translate-y-1">
-                    <p class="text-white/90">Reading <span class="text-[#ff0000] font-medium">"Atomic Habits"</span> and <span class="text-[#ff0000] font-medium">"Deep Work"</span></p>
+                    <p class="text-white/90">Reading <span class="text-[#ff0000] font-bold">"Atomic Habits"</span> and <span class="text-[#ff0000] font-bold">"Deep Work"</span></p>
                   </div>
                 </div>
               </div>
@@ -236,7 +256,14 @@
       </div>
     
       <div class="morebtn-container">
-        <button class="morebtn" (click)="scrollToSection('AboutMe')">Back to About <i class="fa-solid fa-arrow-up transition-transform duration-300 group-hover:-translate-y-2.5"></i></button>
+        <button class="morebtn back-button relative overflow-hidden px-6 py-3 rounded-full bg-black border border-white/10 hover:border-red-600 transition-all duration-300 group"
+                (click)="scrollToSection('AboutMe')">
+           <span id="movebtn" class="relative z-10 text-black group-hover:text-white flex items-center gap-2">
+              Back to About
+              <i class="fa-solid fa-arrow-up transition-transform duration-300 group-hover:-translate-y-2.5"></i>
+           </span>         
+      <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+      </button>
     </div>
     </section>
   <section class="text-gray-600 body-font relative section-content" id="contact">
@@ -266,8 +293,8 @@
                     <textarea id="message" name="message" placeholder="Enter the Message you want to send" class="w-full  rounded border border-grey-300  focus:bg-white focus:ring-2  h-32 text-base outline-none text-black py-1 px-3 resize-none" required></textarea>
                   </div>
                 </div>
-                <div class="p-2 w-full" id="sendbtnc">
-                  <button type="submit" class="flex mx-auto" id="sendbtn">Send <i id="sndicon" class="fa-regular fa-paper-plane"></i></button>
+                <div class="p-2 w-full" id="morebtn-container">
+                  <button type="submit" id="movebtn" class="flex mx-auto morebtn back-button relative overflow-hidden px-6 py-3 rounded-full bg-black border border-white/10 hover:border-red-600 transition-all duration-300 group"><span class="relative z-10 text-black group-hover:text-white flex items-center gap-2" >Send</span> <i id="sndicon" class="fa-regular fa-paper-plane"></i> <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span></button>
                 </div>
                 <div class="p-2 w-full pt-8 mt-8 border-t border-white-200 text-center">
                   <label class="text-white">melvin.mj576&#64;gmail.com</label>
@@ -277,12 +304,13 @@
           </div>
       </form>
       <div class="flex justify-center items-center">
-      <button class="button" id="up" (click)="scrollToSection('AboutMe')">
+      <button class="button back-button relative overflow-hidden rounded-full bg-black border border-white/10 hover:border-red-600 transition-all duration-300 group" id="up" (click)="scrollToSection('AboutMe')">
         <svg class="svgIcon" viewBox="0 0 384 512">
           <path
             d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
           ></path>
         </svg>
+        <span class="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
       </button>
     </div>
   </section>
