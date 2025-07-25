@@ -85,7 +85,7 @@ export class HomeComponent implements AfterViewInit {
       skills: [
         {
           name: "Angular",
-          image: "assets/angular-icon.svg"
+          image: "https://img.icons8.com/?size=100&id=j9DnICNnlhGk&format=png&color=000000"
         },
         {
           name: "React Js",
@@ -195,7 +195,7 @@ export class HomeComponent implements AfterViewInit {
       skills: [
         {
           name: "Canva",
-          image: "assets/canva-icon.svg",
+          image: "https://img.icons8.com/?size=100&id=iWw83PVcBpLw&format=png&color=000000",
         },
         {
           name: "Figma",
