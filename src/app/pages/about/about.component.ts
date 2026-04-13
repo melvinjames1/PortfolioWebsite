@@ -6,9 +6,29 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './about.component.html',
-  styleUrls: [],   // no CSS file needed — pure Tailwind
+  styleUrls: ["./about.component.css"],   // no CSS file needed — pure Tailwind
 })
 export class AboutComponent implements OnInit, OnDestroy {
+  hobbies = [
+  {
+    index: '01', chip: 'Active', icon: 'fas fa-gamepad', title: 'Gaming',
+    statusLabel: 'Weekly hrs', statusPct: 75,
+    items: ['Competitive FPS & battle royale', 'Open-world RPG exploration', 'Indie puzzle & strategy games', 'Game modding & community builds'],
+    tags: ['FPS', 'RPG', 'Indie']
+  },
+  {
+    index: '02', chip: 'Creative', icon: 'fas fa-music', title: 'Music',
+    statusLabel: 'Practice streak', statusPct: 65,
+    items: ['Electric guitar — rock & blues', 'Keyboard & music theory', 'Singing & vocal training', 'DAW production & sound design'],
+    tags: ['Guitar', 'Keyboard', 'Singing', 'DAW']
+  },
+  {
+    index: '03', chip: 'Outdoor', icon: 'fas fa-person-biking', title: 'Biking',
+    statusLabel: 'Rides / month', statusPct: 55,
+    items: ['Biking', 'Road cycling & long routes', 'Urban commute & city rides', 'Bike maintenance & upgrades'],
+    tags: ['Bike', 'Road', 'Urban']
+  }
+];
   activeSection = 'about';
 
   chips = ['AI', 'Cybersecurity', 'Full Stack', 'Angular', 'Python'];
@@ -56,38 +76,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   
   ];
 
-  hobbies = [
-    {
-      icon: 'fas fa-laptop-code',
-      title: 'Development',
-      items: [
-        'Web Dev with <span class="text-red-500 font-semibold">Angular</span> & <span class="text-red-500 font-semibold">React</span>',
-        'Game dev with <span class="text-red-500 font-semibold">Unity</span>',
-        '<span class="text-red-500 font-semibold">Leetcode</span> & <span class="text-red-500 font-semibold">Hackerrank</span>',
-        '<span class="text-red-500 font-semibold">Arduino</span> / <span class="text-red-500 font-semibold">Raspberry Pi</span>',
-        '<span class="text-red-500 font-semibold">Python</span> automation',
-      ],
-    },
-    {
-      icon: 'fas fa-globe',
-      title: 'Online',
-      items: [
-        'Watching <span class="text-red-500 font-semibold">Anime</span> & <span class="text-red-500 font-semibold">Movies</span>',
-        'Reading <span class="text-red-500 font-semibold">Manga</span> & <span class="text-red-500 font-semibold">Manhwa</span>',
-        '<span class="text-red-500 font-semibold">God of War</span>, <span class="text-red-500 font-semibold">Uncharted</span>, <span class="text-red-500 font-semibold">GTA</span>',
-      ],
-    },
-    {
-      icon: 'fas fa-guitar',
-      title: 'Offline',
-      items: [
-        'Bike rides for the <span class="text-red-500 font-semibold">thrill</span>',
-        '<span class="text-red-500 font-semibold">Singing</span>, <span class="text-red-500 font-semibold">Guitar</span> & <span class="text-red-500 font-semibold">Keyboard</span>',
-        '<span class="text-red-500 font-semibold">GYM</span> — 3× weekly',
-        '<span class="text-red-500 font-semibold">Atomic Habits</span> & <span class="text-red-500 font-semibold">Deep Work</span>',
-      ],
-    },
-  ];
+
 
   private revealObserver!: IntersectionObserver;
   private sectionObserver!: IntersectionObserver;
