@@ -1,17 +1,76 @@
-<section>
-    <header class = "header">
-       <div class="logo"><a class="Name"> <span class="text-white"><span class="text-[red]">&lt;</span>Melvin<span class="text-[red]">/</span>James<span class="text-[red]">&gt;</span></span></a>
-    </div>
-    
-    <input type="checkbox" id ="check">
-    <label for="check" class="icons">
-        <i class="fa-solid fa-bars" id="menu"></i>
-        <i class="fa-solid fa-xmark" id="close"></i>
-    </label>
-    <nav class="navbar">
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" style="--i:0;">Home</a>
-        <a routerLink="/projects" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"  style="--i:1;">Projects</a>  
-        <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" style="--i:2;">About</a>
+<header class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 flex items-center justify-between bg-black/10 backdrop-blur-md border-b border-white/[0.04]">
+
+  <!-- Logo -->
+  <a routerLink="/" class="text-xl md:text-2xl font-black tracking-tight text-white select-none cursor-pointer no-underline">
+    <span class="text-red-500">&lt;</span>Melvin<span class="text-red-500">/</span>James<span class="text-red-500">&gt;</span>
+  </a>
+
+  <!-- Desktop Nav -->
+  <nav class="hidden md:flex items-center gap-1">
+    <a routerLink="/" routerLinkActive="!text-red-500" [routerLinkActiveOptions]="{exact: true}"
+      class="text-white/60 hover:text-white text-[13px] font-bold tracking-widest uppercase px-5 py-2 rounded-full transition-all duration-200 hover:bg-white/5 no-underline">
+      Home
+    </a>
+    <a routerLink="/projects" routerLinkActive="!text-red-500" [routerLinkActiveOptions]="{exact: true}"
+      class="text-white/60 hover:text-white text-[13px] font-bold tracking-widest uppercase px-5 py-2 rounded-full transition-all duration-200 hover:bg-white/5 no-underline">
+      Projects
+    </a>
+    <a routerLink="/about" routerLinkActive="!text-red-500" [routerLinkActiveOptions]="{exact: true}"
+      class="text-white/60 hover:text-white text-[13px] font-bold tracking-widest uppercase px-5 py-2 rounded-full transition-all duration-200 hover:bg-white/5 no-underline">
+      About
+    </a>
+  </nav>
+
+  <!-- Mobile hamburger -->
+  <button (click)="toggleMenu()"
+    class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full border border-white/10 hover:border-red-600/50 bg-black/40 backdrop-blur transition-all duration-300 gap-1.5 group">
+    <span class="block w-5 h-0.5 bg-white/70 group-hover:bg-red-400 transition-all duration-300"
+      [class.rotate-45]="menuOpen" [class.translate-y-2]="menuOpen"></span>
+    <span class="block w-5 h-0.5 bg-white/70 group-hover:bg-red-400 transition-all duration-300"
+      [class.opacity-0]="menuOpen" [class.scale-x-0]="menuOpen"></span>
+    <span class="block w-5 h-0.5 bg-white/70 group-hover:bg-red-400 transition-all duration-300"
+      [class.-rotate-45]="menuOpen" [class.-translate-y-2]="menuOpen"></span>
+  </button>
+
+</header>
+
+<!-- Mobile Drawer -->
+<div class="fixed top-[64px] left-0 w-full z-40 md:hidden transition-all duration-300 ease-in-out px-4"
+  [class.opacity-0]="!menuOpen"
+  [class.pointer-events-none]="!menuOpen"
+  [class.-translate-y-3]="!menuOpen"
+  [class.translate-y-0]="menuOpen">
+
+  <div class="rounded-2xl bg-neutral-900/95 backdrop-blur-xl border border-white/[0.07] overflow-hidden shadow-2xl shadow-black/60">
+
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-red-600/60 to-transparent"></div>
+
+    <nav class="flex flex-col p-4 gap-1">
+      <a routerLink="/" routerLinkActive="!text-red-500 !bg-red-600/10" [routerLinkActiveOptions]="{exact: true}"
+        (click)="closeMenu()"
+        class="flex items-center gap-3 text-white/60 hover:text-white hover:bg-white/5 text-[13px] font-bold tracking-widest uppercase px-5 py-3.5 rounded-xl transition-all duration-200 no-underline">
+        <i class="fas fa-house text-xs w-4"></i> Home
+      </a>
+      <a routerLink="/projects" routerLinkActive="!text-red-500 !bg-red-600/10" [routerLinkActiveOptions]="{exact: true}"
+        (click)="closeMenu()"
+        class="flex items-center gap-3 text-white/60 hover:text-white hover:bg-white/5 text-[13px] font-bold tracking-widest uppercase px-5 py-3.5 rounded-xl transition-all duration-200 no-underline">
+        <i class="fas fa-folder text-xs w-4"></i> Projects
+      </a>
+      <a routerLink="/about" routerLinkActive="!text-red-500 !bg-red-600/10" [routerLinkActiveOptions]="{exact: true}"
+        (click)="closeMenu()"
+        class="flex items-center gap-3 text-white/60 hover:text-white hover:bg-white/5 text-[13px] font-bold tracking-widest uppercase px-5 py-3.5 rounded-xl transition-all duration-200 no-underline">
+        <i class="fas fa-user text-xs w-4"></i> About
+      </a>
     </nav>
-    </header>
-    </section>
+
+    <div class="border-t border-white/[0.06] px-6 py-4">
+      <p class="text-white/25 text-[11px] tracking-widest uppercase text-center">melvin.mj576gmail.com</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div *ngIf="menuOpen" (click)="closeMenu()"
+  class="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm md:hidden">
+</div>
