@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Renderer2, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,41 +6,43 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './about.component.html',
-  styleUrls: ["./about.component.css"],   // no CSS file needed — pure Tailwind
+  styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit, OnDestroy {
+
   hobbies = [
-  {
-    index: '01', chip: 'Active', icon: 'fas fa-gamepad', title: 'Gaming',
-    statusLabel: 'Weekly hrs', statusPct: 75,
-    items: ['Competitive FPS & battle royale', 'Open-world RPG exploration', 'Indie puzzle & strategy games', 'Game modding & community builds'],
-    tags: ['FPS', 'RPG', 'Indie']
-  },
-  {
-    index: '02', chip: 'Creative', icon: 'fas fa-music', title: 'Music',
-    statusLabel: 'Practice streak', statusPct: 65,
-    items: ['Electric guitar — rock & blues', 'Keyboard & music theory', 'Singing & vocal training', 'DAW production & sound design'],
-    tags: ['Guitar', 'Keyboard', 'Singing', 'DAW']
-  },
-  {
-    index: '03', chip: 'Outdoor', icon: 'fas fa-person-biking', title: 'Biking',
-    statusLabel: 'Rides / month', statusPct: 55,
-    items: ['Biking', 'Road cycling & long routes', 'Urban commute & city rides', 'Bike maintenance & upgrades'],
-    tags: ['Bike', 'Road', 'Urban']
-  }
-];
+    {
+      index: '01', chip: 'Creative', icon: 'fas fa-music', title: 'Music',
+      statusLabel: 'Practice streak', statusPct: 85,
+      items: ['Electric guitar — rock & blues', 'Keyboard & music theory', 'Singing & vocal training', 'DAW production & sound design'],
+      tags: ['Guitar', 'Keyboard', 'Singing', 'DAW']
+    },
+    {
+      index: '02', chip: 'Active', icon: 'fas fa-gamepad', title: 'Gaming',
+      statusLabel: 'Weekly hrs', statusPct: 75,
+      items: ['Open-world RPG exploration', 'Indie puzzle & strategy games', 'Casual FPS & battle royale','Game modding & community builds'],
+      tags: ['Open World','RPG', 'Indie','FPS']
+    },
+    {
+      index: '03', chip: 'Outdoor', icon: 'fas fa-person-biking', title: 'Biking',
+      statusLabel: 'Rides / month', statusPct: 55,
+      items: ['Mountain trail riding', 'Road cycling & long routes', 'Urban commute & city rides', 'Bike maintenance & upgrades'],
+      tags: ['Bike', 'Road', 'Urban']
+    }
+  ];
+
   activeSection = 'about';
 
   chips = ['AI', 'Cybersecurity', 'Full Stack', 'Angular', 'Python'];
 
   education = [
-   {
+    {
       year: '2025 – Present',
       title: 'MSc AI & Cybersecurity — Christ University, Bangalore',
       body: 'Exploring network security, cryptography, and AI algorithms. Actively involved in club activities and ongoing research.',
       tags: ['Cryptography', 'Network Security', 'AI Algorithms'],
     },
-  {
+    {
       year: '2022 – 2025',
       title: 'BCA — Kristu Jayanti College',
       body: 'Deepened skills in C, Java, Python, DSA, OS, Software Engineering, and Git through hands-on projects and club involvement.',
@@ -61,7 +63,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   ];
 
   experience = [
-      {
+    {
       year: 'Jun 2024 – Jul 2024',
       title: 'Front-End Developer — Kristu Jayanti SDC',
       body: 'Built scalable layouts with Angular routing, implemented authentication guards, and established an efficient Git workflow and version control system for the team.',
@@ -73,13 +75,12 @@ export class AboutComponent implements OnInit, OnDestroy {
       body: "Participated in Blitz Code, Angular Study Jam, and React Study Jam. Part of the organizing team for Velocity — a national-level coding competition. Joined Google's Generative AI Jam program.",
       tags: ['Angular', 'React', 'Gen AI', 'Event Org'],
     },
-  
   ];
 
-
+  // ── Tooltip visibility for nav ─────────────────────────────────────────────
+  navTooltip: string | null = null;
 
   private revealObserver!: IntersectionObserver;
-  private sectionObserver!: IntersectionObserver;
   private readonly sectionIds = ['about', 'education', 'experience', 'hobbies', 'contact'];
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
@@ -89,12 +90,44 @@ export class AboutComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.initReveal();
       this.initSectionTracker();
-    }, 100);
+    }, 150);
   }
 
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
-    this.sectionObserver?.disconnect();
+    window.removeEventListener('scroll', this.onScroll);
+  }
+
+  // ── Scroll-based section tracker (replaces IntersectionObserver for nav) ───
+  // Uses getBoundingClientRect so it works regardless of section height.
+  private onScroll = (): void => {
+    const offsets = this.sectionIds.map(id => {
+      const el = document.getElementById(id);
+      if (!el) return { id, top: Infinity };
+      return { id, top: Math.abs(el.getBoundingClientRect().top) };
+    });
+    // Pick the section whose top is closest to the viewport top
+    offsets.sort((a, b) => a.top - b.top);
+    if (offsets[0]) this.activeSection = offsets[0].id;
+  };
+
+  private initSectionTracker(): void {
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll(); // set initial state
+  }
+
+  private initReveal(): void {
+    const els = this.el.nativeElement.querySelectorAll('.reveal') as NodeListOf<HTMLElement>;
+    this.revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.remove('opacity-0', 'translate-y-8');
+        } else {
+          (e.target as HTMLElement).classList.add('opacity-0', 'translate-y-8');
+        }
+      });
+    }, { threshold: 0.08 });
+    els.forEach(el => this.revealObserver.observe(el));
   }
 
   private loadAssets(): void {
@@ -112,34 +145,12 @@ export class AboutComponent implements OnInit, OnDestroy {
     });
   }
 
-  private initReveal(): void {
-    const els = this.el.nativeElement.querySelectorAll('.reveal') as NodeListOf<HTMLElement>;
-    this.revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          (e.target as HTMLElement).classList.remove('opacity-0', 'translate-y-8');
-        } else {
-          (e.target as HTMLElement).classList.add('opacity-0', 'translate-y-8');
-        }
-      });
-    }, { threshold: 0.1 });
-    els.forEach(el => this.revealObserver.observe(el));
-  }
-
-  private initSectionTracker(): void {
-    this.sectionObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) this.activeSection = e.target.id;
-      });
-    }, { threshold: 0.35 });
-    this.sectionIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) this.sectionObserver.observe(el);
-    });
-  }
-
   scrollToSection(id: string): void {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById(id);
+    if (!el) return;
+    // Offset slightly so the section header isn't hidden behind fixed elements
+    const y = el.getBoundingClientRect().top + window.scrollY - 24;
+    window.scrollTo({ top: y, behavior: 'smooth' });
   }
 
   downloadResume(): void {
