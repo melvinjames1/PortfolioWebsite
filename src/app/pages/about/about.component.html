@@ -1,609 +1,140 @@
-<!-- ═══════════════════════════════════════════
-     SIDE NAV STEPPER
-     Fix: all buttons now use the same active
-     class binding pattern. Active dot + line
-     indicator added for clearer position cue.
-════════════════════════════════════════════ -->
-<nav class="fixed left-5 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-1">
-
-  <!-- Vertical track line -->
-  <div class="absolute left-1/2 -translate-x-1/2 top-5 bottom-5 w-px bg-white/[0.06]"></div>
-
-  <ng-container *ngFor="let nav of [
-    { id: 'about',      icon: 'fas fa-user',           label: 'About'     },
-    { id: 'education',  icon: 'fas fa-graduation-cap', label: 'Education' },
-    { id: 'experience', icon: 'fas fa-briefcase',      label: 'Experience'},
-    { id: 'hobbies',    icon: 'fas fa-guitar',         label: 'Hobbies'   },
-    { id: 'contact',    icon: 'fas fa-envelope',       label: 'Contact'   }
-  ]">
-    <button
-      (click)="scrollToSection(nav.id)"
-      class="group relative z-10 w-10 h-10 rounded-full flex items-center justify-center
-        transition-all duration-300
-        border border-white/10 bg-black/80 backdrop-blur
-        hover:border-red-600/70 hover:shadow-md hover:shadow-red-600/20 hover:-translate-y-px"
-      [class.!border-red-600]="activeSection === nav.id"
-      [class.!bg-red-600]="activeSection === nav.id"
-      [class.shadow-md]="activeSection === nav.id"
-
-      [attr.aria-label]="nav.label">
-
-    <i
-  [class]="nav.icon + ' text-sm transition-colors duration-200'"
-  class="text-gray-400"
-  [class.!text-white]="activeSection === nav.id"
-  [class.group-hover:text-red-400]="activeSection !== nav.id">
-</i>
-
-      <!-- Tooltip -->
-      <span class="pointer-events-none absolute left-14 whitespace-nowrap
-        bg-neutral-900 border border-red-600/40 text-red-400
-        text-[10px] font-bold uppercase tracking-widest
-        px-3 py-1 rounded
-        opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0
-        transition-all duration-200">
-        {{ nav.label }}
-      </span>
-
-      <!-- Active pulse ring -->
-      <span *ngIf="activeSection === nav.id"
-        class="absolute inset-0 rounded-full border border-red-500/40 animate-ping pointer-events-none"
-        style="animation-duration:2s"></span>
-    </button>
-
-    <!-- Gap between buttons -->
-    <div class="h-2"></div>
-  </ng-container>
-
-</nav>
-
-
-<!-- ═══════════════════════
-     ABOUT
-════════════════════════ -->
-<!-- ═══════════════════════
-     ABOUT  —  redesigned
-     Layout: eyebrow + name up top,
-     then a 2-col card grid below.
-     No spinning rings — distinct from hero.
-════════════════════════════════════════════ -->
 <section id="about" class="bg-neutral-950 pt-28 pb-20 px-6">
   <div class="max-w-5xl mx-auto">
 
-    <!-- Header row -->
-    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 mb-12">
+    <!-- Header -->
+    <div class="mb-12">
       <p class="flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
         About Me <span class="inline-block w-10 h-px bg-red-500"></span>
       </p>
+
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-          <h1 class="font-black text-white leading-none tracking-tighter mb-2"
-            style="font-size:clamp(2.6rem,7vw,4.5rem)">
+          <h1 class="font-black text-white leading-none tracking-tighter mb-2 text-[clamp(2.6rem,7vw,4.5rem)]">
             Melvin James
           </h1>
           <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-red-500">
-            AI &amp; Cybersecurity Student
+            AI & Cybersecurity Student
           </p>
         </div>
-        <!-- Location pill -->
-        <span class="self-start sm:self-auto inline-flex items-center gap-2
-          bg-neutral-900 border border-white/[0.07] text-white/35
-          text-[11px] font-semibold px-4 py-2 rounded-full">
-          <i class="fas fa-location-dot text-red-600" style="font-size:10px"></i>
+
+        <span class="inline-flex items-center gap-2 bg-neutral-900 border border-white/10 text-white/40 text-[11px] font-semibold px-4 py-2 rounded-full">
+          <i class="fas fa-location-dot text-red-600 text-[10px]"></i>
           Bangalore, India
         </span>
       </div>
     </div>
 
-    <!-- Card grid -->
+    <!-- Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
-      <!-- ① Bio — full width -->
-      <div class="reveal opacity-0 translate-y-8 transition-all duration-700
-        lg:col-span-2 bg-gradient-to-br from-neutral-900 to-[#0f0f0f]
-        border border-white/[0.06] hover:border-red-600/20
-        rounded-2xl p-7 ">
-        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/50 mb-4
-          flex items-center gap-2">
-          <i class="fas fa-user" style="font-size:10px"></i> Who I am
+      <!-- Bio -->
+      <div class="lg:col-span-2 bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 hover:border-red-600/30 rounded-2xl p-7 transition">
+        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/60 mb-4 flex items-center gap-2">
+          <i class="fas fa-user text-[10px]"></i> Who I am
         </p>
-        <p class="text-white/50 text-[0.93rem] leading-relaxed mb-3">
+
+        <p class="text-white/60 text-sm leading-relaxed mb-3">
           Tech enthusiast bridging the gap between
-          <span class="text-white/75 font-semibold">Artificial Intelligence</span> and
-          <span class="text-white/75 font-semibold">Cybersecurity</span>. Currently pursuing
-          my MSc while building tools that are equal parts intelligent and resilient — from
-          local RAG systems and sentiment classifiers to web vulnerability scanners and SQLi demo environments.
+          <span class="text-white font-semibold">Artificial Intelligence</span> and
+          <span class="text-white font-semibold">Cybersecurity</span>.
         </p>
-        <p class="text-white/40 text-[0.93rem] leading-relaxed mb-5">
-          When I'm not writing Python pipelines or poking at web apps, I'm shredding on guitar,
-          grinding RPGs, or out on a long ride. I believe the best engineers stay curious about everything.
+
+        <p class="text-white/40 text-sm leading-relaxed mb-5">
+          Building intelligent and secure systems — from RAG pipelines to vulnerability scanners.
         </p>
+
         <div class="flex flex-wrap gap-2">
-          <span *ngFor="let chip of chips"
-            class="text-[10px] font-bold tracking-wide uppercase
-              text-red-400/75 bg-red-600/[.08] border border-red-600/20
-              px-3 py-1 rounded-full hover:bg-red-600/15 hover:text-red-300
-              transition-all duration-200 cursor-default">
-            {{ chip }}
+          <span class="text-[10px] font-bold uppercase text-red-400 bg-red-600/10 border border-red-600/20 px-3 py-1 rounded-full">
+            Python
+          </span>
+          <span class="text-[10px] font-bold uppercase text-red-400 bg-red-600/10 border border-red-600/20 px-3 py-1 rounded-full">
+            AI
+          </span>
+          <span class="text-[10px] font-bold uppercase text-red-400 bg-red-600/10 border border-red-600/20 px-3 py-1 rounded-full">
+            Security
           </span>
         </div>
       </div>
 
-      <!-- ② Skills -->
-      <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-        bg-gradient-to-br from-neutral-900 to-[#0f0f0f]
-        border border-white/[0.06] hover:border-red-600/20
-        rounded-2xl p-7 ">
-        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/50 mb-5
-          flex items-center gap-2">
-          <i class="fas fa-code" style="font-size:10px"></i> Core skills
+      <!-- Skills -->
+      <div class="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 hover:border-red-600/30 rounded-2xl p-7 transition">
+        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/60 mb-5 flex items-center gap-2">
+          <i class="fas fa-code text-[10px]"></i> Core skills
         </p>
-        <div class="flex flex-col gap-4">
-          <div *ngFor="let skill of skills; let i = index" class="skill-row">
-            <div class="flex justify-between items-center mb-1.5">
-              <span class="text-[12px] font-semibold text-white/55">{{ skill.name }}</span>
-              <span class="text-[11px] font-bold text-red-500/70">{{ skill.pct }}%</span>
+
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-white/60">Python</span>
+              <span class="text-red-500">90%</span>
             </div>
-            <div class="h-[3px] rounded-full bg-white/[.05] overflow-hidden">
-              <div class="skill-bar h-full rounded-full bg-gradient-to-r from-red-600 to-red-400
-                transition-all duration-700"
-                [style.width]="skillsVisible ? skill.pct + '%' : '0%'"
-                [style.transition-delay]="(i * 100) + 'ms'">
-              </div>
+            <div class="h-1 bg-white/10 rounded-full">
+              <div class="h-1 bg-red-500 rounded-full w-[90%]"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-white/60">Cybersecurity</span>
+              <span class="text-red-500">80%</span>
+            </div>
+            <div class="h-1 bg-white/10 rounded-full">
+              <div class="h-1 bg-red-500 rounded-full w-[80%]"></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ③ Stats -->
-      <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-150
-        bg-gradient-to-br from-neutral-900 to-[#0f0f0f]
-        border border-white/[0.06] hover:border-red-600/20
-        rounded-2xl p-7 ">
-        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/50 mb-5
-          flex items-center gap-2">
-          <i class="fas fa-chart-simple" style="font-size:10px"></i> At a glance
+      <!-- Stats -->
+      <div class="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 hover:border-red-600/30 rounded-2xl p-7 transition">
+        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/60 mb-5 flex items-center gap-2">
+          <i class="fas fa-chart-simple text-[10px]"></i> Stats
         </p>
+
         <div class="grid grid-cols-2 gap-3">
-          <div *ngFor="let stat of stats"
-            class="bg-white/[.03] border border-white/[.04] rounded-xl p-4
-              hover:border-red-600/20 hover:bg-red-600/[.04]
-              transition-all duration-300 cursor-default group">
-            <p class="font-black text-white leading-none mb-1.5 tracking-tight"
-              style="font-size:1.9rem">
-              {{ stat.value }}<span class="text-red-500 text-xl">{{ stat.suffix }}</span>
-            </p>
-            <p class="text-[10px] font-semibold uppercase tracking-[0.1em] text-white/30
-              group-hover:text-white/45 transition-colors duration-300">
-              {{ stat.label }}
-            </p>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+            <p class="text-2xl font-black text-white">5+</p>
+            <p class="text-[10px] uppercase text-white/40">Projects</p>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+            <p class="text-2xl font-black text-white">2+</p>
+            <p class="text-[10px] uppercase text-white/40">Years</p>
           </div>
         </div>
       </div>
 
-      <!-- ④ Currently — full width -->
-      <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-200
-        lg:col-span-2 bg-gradient-to-br from-neutral-900 to-[#0f0f0f]
-        border border-white/[0.06] hover:border-red-600/20
-        rounded-2xl p-7">
-        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/50 mb-5
-          flex items-center gap-2">
-          <i class="fas fa-bolt" style="font-size:10px"></i> Currently
+      <!-- Currently -->
+      <div class="lg:col-span-2 bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 hover:border-red-600/30 rounded-2xl p-7 transition">
+        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/60 mb-5 flex items-center gap-2">
+          <i class="fas fa-bolt text-[10px]"></i> Currently
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
-          <div *ngFor="let item of currently; let last = last"
-            class="flex items-start gap-3 py-3 border-b border-white/[.04]"
-            [class.sm:border-r]="[0,2].includes(currently.indexOf(item))"
-            [class.sm:pr-6]="[0,2].includes(currently.indexOf(item))"
-            [class.sm:pl-6]="[1,3].includes(currently.indexOf(item))"
-            [class.border-b-0]="currently.indexOf(item) >= currently.length - 2">
-            <span class="w-2 h-2 rounded-full flex-shrink-0 mt-1.5"
-              [class.bg-red-600]="item.active"
-              [class.bg-white\15]="!item.active"
-              [class.animate-pulse]="item.active"></span>
-            <div>
-              <p class="text-white/75 font-semibold text-[13px] mb-0.5">{{ item.title }}</p>
-              <p class="text-white/35 text-[12px] leading-relaxed">{{ item.body }}</p>
-            </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 text-sm">
+          <div class="flex gap-2">
+            <span class="w-2 h-2 bg-red-500 rounded-full mt-1.5 animate-pulse"></span>
+            <p class="text-white/60">Building AI tools</p>
+          </div>
+
+          <div class="flex gap-2">
+            <span class="w-2 h-2 bg-red-500 rounded-full mt-1.5 animate-pulse"></span>
+            <p class="text-white/60">Learning advanced security</p>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- CTA row -->
-    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-300
-      flex flex-wrap items-center gap-3 mt-8">
-      <button (click)="scrollToSection('contact')"
-        class="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white
-          text-[12px] font-bold tracking-widest uppercase px-7 py-3.5 rounded-full
-          transition-all duration-200 hover:-translate-y-1 hover:shadow-lg
-          hover:shadow-red-600/40 active:scale-95">
-        Say Hi <i class="fa-regular fa-hand"></i>
+    <!-- CTA -->
+    <div class="flex gap-3 mt-8">
+      <button class="bg-red-600 hover:bg-red-500 text-white text-xs font-bold px-6 py-3 rounded-full transition">
+        Say Hi
       </button>
-      <button (click)="downloadResume()"
-        class="flex items-center gap-2 border border-white/10 hover:border-red-600
-          text-white/70 hover:text-red-400 text-[12px] font-bold tracking-widest uppercase
-          px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-1 active:scale-95">
-        Resume <i class="fas fa-scroll text-xs"></i>
-      </button>
-      <!-- Mobile quick-jump -->
-      <div class="flex flex-wrap gap-2 lg:hidden w-full mt-2">
-        <button *ngFor="let s of quickNav"
-          (click)="scrollToSection(s.id)"
-          class="text-[10px] font-bold tracking-widest uppercase text-white/30
-            border border-white/[0.08] hover:border-red-600/50 hover:text-red-400
-            px-3 py-1.5 rounded-full transition-all duration-200">
-          {{ s.label }}
-        </button>
-      </div>
-    </div>
 
-    <!-- Scroll hint -->
-    <div class="flex justify-center mt-12">
-      <button (click)="scrollToSection('education')"
-        class="flex flex-col items-center gap-2 text-white/20 hover:text-red-400
-          transition-colors duration-200 group">
-        <span class="text-[10px] font-bold tracking-widest uppercase">Scroll</span>
-        <i class="fas fa-chevron-down text-xs animate-bounce group-hover:text-red-400"
-          style="animation-duration:1.5s"></i>
+      <button class="border border-white/20 hover:border-red-600 text-white/70 hover:text-red-400 text-xs font-bold px-6 py-3 rounded-full transition">
+        Resume
       </button>
     </div>
 
-  </div>
-</section>
-
-
-<!-- DIVIDER -->
-<div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
-
-
-
-<!-- DIVIDER -->
-<div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
-
-<!-- ═══════════════════════
-     EDUCATION
-════════════════════════ -->
-<section id="education" class="bg-neutral-950 py-28 px-6">
-  <div class="max-w-5xl mx-auto">
-
-    <p class="reveal opacity-0 translate-y-8 transition-all duration-700
-      flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
-      Background <span class="inline-block w-10 h-px bg-red-500"></span>
-    </p>
-    <h2 class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-      font-black text-white tracking-tighter mb-12"
-      style="font-size:clamp(2.4rem,6vw,4rem)">Education</h2>
-
-    <!-- Timeline -->
-    <div class="relative pl-8 border-l border-red-600/30">
-      <div *ngFor="let item of education; let i = index; last as last"
-        class="reveal opacity-0 translate-y-8 transition-all duration-700
-          relative group cursor-default"
-        [class.mb-10]="!last"
-        [style.transition-delay]="(i * 100) + 'ms'">
-
-        <!-- Timeline dot -->
-        <div class="absolute -left-[2.6rem] top-1.5 w-3.5 h-3.5 rounded-full
-          border-2 border-red-600 bg-neutral-950
-          group-hover:bg-red-600 group-hover:shadow-md group-hover:shadow-red-600/50
-          transition-all duration-300"></div>
-
-        <!-- Card -->
-        <div class="bg-neutral-900/40 hover:bg-neutral-900/70 border border-white/[0.05]
-          hover:border-red-600/25 rounded-2xl p-5 transition-all duration-300
-          hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-600/10">
-          <p class="text-[10px] font-bold tracking-[0.18em] uppercase text-red-500 mb-1">{{ item.year }}</p>
-          <h3 class="text-white font-bold text-[1.05rem] mb-2 leading-snug">{{ item.title }}</h3>
-          <p class="text-white/45 text-sm leading-relaxed mb-3">{{ item.body }}</p>
-          <div class="flex flex-wrap gap-2">
-            <span *ngFor="let tag of item.tags"
-              class="text-[10px] font-semibold bg-neutral-900 border border-white/10
-                text-white/40 px-3 py-1 rounded-full hover:border-red-600/30
-                hover:text-red-400/60 transition-all duration-200 cursor-default">
-              {{ tag }}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex justify-center mt-12">
-      <button (click)="scrollToSection('experience')"
-        class="flex items-center gap-2 border border-white/10 hover:border-red-600
-          text-white/50 hover:text-red-400 text-[12px] font-bold tracking-widest uppercase
-          px-7 py-3 rounded-full transition-all duration-200 hover:-translate-y-1 active:scale-95">
-        My Experience <i class="fas fa-arrow-down text-xs"></i>
-      </button>
-    </div>
-  </div>
-</section>
-
-<div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
-
-<!-- ═══════════════════════
-     EXPERIENCE
-════════════════════════ -->
-<section id="experience" class="bg-neutral-950 py-28 px-6">
-  <div class="max-w-5xl mx-auto">
-
-    <p class="reveal opacity-0 translate-y-8 transition-all duration-700
-      flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
-      Work <span class="inline-block w-10 h-px bg-red-500"></span>
-    </p>
-    <h2 class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-      font-black text-white tracking-tighter mb-12"
-      style="font-size:clamp(2.4rem,6vw,4rem)">Experience</h2>
-
-    <div class="relative pl-8 border-l border-red-600/30">
-      <div *ngFor="let item of experience; let i = index; last as last"
-        class="reveal opacity-0 translate-y-8 transition-all duration-700
-          relative group cursor-default"
-        [class.mb-10]="!last"
-        [style.transition-delay]="(i * 100) + 'ms'">
-
-        <div class="absolute -left-[2.6rem] top-1.5 w-3.5 h-3.5 rounded-full
-          border-2 border-red-600 bg-neutral-950
-          group-hover:bg-red-600 group-hover:shadow-md group-hover:shadow-red-600/50
-          transition-all duration-300"></div>
-
-        <div class="bg-neutral-900/40 hover:bg-neutral-900/70 border border-white/[0.05]
-          hover:border-red-600/25 rounded-2xl p-5 transition-all duration-300
-          hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-600/10">
-          <p class="text-[10px] font-bold tracking-[0.18em] uppercase text-red-500 mb-1">{{ item.year }}</p>
-          <h3 class="text-white font-bold text-[1.05rem] mb-2 leading-snug">{{ item.title }}</h3>
-          <p class="text-white/45 text-sm leading-relaxed mb-3">{{ item.body }}</p>
-          <div class="flex flex-wrap gap-2">
-            <span *ngFor="let tag of item.tags"
-              class="text-[10px] font-semibold bg-neutral-900 border border-white/10
-                text-white/40 px-3 py-1 rounded-full hover:border-red-600/30
-                hover:text-red-400/60 transition-all duration-200 cursor-default">
-              {{ tag }}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex justify-center mt-12">
-      <button (click)="downloadResume()"
-        class="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white
-          text-[12px] font-bold tracking-widest uppercase px-7 py-3 rounded-full
-          transition-all duration-200 hover:-translate-y-1 hover:shadow-lg
-          hover:shadow-red-600/40 active:scale-95">
-        My Resume <i class="fas fa-scroll text-xs"></i>
-      </button>
-    </div>
-  </div>
-</section>
-
-<div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
-
-<!-- ═══════════════════════
-     HOBBIES
-════════════════════════ -->
-<section id="hobbies" class="bg-neutral-950 py-20 px-6 overflow-hidden">
-  <div class="max-w-5xl mx-auto">
-
-    <p class="reveal opacity-0 translate-y-8 transition-all duration-700
-      flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
-      Beyond Code <span class="inline-block w-10 h-px bg-red-500"></span>
-    </p>
-    <h2 class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-      font-black text-white tracking-tighter mb-12"
-      style="font-size:clamp(2.4rem,6vw,4rem)">My Hobbies</h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-      <div *ngFor="let card of hobbies; let i = index"
-        class="hobby-card reveal opacity-0 translate-y-8 transition-all duration-700
-          relative rounded-3xl cursor-default"
-        [style.transition-delay]="(i * 130) + 'ms'">
-
-        <div class="hobby-border absolute inset-0 rounded-3xl pointer-events-none z-0"></div>
-
-        <div class="relative z-10 m-[1.5px] rounded-[22px] bg-gradient-to-br
-          from-neutral-900 to-[#0f0f0f] p-7 h-full flex flex-col overflow-hidden group
-          transition-transform duration-300 ease-out hover:-translate-y-1.5 hover:scale-[1.01]">
-
-          <div class="hobby-particles absolute inset-0 pointer-events-none overflow-hidden">
-            <span *ngFor="let p of [0,1,2,3]"
-              class="hobby-particle absolute w-1 h-1 rounded-full bg-red-600 opacity-0"></span>
-          </div>
-
-          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r
-            from-transparent via-red-600/40 to-transparent opacity-0
-            group-hover:opacity-100 transition-opacity duration-400"></div>
-
-          <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full pointer-events-none
-            hobby-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style="background:radial-gradient(circle,rgba(220,38,38,.12) 0%,transparent 70%)"></div>
-
-          <div class="inline-flex items-center gap-1.5 self-start text-[10px] font-bold
-            tracking-widest uppercase text-red-500/60 bg-red-600/[.07] border
-            border-red-600/15 rounded-full px-3 py-1 mb-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-red-600 flex-shrink-0"></span>
-            {{ card.chip }}
-          </div>
-
-          <div class="hobby-orb relative w-16 h-16 flex-shrink-0 mb-5">
-            <div class="absolute inset-0 rounded-full border border-dashed
-              border-red-600/25 hobby-spin-ring"></div>
-            <div class="absolute inset-1.5 rounded-full bg-gradient-to-br
-              from-neutral-800 to-neutral-950 border border-red-600/40
-              flex items-center justify-center hobby-orb-inner
-              shadow-[0_0_20px_rgba(220,38,38,.25),inset_0_0_12px_rgba(0,0,0,.6)]">
-              <div class="absolute inset-0 rounded-full hobby-shine pointer-events-none"></div>
-              <i [class]="card.icon + ' text-red-400 text-lg relative z-10'"></i>
-            </div>
-          </div>
-
-          <div class="relative mb-1">
-            <h3 class="text-white font-black text-[1.05rem] tracking-tight">{{ card.title }}</h3>
-            <div class="h-px bg-gradient-to-r from-red-600/60 to-transparent
-              w-0 group-hover:w-full transition-all duration-500"></div>
-          </div>
-          <div class="h-px bg-white/[.05] mb-3"></div>
-
-          <div class="flex flex-col flex-1">
-            <div *ngFor="let item of card.items; let j = index; last as last"
-              class="hobby-item flex items-center gap-2.5 text-[13px] text-white/40
-                py-2 transition-all duration-200 group-hover:text-white/60
-                hover:!text-white hover:translate-x-1.5"
-              [class.border-b]="!last"
-              [class.border-white]="!last"
-              [class.border-opacity-[.04]]="!last"
-              [style.transition-delay]="(j * 40) + 'ms'">
-              <span class="w-1.5 h-1.5 rounded-full bg-red-500/40 flex-shrink-0
-                group-hover:bg-red-500/70 transition-colors duration-300"></span>
-              <span [innerHTML]="item" class="flex-1"></span>
-              <i class="fas fa-arrow-right text-[10px] text-red-600/0
-                group-hover:text-red-600/50 transition-all duration-200
-                -translate-x-1 group-hover:translate-x-0"></i>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-1.5 mt-4">
-            <span *ngFor="let tag of card.tags; let t = index"
-              class="hobby-tag text-[11px] font-semibold tracking-wide text-red-400/70
-                bg-red-600/[.09] border border-red-600/20 rounded-full px-2.5 py-1
-                opacity-0 transition-all duration-200 hover:bg-red-600/20 hover:text-red-300"
-              [style.transition-delay]="(t * 60) + 'ms'">
-              {{ tag }}
-            </span>
-          </div>
-
-          <div class="flex items-center gap-2.5 mt-4 pt-3.5 border-t border-white/[.05]">
-            <span class="text-[10px] font-bold tracking-widest uppercase
-              text-white/30 whitespace-nowrap">{{ card.statusLabel }}</span>
-            <div class="flex-1 h-[3px] rounded-full bg-white/[.06] overflow-hidden">
-              <div class="h-full rounded-full bg-gradient-to-r from-red-600 to-red-400
-                hobby-bar transition-all duration-700"
-                [style.width]="card.statusPct + '%'" style="width:0%"></div>
-            </div>
-          </div>
-
-          <span class="absolute bottom-5 right-5 font-black text-white/[.035]
-            pointer-events-none select-none"
-            style="font-size:5rem;line-height:1">
-            {{ (i+1).toString().padStart(2,'0') }}
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex justify-center mt-14">
-      <button (click)="scrollToSection('contact')"
-        class="flex items-center gap-2 border border-white/10 hover:border-red-600
-          text-white/50 hover:text-red-400 text-[11px] font-bold tracking-widest uppercase
-          px-7 py-3 rounded-full transition-all duration-200 hover:-translate-y-1 active:scale-95">
-        Get In Touch <i class="fas fa-envelope text-[10px]"></i>
-      </button>
-    </div>
-  </div>
-</section>
-
-<div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
-
-<!-- ═══════════════════════
-     CONTACT
-════════════════════════ -->
-<section id="contact" class="bg-neutral-950 py-28 px-6">
-  <div class="max-w-5xl mx-auto">
-
-    <p class="reveal opacity-0 translate-y-8 transition-all duration-700
-      flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
-      Get In Touch <span class="inline-block w-10 h-px bg-red-500"></span>
-    </p>
-    <h2 class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-      font-black text-white tracking-tighter mb-3"
-      style="font-size:clamp(2.4rem,6vw,4rem)">Contact Me</h2>
-    <p class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-200
-      text-white/45 text-[0.95rem] mb-10 max-w-lg">
-      Got an opportunity or just want to say hello? My inbox is always open.
-    </p>
-
-    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-300
-      bg-neutral-900 border border-white/[0.07] rounded-3xl p-8 md:p-12
-      relative overflow-hidden">
-      <div class="absolute -bottom-16 -right-16 w-56 h-56 bg-red-600/10
-        rounded-full blur-3xl pointer-events-none"></div>
-
-      <form action="https://formspree.io/f/xnnakrka" method="POST" class="relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-          <div class="flex flex-col gap-2">
-            <label class="text-[10px] font-bold tracking-[0.16em] uppercase text-white/40">Name</label>
-            <input type="text" name="name" placeholder="Your name" required
-              class="bg-neutral-950 border border-white/[0.08]
-                focus:border-red-600 focus:ring-2 focus:ring-red-600/20
-                hover:border-white/20
-                rounded-xl px-4 py-3 text-white text-[14px]
-                placeholder-white/20 outline-none transition-all duration-200"/>
-          </div>
-          <div class="flex flex-col gap-2">
-            <label class="text-[10px] font-bold tracking-[0.16em] uppercase text-white/40">Email</label>
-            <input type="email" name="email" placeholder="your@email.com" required
-              class="bg-neutral-950 border border-white/[0.08]
-                focus:border-red-600 focus:ring-2 focus:ring-red-600/20
-                hover:border-white/20
-                rounded-xl px-4 py-3 text-white text-[14px]
-                placeholder-white/20 outline-none transition-all duration-200"/>
-          </div>
-          <div class="flex flex-col gap-2 md:col-span-2">
-            <label class="text-[10px] font-bold tracking-[0.16em] uppercase text-white/40">Message</label>
-            <textarea name="message" rows="5" placeholder="What's on your mind?" required
-              class="bg-neutral-950 border border-white/[0.08]
-                focus:border-red-600 focus:ring-2 focus:ring-red-600/20
-                hover:border-white/20
-                rounded-xl px-4 py-3 text-white text-[14px]
-                placeholder-white/20 outline-none transition-all duration-200 resize-none"></textarea>
-          </div>
-        </div>
-        <div class="flex flex-col sm:flex-row items-start sm:items-center
-          justify-between gap-4">
-          <!-- Social links row -->
-          <div class="flex items-center gap-3">
-            <a href="https://github.com/melvinjames1" target="_blank"
-              class="w-9 h-9 rounded-full border border-white/[0.08] hover:border-red-600/50
-                flex items-center justify-center text-white/30 hover:text-red-400
-                transition-all duration-200 hover:-translate-y-0.5">
-              <i class="fab fa-github text-sm"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/melvin-james-mj/" target="_blank"
-              class="w-9 h-9 rounded-full border border-white/[0.08] hover:border-red-600/50
-                flex items-center justify-center text-white/30 hover:text-red-400
-                transition-all duration-200 hover:-translate-y-0.5">
-              <i class="fab fa-linkedin text-sm"></i>
-            </a>
-            <a href="mailto:melvin.mj576@gmail.com"
-              class="w-9 h-9 rounded-full border border-white/[0.08] hover:border-red-600/50
-                flex items-center justify-center text-white/30 hover:text-red-400
-                transition-all duration-200 hover:-translate-y-0.5">
-              <i class="fas fa-envelope text-sm"></i>
-            </a>
-          </div>
-          <button type="submit"
-            class="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white
-              text-[12px] font-bold tracking-widest uppercase px-8 py-3.5 rounded-full
-              transition-all duration-200 hover:-translate-y-1
-              hover:shadow-lg hover:shadow-red-600/40 active:scale-95">
-            Send Message <i class="fas fa-paper-plane text-xs"></i>
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Back to top -->
-    <div class="flex justify-center mt-10">
-      <button (click)="scrollToSection('about')"
-        class="w-12 h-12 rounded-full border border-white/10 hover:border-red-600
-          bg-neutral-900 text-white/40 hover:text-red-400
-          hover:shadow-lg hover:shadow-red-600/25
-          flex items-center justify-center transition-all duration-200
-          hover:-translate-y-1 active:scale-95"
-        title="Back to top">
-        <i class="fas fa-arrow-up text-xs"></i>
-      </button>
-    </div>
   </div>
 </section>
