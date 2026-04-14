@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, ElementRef, Renderer2, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,31 +10,54 @@ import { CommonModule } from '@angular/common';
 })
 export class AboutComponent implements OnInit, OnDestroy {
 
-  hobbies = [
-    {
-      index: '01', chip: 'Creative', icon: 'fas fa-music', title: 'Music',
-      statusLabel: 'Practice streak', statusPct: 85,
-      items: ['Electric guitar — rock & blues', 'Keyboard & music theory', 'Singing & vocal training', 'DAW production & sound design'],
-      tags: ['Guitar', 'Keyboard', 'Singing', 'DAW']
-    },
-    {
-      index: '02', chip: 'Active', icon: 'fas fa-gamepad', title: 'Gaming',
-      statusLabel: 'Weekly hrs', statusPct: 75,
-      items: ['Open-world RPG exploration', 'Indie puzzle & strategy games', 'Casual FPS & battle royale','Game modding & community builds'],
-      tags: ['Open World','RPG', 'Indie','FPS']
-    },
-    {
-      index: '03', chip: 'Outdoor', icon: 'fas fa-person-biking', title: 'Biking',
-      statusLabel: 'Rides / month', statusPct: 55,
-      items: ['Mountain trail riding', 'Road cycling & long routes', 'Urban commute & city rides', 'Bike maintenance & upgrades'],
-      tags: ['Bike', 'Road', 'Urban']
-    }
+  // ── Nav ───────────────────────────────────────────────────────────────────
+  navItems = [
+    { id: 'about',      icon: 'fas fa-user',           label: 'About'      },
+    { id: 'education',  icon: 'fas fa-graduation-cap', label: 'Education'  },
+    { id: 'experience', icon: 'fas fa-briefcase',      label: 'Experience' },
+    { id: 'hobbies',    icon: 'fas fa-guitar',         label: 'Hobbies'    },
+    { id: 'contact',    icon: 'fas fa-envelope',       label: 'Contact'    },
+  ];
+
+  quickNav = [
+    { id: 'education',  label: 'Education'  },
+    { id: 'experience', label: 'Experience' },
+    { id: 'hobbies',    label: 'Hobbies'    },
+    { id: 'contact',    label: 'Contact'    },
   ];
 
   activeSection = 'about';
 
-  chips = ['AI', 'Cybersecurity', 'Full Stack', 'Angular', 'Python'];
+  // ── About content ─────────────────────────────────────────────────────────
+  chips = ['AI / ML', 'Cybersecurity', 'Full Stack', 'Angular', 'Python', 'LLMs', 'Pen Testing'];
 
+  skills = [
+    { name: 'Python',                      pct: 88 },
+    { name: 'Angular / TypeScript',        pct: 82 },
+    { name: 'AI / ML (sklearn, LangChain)',pct: 75 },
+    { name: 'Cybersecurity & Pen Testing', pct: 70 },
+    { name: 'React / JavaScript',          pct: 65 },
+  ];
+
+  stats = [
+    { value: '5', suffix: '+', label: 'Projects shipped' },
+    { value: '3', suffix: '+', label: 'Years coding'     },
+    { value: '2', suffix: 'x', label: 'Hackathons'       },
+    { value: '∞', suffix: '',  label: 'Curiosity'        },
+  ];
+
+  currently = [
+    { active: true,  title: 'MSc AI & Cybersecurity',  body: 'Christ University, Bangalore — 2025 to present' },
+    { active: true,  title: 'Building',                body: 'Local RAG systems, web vulnerability scanners, and ML classifiers' },
+    { active: false, title: 'Learning',                body: 'Advanced cryptography, adversarial ML & red-team methodologies' },
+    { active: false, title: 'Listening to',            body: 'Blues guitar jams — anything with a good riff' },
+  ];
+
+  // ── Skill bar trigger ─────────────────────────────────────────────────────
+  skillsVisible = false;
+  private skillsObserver!: IntersectionObserver;
+
+  // ── Timeline data ─────────────────────────────────────────────────────────
   education = [
     {
       year: '2025 – Present',
@@ -77,9 +100,28 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
   ];
 
-  // ── Tooltip visibility for nav ─────────────────────────────────────────────
-  navTooltip: string | null = null;
+  hobbies = [
+    {
+      index: '01', chip: 'Creative', icon: 'fas fa-music', title: 'Music',
+      statusLabel: 'Practice streak', statusPct: 85,
+      items: ['Electric guitar — rock & blues', 'Keyboard & music theory', 'Singing & vocal training', 'DAW production & sound design'],
+      tags: ['Guitar', 'Keyboard', 'Singing', 'DAW']
+    },
+    {
+      index: '02', chip: 'Active', icon: 'fas fa-gamepad', title: 'Gaming',
+      statusLabel: 'Weekly hrs', statusPct: 75,
+      items: ['Open-world RPG exploration', 'Indie puzzle & strategy games', 'Casual FPS & battle royale', 'Game modding & community builds'],
+      tags: ['Open World', 'RPG', 'Indie', 'FPS']
+    },
+    {
+      index: '03', chip: 'Outdoor', icon: 'fas fa-person-biking', title: 'Biking',
+      statusLabel: 'Rides / month', statusPct: 55,
+      items: ['Mountain trail riding', 'Road cycling & long routes', 'Urban commute & city rides', 'Bike maintenance & upgrades'],
+      tags: ['Bike', 'Road', 'Urban']
+    }
+  ];
 
+  // ── Internals ─────────────────────────────────────────────────────────────
   private revealObserver!: IntersectionObserver;
   private readonly sectionIds = ['about', 'education', 'experience', 'hobbies', 'contact'];
 
@@ -90,30 +132,30 @@ export class AboutComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.initReveal();
       this.initSectionTracker();
+      this.initSkillsObserver();
     }, 150);
   }
 
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
+    this.skillsObserver?.disconnect();
     window.removeEventListener('scroll', this.onScroll);
   }
 
-  // ── Scroll-based section tracker (replaces IntersectionObserver for nav) ───
-  // Uses getBoundingClientRect so it works regardless of section height.
+  // Scroll-based section tracker — works regardless of section height
   private onScroll = (): void => {
     const offsets = this.sectionIds.map(id => {
       const el = document.getElementById(id);
       if (!el) return { id, top: Infinity };
       return { id, top: Math.abs(el.getBoundingClientRect().top) };
     });
-    // Pick the section whose top is closest to the viewport top
     offsets.sort((a, b) => a.top - b.top);
     if (offsets[0]) this.activeSection = offsets[0].id;
   };
 
   private initSectionTracker(): void {
     window.addEventListener('scroll', this.onScroll, { passive: true });
-    this.onScroll(); // set initial state
+    this.onScroll();
   }
 
   private initReveal(): void {
@@ -128,6 +170,20 @@ export class AboutComponent implements OnInit, OnDestroy {
       });
     }, { threshold: 0.08 });
     els.forEach(el => this.revealObserver.observe(el));
+  }
+
+  // Trigger skill bars when the skills card scrolls into view
+  private initSkillsObserver(): void {
+    const skillCard = this.el.nativeElement.querySelector('.skill-row')?.closest('.ab-skill-card')
+      ?? this.el.nativeElement.querySelectorAll('.reveal')[2]; // skills card is 3rd reveal
+    if (!skillCard) { this.skillsVisible = true; return; }
+    this.skillsObserver = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        this.skillsVisible = true;
+        this.skillsObserver.disconnect();
+      }
+    }, { threshold: 0.3 });
+    this.skillsObserver.observe(skillCard);
   }
 
   private loadAssets(): void {
@@ -148,7 +204,6 @@ export class AboutComponent implements OnInit, OnDestroy {
   scrollToSection(id: string): void {
     const el = document.getElementById(id);
     if (!el) return;
-    // Offset slightly so the section header isn't hidden behind fixed elements
     const y = el.getBoundingClientRect().top + window.scrollY - 24;
     window.scrollTo({ top: y, behavior: 'smooth' });
   }
