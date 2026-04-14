@@ -1,329 +1,172 @@
-:host {
-  display: block;
-  font-family: 'Space Grotesk', sans-serif;
+:host{display:block;font-family:'Space Grotesk',sans-serif}
+
+/* Background */
+.grid-bg{
+  background:
+    linear-gradient(rgba(229,62,62,.6)1px,transparent 1px),
+    linear-gradient(90deg,rgba(229,62,62,.6)1px,transparent 1px);
+  background-size:64px 64px
 }
 
-/* ── Grid background ── */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(229,62,62,0.6) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(229,62,62,0.6) 1px, transparent 1px);
-  background-size: 64px 64px;
+/* Glow */
+.glow-blob-1,.glow-blob-2{
+  background:radial-gradient(circle,rgba(220,38,38,.08)0,transparent 70%);
+  animation:blobFloat 8s ease-in-out infinite
+}
+.glow-blob-2{animation-duration:10s;animation-direction:reverse}
+@keyframes blobFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(20px,-30px) scale(1.1)}
 }
 
-/* ── Ambient glows ── */
-.glow-blob-1 {
-  background: radial-gradient(circle, rgba(220,38,38,0.08) 0%, transparent 70%);
-  animation: blobFloat 8s ease-in-out infinite;
+/* Hero */
+.hero-item{
+  transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)
 }
-.glow-blob-2 {
-  background: radial-gradient(circle, rgba(220,38,38,0.05) 0%, transparent 70%);
-  animation: blobFloat 10s ease-in-out infinite reverse;
-}
-@keyframes blobFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%       { transform: translate(20px, -30px) scale(1.1); }
+.hero-item.visible{opacity:1!important;transform:none!important}
+
+/* Text */
+.typed-outline{
+  -webkit-text-fill-color:transparent;
+  -webkit-text-stroke:1.5px rgba(240,240,240,.45)
 }
 
-/* ── Hero entrance ── */
-.hero-item {
-  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+/* Social */
+.social-btn{
+  width:42px;height:42px;border-radius:50%;
+  background:#111;border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  color:#f0f0f0;font-size:15px;text-decoration:none;
+  transition:.3s
 }
-.hero-item.visible {
-  opacity: 1 !important;
-  transform: translate(0, 0) !important;
-}
-
-/* ── Typed text outline ── */
-.typed-outline {
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.5px rgba(240,240,240,0.45);
-}
-
-/* ── Social button ── */
-.social-btn {
-  width: 42px; height: 42px; border-radius: 50%;
-  background: #111111;
-  border: 1px solid rgba(255,255,255,0.08);
-  display: flex; align-items: center; justify-content: center;
-  color: rgb(240, 240, 240); font-size: 15px; text-decoration: none;
-  transition: all 0.3s;
-}
-.social-btn:hover {
-  border-color: rgba(220,38,38,0.5);
-  background: rgba(220,38,38,0.1);
-  color: #f87171;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(220,38,38,0.2);
+.social-btn:hover{
+  border-color:rgba(220,38,38,.5);
+  background:rgba(220,38,38,.1);
+  color:#f87171;
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(220,38,38,.2)
 }
 
-/* ── Scroll line animation ── */
-.scroll-line { animation: scrollPulse 2s ease-in-out infinite; }
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.6; transform: scaleY(1); }
-  50%       { opacity: 1;   transform: scaleY(1.2); }
+/* Scroll */
+.scroll-line{animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{
+  0%,100%{opacity:.6;transform:scaleY(1)}
+  50%{opacity:1;transform:scaleY(1.2)}
 }
 
-/* ═══════════════════════════════
-   AVATAR RIG — 3-ring orbit system
-═══════════════════════════════ */
-.avatar-rig {
-  position: relative;
-  width: 340px;
-  height: 340px;
+/* Avatar */
+.avatar-rig{position:relative;width:340px;height:340px}
+.ring{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid rgba(255,0,0,.86)
+}
+.ring-1{width:100%;height:100%;animation:spin 14s linear infinite}
+.ring-2{
+  width:80%;height:80%;border-style:dashed;
+  animation:spin 20s linear infinite reverse
+}
+.ring-3{width:58%;height:58%;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* Orbit */
+.orbit-node{
+  position:absolute;width:40px;height:40px;border-radius:50%;
+  background:#141414;border:1px solid rgba(220,38,38,.38);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(220,38,38,.16);
+  transition:.3s;z-index:2
+}
+.orbit-node:hover{
+  border-color:rgba(220,38,38,.8);
+  background:rgba(220,38,38,.14);
+  transform:scale(1.18)!important;
+  box-shadow:0 0 20px rgba(220,38,38,.35)
+}
+.orbit-label{
+  position:absolute;left:50%;bottom:calc(100% + 7px);
+  transform:translateX(-50%);
+  background:#1a1a1a;border:1px solid rgba(220,38,38,.3);
+  color:#f87171;font-size:9px;font-weight:700;
+  padding:3px 8px;border-radius:6px;
+  opacity:0;transition:.2s;pointer-events:none
+}
+.orbit-node:hover .orbit-label{opacity:1}
+
+/* Orbit animation */
+.orbit-outer-top,.orbit-outer-bottom,.orbit-outer-left,.orbit-outer-right,
+.orbit-mid-tr,.orbit-mid-bl{
+  animation:orbitFloat 4s ease-in-out infinite
+}
+.orbit-mid-tr,.orbit-mid-bl{animation-duration:3.5s}
+@keyframes orbitFloat{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.4)}
 }
 
-/* ── Three concentric rings ── */
-.ring {
-  position: absolute;
-  border-radius: 50%;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-} 
-/* Ring 1 — outermost 100% × solid thin */
-.ring-1 {
-  width: 100%; height: 100%;
-  border: 1px solid rgba(255, 0, 0, 0.862);
-  animation: spinCW 14s linear infinite;
+/* Positions */
+.orbit-outer-top{top:-20px;left:50%;margin-left:-20px}
+.orbit-outer-bottom{bottom:-20px;left:50%;margin-left:-20px}
+.orbit-outer-left{left:-20px;top:50%;margin-top:-20px}
+.orbit-outer-right{right:-20px;top:50%;margin-top:-20px}
+.orbit-mid-tr{
+  top:calc(50% - 116px);
+  right:calc(50% - 116px)
 }
-/* Ring 2 — 80% × dashed, slower CCW */
-.ring-2 {
-  width: 80%; height: 80%;
-  border: 1px dashed rgba(255, 0, 0, 0.862);
-  animation: spinCCW 20s linear infinite;
-}
-/* Ring 3 — 58% × solid, fast CW */
-.ring-3 {
-  width: 58%; height: 58%;
-  border: 1px solid rgba(255, 0, 0, 0.862);
-  animation: spinCW 9s linear infinite;
+.orbit-mid-bl{
+  bottom:calc(50% - 116px);
+  left:calc(50% - 116px)
 }
 
-@keyframes spinCW  { to { transform: translate(-50%,-50%) rotate(360deg);  } }
-@keyframes spinCCW { to { transform: translate(-50%,-50%) rotate(-360deg); } }
-
-/* ── Orbit nodes ── */
-.orbit-node {
-  position: absolute;
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: #141414;
-  border: 1px solid rgba(220,38,38,0.38);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 16px rgba(220,38,38,0.16);
-  transition: all 0.3s;
-  z-index: 2;
+/* Avatar core */
+.avatar-3d-wrap{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:185px;height:185px;perspective:800px
 }
-.orbit-node:hover {
-  border-color: rgba(220,38,38,0.8);
-  background: rgba(220,38,38,0.14);
-  transform: scale(1.18) !important;
-  box-shadow: 0 0 20px rgba(220,38,38,0.35);
+.avatar-3d{
+  width:100%;height:100%;border-radius:50%;
+  background:linear-gradient(135deg,#1e1e1e,#111);
+  border:2px solid rgba(220,38,38,.5);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  animation:avatarFloat 6s ease-in-out infinite;
+  box-shadow:0 0 60px rgba(220,38,38,.22),inset 0 0 40px rgba(0,0,0,.5);
+  transition:transform .12s;transform-style:preserve-3d
 }
-
-/* Tooltip labels */
-.orbit-label {
-  position: absolute;
-  bottom: calc(100% + 7px);
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  background: #1a1a1a;
-  border: 1px solid rgba(220,38,38,0.3);
-  color: #f87171;
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 3px 8px; border-radius: 6px;
-  opacity: 0; transition: opacity 0.2s; pointer-events: none;
+.avatar-3d::after{
+  content:'';position:absolute;inset:-4px;
+  border-radius:50%;border:2px solid rgba(220,38,38,.28);
+  animation:ringPulse 2.5s ease-in-out infinite
 }
-.orbit-label-right {
-  left: calc(100% + 7px);
-  top: 50%; bottom: auto;
-  transform: translateY(-50%);
+@keyframes avatarFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
 }
-.orbit-node:hover .orbit-label { opacity: 1; }
-
-/* Float animations per node */
-.orbit-outer-top    { animation: orbitFloat 4.0s ease-in-out infinite 0.0s; }
-.orbit-outer-bottom { animation: orbitFloat 4.0s ease-in-out infinite 0.8s; }
-.orbit-outer-left   { animation: orbitFloat 4.0s ease-in-out infinite 0.4s; }
-.orbit-outer-right  { animation: orbitFloat 4.0s ease-in-out infinite 1.2s; }
-.orbit-mid-tr       { animation: orbitFloat 3.5s ease-in-out infinite 0.2s; }
-.orbit-mid-bl       { animation: orbitFloat 3.5s ease-in-out infinite 1.0s; }
-
-@keyframes orbitFloat {
-  0%, 100% { filter: brightness(1);   }
-  50%       { filter: brightness(1.4); }
+@keyframes ringPulse{
+  0%,100%{opacity:1}
+  50%{opacity:.6}
 }
 
-/* ── Outer ring node positions (on ring-1 edge: ~170px radius) ── */
-/* top centre */
-.orbit-outer-top    { top: -20px;  left: 50%;  margin-left: -20px; }
-/* bottom centre */
-.orbit-outer-bottom { bottom: -20px; left: 50%; margin-left: -20px; }
-/* left centre */
-.orbit-outer-left   { left: -20px; top: 50%;  margin-top: -20px;  }
-/* right centre */
-.orbit-outer-right  { right: -20px; top: 50%; margin-top: -20px;  }
+/* Skills */
+.marquee-track{animation:marqueeScroll 25s linear infinite}
+.marquee-wrap:hover .marquee-track{animation-play-state:paused}
+@keyframes marqueeScroll{to{transform:translateX(-50%)}}
 
-/* ── Mid ring node positions (on ring-2 edge: ~136px radius, diagonal) ── */
-/* top-right diagonal ~45° */
-.orbit-mid-tr {
-  top: calc(50% - 96px - 20px);
-  right: calc(50% - 96px - 20px);
+.skill-card{
+  background:linear-gradient(155deg,#141414,#0d0d0d);
+  border:1px solid rgba(255,255,255,.06);
+  opacity:0;transform:translateY(32px);
+  transition:.65s
 }
-/* bottom-left diagonal ~45° */
-.orbit-mid-bl {
-  bottom: calc(50% - 96px - 20px);
-  left: calc(50% - 96px - 20px);
+.skill-card.visible{opacity:1;transform:none}
+.skill-card:hover{
+  border-color:rgba(220,38,38,.25);
+  box-shadow:0 8px 40px rgba(220,38,38,.08)
 }
 
-/* ── Avatar circle ── */
-.avatar-3d-wrap {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 185px; height: 185px;
-  perspective: 800px;
+.skill-item{
+  opacity:0;transform:translateY(6px);
+  transition:.4s
 }
-.avatar-3d {
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #1e1e1e, #111);
-  border: 2px solid rgba(220,38,38,0.5);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-  animation: avatarFloat 6s ease-in-out infinite;
-  box-shadow: 0 0 60px rgba(220,38,38,0.22), inset 0 0 40px rgba(0,0,0,0.5);
-  transition: transform 0.12s ease-out;
-  transform-style: preserve-3d;
-}
-.avatar-3d::after {
-  content: '';
-  position: absolute; inset: -4px;
-  border-radius: 50%;
-  border: 2px solid rgba(220,38,38,0.28);
-  animation: ringPulse 2.5s ease-in-out infinite;
-}
-@keyframes avatarFloat {
-  0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
-  25%       { transform: translateY(-10px) rotateX(3deg) rotateY(5deg); }
-  75%       { transform: translateY(6px) rotateX(-2deg) rotateY(-4deg); }
-}
-@keyframes ringPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(220,38,38,0.3); opacity: 1; }
-  50%       { box-shadow: 0 0 0 14px rgba(220,38,38,0); opacity: 0.6; }
-}
-
-/* Shine sweep */
-.avatar-shine {
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgba(255,255,255,0.04) 40%,
-    rgba(255,255,255,0.12) 50%,
-    rgba(255,255,255,0.04) 60%,
-    transparent 100%
-  );
-  background-size: 200% 200%;
-  animation: shineSweep 4s ease-in-out infinite;
-}
-@keyframes shineSweep {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* ── Stat chips ── */
-.float-chip-1 { animation: chipFloat 5s ease-in-out infinite 0s; }
-.float-chip-2 { animation: chipFloat 5s ease-in-out infinite 1.5s; }
-@keyframes chipFloat {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
-}
-
-/* ═══════════════════════════════
-   SKILLS SECTION
-═══════════════════════════════ */
-
-/* Marquee */
-.marquee-track {
-  animation: marqueeScroll 25s linear infinite;
-}
-.marquee-wrap:hover .marquee-track {
-  animation-play-state: paused;
-}
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ── Skill cards ── */
-.skill-card {
-  background: linear-gradient(155deg, #141414 0%, #0d0d0d 100%);
-  border: 1px solid rgba(255,255,255,0.06);
-  opacity: 0;
-  transform: translateY(32px);
-  transition:
-    opacity 0.65s ease var(--delay, 0ms),
-    transform 0.65s ease var(--delay, 0ms),
-    border-color 0.3s,
-    box-shadow 0.3s;
-}
-.skill-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.skill-card:hover {
-  border-color: rgba(220,38,38,0.25);
-  box-shadow: 0 8px 40px rgba(220,38,38,0.08);
-}
-
-/* Mouse-follow radial glow — updated via JS CSS var */
-.card-glow {
-  background: radial-gradient(
-    circle at var(--mx, 50%) var(--my, 50%),
-    rgba(220,38,38,0.07) 0%,
-    transparent 60%
-  );
-}
-
-/* Shimmer sweep across card on hover */
-.skill-shimmer {
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255,255,255,0.025) 50%,
-    transparent 60%
-  );
-  background-size: 200% 100%;
-  animation: shimmerSweep 2s ease-in-out infinite;
-}
-@keyframes shimmerSweep {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* Skill item micro-animation */
-.skill-item {
-  opacity: 0;
-  transform: translateY(6px);
-  transition:
-    opacity 0.4s ease var(--delay, 0ms),
-    transform 0.4s ease var(--delay, 0ms),
-    border-color 0.2s,
-    background-color 0.2s;
-}
-.skill-card.visible .skill-item {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ── Left-slide reveal ── */
-.reveal-left {
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.reveal-left.visible {
-  opacity: 1 !important;
-  transform: translateX(0) !important;
-}
+.skill-card.visible .skill-item{opacity:1;transform:none}

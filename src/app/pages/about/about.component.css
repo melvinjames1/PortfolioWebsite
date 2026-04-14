@@ -1,0 +1,105 @@
+/* Only 2 things Tailwind can't do inline in Angular templates */
+:host {
+  display: block;
+}
+/* ══════════════════════════════
+   HOBBIES SECTION
+══════════════════════════════ */
+
+/* Animated gradient border */
+.hobby-border {
+  background: linear-gradient(
+    135deg,
+    rgba(220,38,38,0.5),
+    rgba(220,38,38,0.05) 40%,
+    rgba(220,38,38,0.4) 70%,
+    rgba(220,38,38,0.05)
+  );
+  background-size: 300% 300%;
+  animation: borderShift 5s ease infinite;
+  opacity: 0.4;
+  transition: opacity 0.4s;
+}
+.hobby-card:hover .hobby-border {
+  opacity: 1;
+}
+@keyframes borderShift {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
+/* 3D orb entrance float */
+.hobby-orb-inner {
+  animation: orbFloat 5s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) scale(1);      box-shadow: 0 0 20px rgba(220,38,38,0.25), inset 0 0 12px rgba(0,0,0,0.6); }
+  50%       { transform: translateY(-5px) scale(1.06); box-shadow: 0 8px 28px rgba(220,38,38,0.4),  inset 0 0 12px rgba(0,0,0,0.6); }
+}
+
+/* Pulsing ring on orb */
+.hobby-orb-inner::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(220,38,38,0.35);
+  animation: orbPulse 2.5s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(220,38,38,0.35); opacity: 1; }
+  50%       { box-shadow: 0 0 0 8px rgba(220,38,38,0);    opacity: 0.5; }
+}
+
+/* Spinning dashed ring */
+.hobby-spin-ring {
+  animation: spinRing 8s linear infinite;
+}
+@keyframes spinRing {
+  to { transform: rotate(360deg); }
+}
+
+/* Shine sweep on orb */
+.hobby-shine {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255,255,255,0.06) 45%,
+    rgba(255,255,255,0.14) 50%,
+    rgba(255,255,255,0.06) 55%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  animation: shineSweep 3.5s ease-in-out infinite;
+}
+@keyframes shineSweep {
+  0%   { background-position: -100% -100%; }
+  100% { background-position: 200% 200%;  }
+}
+
+/* Card hover lift + tilt feel */
+.hobby-card .hobby-orb-inner {
+  transition: transform 0.3s ease;
+}
+.hobby-card:hover .hobby-orb-inner {
+  transform: translateY(-4px) scale(1.1) rotateX(8deg) rotateY(-8deg);
+  animation: none;
+}
+
+/* Item rows stagger in on card hover */
+.hobby-item {
+  transform: translateX(0);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.hobby-card:hover .hobby-item {
+  transform: translateX(4px);
+}
+@keyframes particleDrift {
+  0%   { transform: translateY(0) scale(1); opacity: .7; }
+  100% { transform: translateY(-60px) scale(0); opacity: 0; }
+}
+.hobby-card:hover .hobby-particle { animation: particleDrift 1.4s ease-out both; }
+.hobby-card:hover .hobby-tag { opacity: 1; }
+.hobby-card:hover .hobby-bar { width: 100%; }
