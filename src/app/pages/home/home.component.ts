@@ -1,16 +1,17 @@
 import {
-  Component,
-  ElementRef,
-  Renderer2,
-  OnInit,
-  OnDestroy,
-  AfterViewInit,
-  Inject,
-  PLATFORM_ID,
+  Component, ElementRef, Renderer2,
+  OnInit, OnDestroy, AfterViewInit,
+  Inject, PLATFORM_ID, HostListener // Added HostListener
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import Typed from 'typed.js';
+
+const si = (slug: string, hex = 'f87171') =>
+  `https://cdn.simpleicons.org/${slug}/${hex}`;
+
+const di = (name: string, variant = 'original') =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-${variant}.svg`;
 
 @Component({
   selector: 'app-home',
@@ -24,61 +25,88 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private skillObserver!: IntersectionObserver;
   private revealObserver!: IntersectionObserver;
 
+  // Track the current section for the Side Nav highlight
+  activeSection: string = 'home';
+
   marqueeSkills = [
-    'Angular', 'React', 'Python', 'Node.js', 'Cybersecurity',
-    'AI/ML', 'JavaScript', 'TypeScript', 'Java', 'Tailwind CSS',
-    'MongoDB', 'Git', 'Figma', 'Firebase', 'Arduino',
+    'Angular','React','Python','Node.js','Cybersecurity',
+    'AI/ML','JavaScript','TypeScript','Java','Tailwind CSS',
+    'MongoDB','Git','Figma','Firebase','Arduino',
   ];
 
-  skills = [
-    {
-      title: 'Frontend',
-      skills: [
-        { name: 'Angular',    image: 'https://img.icons8.com/?size=100&id=j9DnICNnlhGk&format=png&color=000000' },
-        { name: 'React',      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/512px-React-icon.svg.png' },
-        { name: 'HTML',       image: 'https://www.w3.org/html/logo/badge/html5-badge-h-solo.png' },
-        { name: 'CSS',        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1452px-CSS3_logo_and_wordmark.svg.png' },
-        { name: 'JavaScript', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png' },
-        { name: 'Tailwind',   image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Frontend/tailwindcss-icon.svg' },
-      ],
-    },
-    {
-      title: 'Backend',
-      skills: [
-        { name: 'Node.js',  image: 'https://nodejs.org/static/images/logo.svg' },
-        { name: 'MySQL',    image: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg' },
-        { name: 'MongoDB',  image: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg' },
-        { name: 'Firebase', image: 'https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg' },
-      ],
-    },
-    {
-      title: 'Languages',
-      skills: [
-        { name: 'C',      image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Languages/c-original.svg' },
-        { name: 'C++',    image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Languages/cplusplus-original.svg' },
-        { name: 'Java',   image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Languages/java-original.svg' },
-        { name: 'Python', image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Languages/python-original.svg' },
-        { name: 'Go',     image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Languages/go-original.svg' },
-      ],
-    },
-    {
-      title: 'Design & Editing',
-      skills: [
-        { name: 'Canva',   image: 'https://img.icons8.com/?size=100&id=iWw83PVcBpLw&format=png&color=000000' },
-        { name: 'Figma',   image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Software/figma-icon.svg' },
-        { name: 'DaVinci', image: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/DaVinci_Resolve_Studio.png' },
-      ],
-    },
-    {
-      title: 'Miscellaneous',
-      skills: [
-        { name: 'Git',     image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Other/git-scm-icon.svg' },
-        { name: 'GitHub',  image: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' },
-        { name: 'VS Code', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/512px-Visual_Studio_Code_1.35_icon.svg.png' },
-        { name: 'Arduino', image: 'https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Other/arduino-1.svg' },
-      ],
-    },
-  ];
+skills = [
+  {
+    title: 'AI & Machine Learning',
+    skills: [
+      { name: 'Python',       icon: 'assets/icons/ai-ml/python.svg',      url: 'https://docs.python.org/3/' },
+      { name: 'PyTorch',      icon: 'assets/icons/ai-ml/pytorch.svg',     url: 'https://pytorch.org' },
+      { name: 'TensorFlow',   icon: 'assets/icons/ai-ml/tensorflow.svg',  url: 'https://www.tensorflow.org' },
+      { name: 'NumPy',        icon: 'assets/icons/ai-ml/numpy.svg',       url: 'https://numpy.org' },
+      { name: 'Scikit-Learn', icon: 'assets/icons/ai-ml/scikitlearn.svg', url: 'https://scikit-learn.org' },
+      { name: 'Pandas',       icon: 'assets/icons/ai-ml/pandas.svg',      url: 'https://pandas.pydata.org' },
+    ],
+  },
+  {
+    title: 'Cybersecurity',
+    skills: [
+      { name: 'Kali Linux', icon: 'assets/icons/cybersecurity/kalilinux.svg',  url: 'https://www.kali.org/docs/' },
+      { name: 'Wireshark',  icon: 'assets/icons/cybersecurity/wireshark.svg',  url: 'https://www.wireshark.org' },
+      { name: 'Metasploit', icon: 'assets/icons/cybersecurity/metasploit.svg', url: 'https://www.metasploit.com' },
+      { name: 'Burp Suite', icon: 'assets/icons/cybersecurity/burpsuite.svg',  url: 'https://portswigger.net/burp' },
+      { name: 'Nmap',       icon: 'assets/icons/cybersecurity/nmap.svg',       url: 'https://nmap.org' },
+      { name: 'OWASP',      icon: 'assets/icons/cybersecurity/owasp.svg',      url: 'https://owasp.org' },
+    ],
+  },
+  {
+    title: 'Web Development',
+    skills: [
+      { name: 'Angular',    icon: 'assets/icons/web-dev/angular.svg',    url: 'https://angular.dev' },
+      { name: 'React',      icon: 'assets/icons/web-dev/react.svg',      url: 'https://react.dev' },
+      { name: 'Node.js',    icon: 'assets/icons/web-dev/nodedotjs.svg',  url: 'https://nodejs.org' },
+      { name: 'Tailwind',   icon: 'assets/icons/web-dev/tailwindcss.svg',url: 'https://tailwindcss.com' },
+      { name: 'JavaScript', icon: 'assets/icons/web-dev/javascript.svg', url: 'https://developer.mozilla.org/docs/Web/JavaScript' },
+      { name: 'TypeScript', icon: 'assets/icons/web-dev/typescript.svg', url: 'https://www.typescriptlang.org' },
+    ],
+  },
+  {
+    title: 'Languages & DB',
+    skills: [
+      { name: 'C',        icon: 'assets/icons/languages/c.svg',        url: 'https://en.cppreference.com/w/c' },
+      { name: 'C++',      icon: 'assets/icons/languages/cplusplus.svg',url: 'https://isocpp.org' },
+      { name: 'Java',     icon: 'assets/icons/languages/java.svg',     url: 'https://dev.java' },
+      { name: 'MySQL',    icon: 'assets/icons/languages/mysql.svg',    url: 'https://dev.mysql.com/doc/' },
+      { name: 'MongoDB',  icon: 'assets/icons/languages/mongodb.svg',  url: 'https://www.mongodb.com/docs/' },
+      { name: 'Firebase', icon: 'assets/icons/languages/firebase.svg', url: 'https://firebase.google.com/docs' },
+    ],
+  },
+  {
+    title: 'Tools & Workflow',
+    skills: [
+      { name: 'VS Code', icon: 'assets/icons/tools-workflow/vscode.svg', url: 'https://code.visualstudio.com/docs' },
+      { name: 'Git',     icon: 'assets/icons/tools-workflow/git.svg',               url: 'https://git-scm.com/doc' },
+      { name: 'GitHub',  icon: 'assets/icons/tools-workflow/github.svg',            url: 'https://docs.github.com' },
+      { name: 'Postman', icon: 'assets/icons/tools-workflow/postman.svg',           url: 'https://learning.postman.com' },
+      { name: 'Linux',   icon: 'assets/icons/tools-workflow/linux.svg',             url: 'https://docs.kernel.org' },
+      { name: 'Docker',  icon: 'assets/icons/tools-workflow/docker.svg',            url: 'https://docs.docker.com' },
+    ],
+  },
+  {
+    title: 'Design & Editing',
+    skills: [
+      { name: 'Figma',   icon: 'assets/icons/design-editing/figma.svg',          url: 'https://help.figma.com' },
+      { name: 'Canva',   icon: 'assets/icons/design-editing/canva.png',          url: 'https://www.canva.com' },
+      { name: 'DaVinci', icon: 'assets/icons/design-editing/davinciresolve.svg', url: 'https://www.blackmagicdesign.com/products/davinciresolve' },
+      { name: 'Arduino', icon: 'assets/icons/design-editing/arduino.svg',        url: 'https://www.arduino.cc/en/Guide' },
+    ],
+  },
+];
+
+// Navigation function
+openDocs(url?: string): void {
+  if (url) {
+    window.open(url, '_blank', 'noopener noreferrer');
+  }
+}
 
   constructor(
     private el: ElementRef,
@@ -86,35 +114,37 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
-  ngOnInit(): void {
-    this.loadAssets();
+  // ── Scroll Listener for Nav ──────────────────────────────────────────────
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const sections = ['home', 'skills', 'projects', 'about', 'contact'];
+    const scrollPosition = window.pageYOffset + (window.innerHeight / 3);
+
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        if (element.offsetTop <= scrollPosition && (element.offsetTop + element.offsetHeight) > scrollPosition) {
+          this.activeSection = section;
+        }
+      }
+    }
   }
+
+  ngOnInit(): void { this.loadAssets(); }
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // Typed.js
     this.typed = new Typed('.type', {
-      strings: [
-        'AI Researcher',
-        'Cybersecurity Student',
-        'Full-Stack Developer',
-        'UI Designer',
-        'Tech Enthusiast',
-      ],
-      typeSpeed: 110,
-      backSpeed: 55,
-      loop: true,
+      strings: ['AI Researcher','Cybersecurity Student','Full-Stack Developer','UI Designer','Tech Enthusiast'],
+      typeSpeed: 110, backSpeed: 55, loop: true,
     });
 
-    // Staggered hero entrance
     setTimeout(() => {
-      const items = this.el.nativeElement.querySelectorAll(
-        '.hero-item'
-      ) as NodeListOf<HTMLElement>;
-      items.forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), i * 130);
-      });
+      (this.el.nativeElement.querySelectorAll('.hero-item') as NodeListOf<HTMLElement>)
+        .forEach((el, i) => setTimeout(() => el.classList.add('visible'), i * 130));
     }, 80);
 
     this.initSkillObserver();
@@ -127,92 +157,71 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.revealObserver?.disconnect();
   }
 
-  // ── 3D tilt on avatar ──────────────────────────────────────────────────────
   onMouseMove(event: MouseEvent): void {
-    const wrap = (event.currentTarget as HTMLElement);
+    const wrap = event.currentTarget as HTMLElement;
     const avatar = wrap.querySelector('.avatar-3d') as HTMLElement;
     if (!avatar) return;
-    const rect = wrap.getBoundingClientRect();
-    const dx = (event.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-    const dy = (event.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+    const r = wrap.getBoundingClientRect();
+    const dx = (event.clientX - (r.left + r.width / 2)) / (r.width / 2);
+    const dy = (event.clientY - (r.top  + r.height / 2)) / (r.height / 2);
     avatar.style.transform = `rotateX(${-dy * 18}deg) rotateY(${dx * 18}deg) scale(1.04)`;
     avatar.style.animation = 'none';
   }
 
   onMouseLeave(): void {
     const avatar = this.el.nativeElement.querySelector('.avatar-3d') as HTMLElement;
-    if (!avatar) return;
-    avatar.style.transform = '';
-    avatar.style.animation = '';
+    if (avatar) { avatar.style.transform = ''; avatar.style.animation = ''; }
   }
 
-  // ── Mouse-tracking radial glow on skill cards ──────────────────────────────
-  onCardMouseMove(event: MouseEvent, index: number): void {
+  onCardMouseMove(event: MouseEvent): void {
     const card = event.currentTarget as HTMLElement;
     const glow = card.querySelector('.card-glow') as HTMLElement;
     if (!glow) return;
-    const rect = card.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-    glow.style.setProperty('--mx', `${x}%`);
-    glow.style.setProperty('--my', `${y}%`);
+    const r = card.getBoundingClientRect();
+    glow.style.setProperty('--mx', ((event.clientX - r.left) / r.width * 100) + '%');
+    glow.style.setProperty('--my', ((event.clientY - r.top)  / r.height * 100) + '%');
   }
 
-  onCardMouseLeave(index: number): void {
-    // glow fades via CSS opacity transition — nothing extra needed
-  }
-
-  // ── Observers ─────────────────────────────────────────────────────────────
   private initSkillObserver(): void {
-    const cards = this.el.nativeElement.querySelectorAll(
-      '.skill-card'
-    ) as NodeListOf<HTMLElement>;
     this.skillObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) (e.target as HTMLElement).classList.add('visible');
-        });
-      },
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) (e.target as HTMLElement).classList.add('visible');
+      }),
       { threshold: 0.1 }
     );
-    cards.forEach(c => this.skillObserver.observe(c));
+    (this.el.nativeElement.querySelectorAll('.skill-card') as NodeListOf<HTMLElement>)
+      .forEach(c => this.skillObserver.observe(c));
   }
 
   private initRevealObserver(): void {
-    const els = this.el.nativeElement.querySelectorAll(
-      '.reveal-left'
-    ) as NodeListOf<HTMLElement>;
     this.revealObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            (e.target as HTMLElement).classList.add('visible');
-          } else {
-            (e.target as HTMLElement).classList.remove('visible');
-          }
-        });
-      },
+      entries => entries.forEach(e => {
+        (e.target as HTMLElement).classList.toggle('visible', e.isIntersecting);
+      }),
       { threshold: 0.1 }
     );
-    els.forEach(el => this.revealObserver.observe(el));
+    (this.el.nativeElement.querySelectorAll('.reveal-left') as NodeListOf<HTMLElement>)
+      .forEach(el => this.revealObserver.observe(el));
   }
 
   private loadAssets(): void {
-    const assets = [
-      'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap',
-      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css',
-    ];
-    assets.forEach(href => {
-      if (!document.querySelector(`link[href="${href}"]`)) {
-        const link = this.renderer.createElement('link');
-        this.renderer.setAttribute(link, 'rel', 'stylesheet');
-        this.renderer.setAttribute(link, 'href', href);
-        this.renderer.appendChild(document.head, link);
-      }
-    });
+    ['https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap',
+     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css']
+      .forEach(href => {
+        if (!document.querySelector(`link[href="${href}"]`)) {
+          const link = this.renderer.createElement('link');
+          this.renderer.setAttribute(link, 'rel', 'stylesheet');
+          this.renderer.setAttribute(link, 'href', href);
+          this.renderer.appendChild(document.head, link);
+        }
+      });
   }
 
   scrollToSection(id: string): void {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.activeSection = id; // Update immediately on click for better UX
+    }
   }
 }

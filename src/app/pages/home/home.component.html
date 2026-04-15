@@ -1,22 +1,61 @@
+<nav class="fixed left-5 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-1">
+
+  <div class="absolute left-1/2 -translate-x-1/2 top-5 bottom-5 w-px bg-white/[0.06]"></div>
+
+  <ng-container *ngFor="let nav of [
+    { id: 'home',   icon: 'fas fa-home',  label: 'Home'   },
+    { id: 'skills', icon: 'fas fa-bolt',  label: 'Skills' }
+  ]">
+    <button
+      (click)="scrollToSection(nav.id)"
+      class="group relative z-10 w-10 h-10 rounded-full flex items-center justify-center
+        transition-all duration-300
+        border border-white/10 bg-black/80 backdrop-blur
+        hover:border-red-600/70 hover:shadow-md hover:shadow-red-600/20 hover:-translate-y-px"
+      [class.!border-red-600]="activeSection === nav.id"
+      [class.!bg-red-600]="activeSection === nav.id"
+      [class.shadow-md]="activeSection === nav.id"
+      [attr.aria-label]="nav.label">
+
+      <i [class]="nav.icon + ' text-sm transition-colors duration-200'"
+         class="text-gray-400"
+         [class.!text-white]="activeSection === nav.id"
+         [class.group-hover:text-red-400]="activeSection !== nav.id">
+      </i>
+
+      <span class="pointer-events-none absolute left-14 whitespace-nowrap
+        bg-neutral-900 border border-red-600/40 text-red-400
+        text-[10px] font-bold uppercase tracking-widest
+        px-3 py-1 rounded
+        opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0
+        transition-all duration-200">
+        {{ nav.label }}
+      </span>
+
+      <span *ngIf="activeSection === nav.id"
+        class="absolute inset-0 rounded-full border border-red-500/40 animate-ping pointer-events-none"
+        style="animation-duration:2s"></span>
+    </button>
+
+    <div class="h-2"></div>
+  </ng-container>
+
+</nav>
 <!-- ═══════════════════════════
      HERO SECTION
 ════════════════════════════ -->
 <section id="home" class="relative min-h-screen flex items-center bg-neutral-950 overflow-hidden px-6">
 
-  <!-- Animated grid background -->
   <div class="absolute inset-0 grid-bg pointer-events-none opacity-[0.035]"></div>
-
-  <!-- Ambient glows -->
   <div class="absolute top-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none glow-blob-1"></div>
   <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full pointer-events-none glow-blob-2"></div>
 
   <div class="relative z-10 max-w-5xl mx-auto w-full">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen py-24">
 
-      <!-- LEFT: Text -->
+      <!-- LEFT -->
       <div class="flex flex-col gap-6">
 
-        <!-- Status chip -->
         <div class="hero-item opacity-0 -translate-x-8">
           <span class="inline-flex items-center gap-2 bg-red-600/10 border border-red-600/30
             text-red-400 text-[11px] font-bold tracking-[0.2em] uppercase px-5 py-2 rounded-full">
@@ -25,7 +64,6 @@
           </span>
         </div>
 
-        <!-- Name -->
         <div>
           <h1 class="hero-item opacity-0 -translate-x-8 font-black text-white leading-none tracking-tighter"
             style="font-size:clamp(3rem,8vw,6rem); transition-delay:0.1s">Hi, I'm</h1>
@@ -33,13 +71,11 @@
             style="font-size:clamp(3rem,8vw,6rem); transition-delay:0.2s">Melvin<br/>James</h1>
         </div>
 
-        <!-- Typed -->
         <h2 class="hero-item opacity-0 -translate-x-8 font-black tracking-tighter typed-outline"
           style="font-size:clamp(1.2rem,3.5vw,2.2rem); transition-delay:0.3s">
           <span class="type"></span>
         </h2>
 
-        <!-- Social icons -->
         <div class="hero-item opacity-0 -translate-x-8 flex items-center gap-3" style="transition-delay:0.4s">
           <a href="https://github.com/melvinjames1" target="_blank" class="social-btn">
             <i class="fab fa-github"></i>
@@ -53,7 +89,6 @@
           <div class="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent max-w-24 ml-2"></div>
         </div>
 
-        <!-- CTA buttons -->
         <div class="hero-item opacity-0 -translate-x-8 flex flex-wrap gap-3" style="transition-delay:0.5s">
           <button (click)="scrollToSection('skills')"
             class="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white
@@ -72,69 +107,62 @@
 
       </div>
 
-      <!-- RIGHT: Avatar rig with 3 rings + 6 orbit nodes -->
+      <!-- RIGHT: Avatar rig -->
       <div class="hero-item opacity-0 translate-x-8 flex justify-center items-center"
         style="transition-delay:0.25s">
 
         <div class="avatar-rig" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
 
-          <!-- Ring 1 — outermost, solid, slow CW -->
           <div class="ring ring-1"></div>
-          <!-- Ring 2 — mid, dashed, CCW -->
           <div class="ring ring-2"></div>
-          <!-- Ring 3 — inner, solid, fast CW -->
           <div class="ring ring-3"></div>
 
-          <!-- ── Outer ring nodes (ring-1) ── -->
-          <!-- Top: Python -->
+          <!-- Outer ring nodes -->
           <div class="orbit-node orbit-outer-top group">
             <i class="fab fa-python text-red-400 text-sm"></i>
             <span class="orbit-label">Python</span>
           </div>
-          <!-- Bottom: Angular -->
           <div class="orbit-node orbit-outer-bottom group">
             <i class="fab fa-angular text-red-400 text-sm"></i>
             <span class="orbit-label">Angular</span>
           </div>
-          <!-- Left: AI & ML -->
           <div class="orbit-node orbit-outer-left group">
             <i class="fas fa-robot text-red-400 text-sm"></i>
             <span class="orbit-label orbit-label-right">AI & ML</span>
           </div>
-          <!-- Right: Cybersecurity -->
           <div class="orbit-node orbit-outer-right group">
             <i class="fas fa-shield-halved text-red-400 text-sm"></i>
             <span class="orbit-label">Cybersecurity</span>
           </div>
 
-          <!-- ── Mid ring nodes (ring-2) — diagonal positions ── -->
-          <!-- Top-right: Full Stack -->
+          <!-- Mid ring nodes -->
           <div class="orbit-node orbit-mid-tr group">
             <i class="fas fa-layer-group text-red-400 text-[12px]"></i>
             <span class="orbit-label">Full Stack</span>
           </div>
-          <!-- Bottom-left: Git -->
           <div class="orbit-node orbit-mid-bl group">
             <i class="fab fa-git-alt text-red-400 text-[12px]"></i>
             <span class="orbit-label orbit-label-right">Git</span>
           </div>
 
-          <!-- Avatar circle -->
+          <!-- Avatar -->
           <div class="avatar-3d-wrap">
             <div class="avatar-3d">
               <div class="absolute inset-4 rounded-full border border-red-600/20"></div>
               <div class="absolute inset-8 rounded-full border border-red-600/10"></div>
-              <span class="relative z-10 font-black text-red-500 select-none avatar-text"
+              <span class="relative z-10 font-black text-red-500 select-none"
                 style="font-size:4.5rem; letter-spacing:-4px;
                   text-shadow:0 0 30px rgba(220,38,38,0.6)">MJ</span>
               <div class="avatar-shine absolute inset-0 rounded-full pointer-events-none"></div>
             </div>
           </div>
 
- 
+          <!-- Stat chips -->
+
 
         </div>
       </div>
+
     </div>
   </div>
 
@@ -147,7 +175,6 @@
 
 </section>
 
-<!-- DIVIDER -->
 <div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
 
 <!-- ═══════════════════════════
@@ -156,7 +183,6 @@
 <section id="skills" class="bg-neutral-950 py-28 px-6">
   <div class="max-w-5xl mx-auto">
 
-    <!-- Header -->
     <p class="reveal-left opacity-0 -translate-x-8 transition-all duration-700
       flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
       <i class="fas fa-italic text-xs"></i> Explore My
@@ -168,115 +194,75 @@
       Skills
     </h1>
 
-    <!-- Marquee skill strip -->
     <div class="marquee-wrap overflow-hidden mb-16 py-4 relative">
-      <div class="absolute left-0 top-0 w-16 h-full
-        bg-gradient-to-r from-neutral-950 to-transparent z-10 pointer-events-none"></div>
-      <div class="absolute right-0 top-0 w-16 h-full
-        bg-gradient-to-l from-neutral-950 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-neutral-950 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-neutral-950 to-transparent z-10 pointer-events-none"></div>
       <div class="marquee-track flex gap-3 w-max">
         <span *ngFor="let s of marqueeSkills"
-          class="marquee-pill inline-flex items-center gap-2
-            bg-neutral-900 border border-white/[0.06] text-white/40
-            text-[10px] font-bold tracking-widest uppercase
-            px-4 py-2 rounded-full whitespace-nowrap flex-shrink-0
-            hover:border-red-600/40 hover:text-red-400/80
-            hover:bg-red-600/[.06] transition-all duration-200 cursor-default">
-          <span class="w-1 h-1 rounded-full bg-red-500 flex-shrink-0"></span>{{ s }}
+          class="inline-flex items-center gap-2 bg-neutral-900 border border-white/[0.06] text-white/40 text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full whitespace-nowrap hover:border-red-600/40 hover:text-red-400/80 transition-all duration-200">
+          <span class="w-1 h-1 rounded-full bg-red-500"></span>{{ s }}
         </span>
         <span *ngFor="let s of marqueeSkills"
-          class="marquee-pill inline-flex items-center gap-2
-            bg-neutral-900 border border-white/[0.06] text-white/40
-            text-[10px] font-bold tracking-widest uppercase
-            px-4 py-2 rounded-full whitespace-nowrap flex-shrink-0
-            hover:border-red-600/40 hover:text-red-400/80
-            hover:bg-red-600/[.06] transition-all duration-200 cursor-default">
-          <span class="w-1 h-1 rounded-full bg-red-500 flex-shrink-0"></span>{{ s }}
+          class="inline-flex items-center gap-2 bg-neutral-900 border border-white/[0.06] text-white/40 text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full whitespace-nowrap hover:border-red-600/40 hover:text-red-400/80 transition-all duration-200">
+          <span class="w-1 h-1 rounded-full bg-red-500"></span>{{ s }}
         </span>
       </div>
     </div>
 
-    <!-- Skills grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       <div *ngFor="let category of skills; let ci = index"
-        class="skill-card group relative rounded-2xl p-6 overflow-hidden cursor-default"
+        class="skill-card group relative rounded-2xl p-6 overflow-hidden cursor-default bg-neutral-900/40 border border-white/[0.03]"
         [style.--delay]="ci * 80 + 'ms'"
-        (mousemove)="onCardMouseMove($event, ci)"
-        (mouseleave)="onCardMouseLeave(ci)">
+        (mousemove)="onCardMouseMove($event)">
 
-        <!-- Radial mouse-follow glow -->
-        <div class="card-glow absolute inset-0 rounded-2xl pointer-events-none opacity-0
-          group-hover:opacity-100 transition-opacity duration-300"
-          [id]="'glow-' + ci"></div>
-
-        <!-- Top shimmer line -->
-        <div class="absolute top-0 left-6 right-6 h-px
-          bg-gradient-to-r from-transparent via-red-600/50 to-transparent
-          opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
-
-        <!-- Bottom accent bar -->
-        <div class="absolute bottom-0 left-0 right-0 h-[2px] rounded-b-2xl
-          bg-gradient-to-r from-red-600/0 via-red-600/50 to-red-600/0
-          scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
-
-        <!-- Hover tint -->
-        <div class="absolute inset-0 bg-red-600/[.04] opacity-0
-          group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none"></div>
+        <div class="card-glow absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-red-600/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
 
         <div class="relative z-10">
-          <!-- Category header -->
           <div class="flex items-center justify-between mb-5">
-            <h2 class="text-[11px] font-bold tracking-widest uppercase
-              text-white/35 flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0
-                group-hover:shadow-sm group-hover:shadow-red-500 transition-shadow duration-300"></span>
+            <h2 class="text-[11px] font-bold tracking-widest uppercase text-white/35 flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0 group-hover:shadow-sm group-hover:shadow-red-500 transition-shadow duration-300"></span>
               {{ category.title }}
             </h2>
-            <!-- Skill count badge -->
-            <span class="text-[10px] font-bold text-red-500/50 bg-red-600/[.07]
-              border border-red-600/15 px-2 py-0.5 rounded-full">
+            <span class="text-[10px] font-bold text-red-500/50 bg-red-600/[.07] border border-red-600/15 px-2 py-0.5 rounded-full">
               {{ category.skills.length }}
             </span>
           </div>
 
-          <!-- Skills grid inside card -->
-          <div class="grid grid-cols-2 gap-2">
-            <div *ngFor="let skill of category.skills; let si = index"
-              class="skill-item flex items-center gap-2.5
-                bg-neutral-950/70 border border-white/[0.05]
-                hover:border-red-600/35 hover:bg-red-600/[.05]
-                rounded-xl px-3 py-2.5
-                transition-all duration-200 hover:-translate-y-0.5
-                group/sk cursor-default"
-              [style.transition-delay]="(si * 30) + 'ms'">
-              <img [src]="skill.image" [alt]="skill.name"
-                class="w-5 h-5 object-contain flex-shrink-0
-                  transition-transform duration-300
-                  group-hover/sk:scale-110 group-hover/sk:-rotate-6"/>
-              <span class="text-white/50 text-[11px] font-semibold truncate
-                transition-colors duration-200 group-hover/sk:text-white/90">
-                {{ skill.name }}
-              </span>
-            </div>
-          </div>
+         <div class="grid grid-cols-2 gap-2">
+  <div *ngFor="let skill of category.skills; let si = index"
+    (click)="openDocs(skill.url)"
+    class="skill-item flex items-center gap-2.5 
+      bg-neutral-950/70 border border-white/[0.05]
+      hover:border-red-600/50 hover:bg-red-600/[.08]
+      rounded-xl px-3 py-2.5 transition-all duration-200
+      hover:-translate-y-1 group/sk cursor-pointer"
+    [style.transition-delay]="(si * 35) + 'ms'">
+    
+    <img [src]="skill.icon" [alt]="skill.name"
+      width="18" height="18"
+      class="object-contain flex-shrink-0
+        transition-transform duration-300
+        group-hover/sk:scale-110 group-hover/sk:-rotate-6"/>
+    
+    <span class="text-white/50 text-[11px] font-semibold truncate
+      transition-colors duration-200 group-hover/sk:text-white/90">
+      {{ skill.name }}
+    </span>
+
+    <i class="fas fa-external-link-alt text-[8px] text-red-500/0 
+      group-hover/sk:text-red-500/60 transition-all ml-auto"></i>
+  </div>
+</div>
         </div>
-
-        <!-- Shimmer sweep -->
-        <div class="skill-shimmer absolute inset-0 rounded-2xl pointer-events-none opacity-0
-          group-hover:opacity-100"></div>
-
       </div>
     </div>
 
-    <!-- Back to top -->
     <div class="flex justify-center mt-16">
       <button (click)="scrollToSection('home')"
-        class="flex items-center gap-2 border border-white/10 hover:border-red-600/50
-          text-white/50 hover:text-red-400 text-[12px] font-bold tracking-widest uppercase
-          px-7 py-3 rounded-full transition-all duration-200 hover:-translate-y-1 active:scale-95">
+        class="flex items-center gap-2 border border-white/10 hover:border-red-600/50 text-white/50 hover:text-red-400 text-[12px] font-bold tracking-widest uppercase px-7 py-3 rounded-full transition-all duration-200 hover:-translate-y-1 active:scale-95">
         Back to Top <i class="fas fa-arrow-up text-xs"></i>
       </button>
     </div>
-
   </div>
 </section>
