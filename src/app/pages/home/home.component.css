@@ -36,13 +36,6 @@
   color: #f87171; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(220,38,38,.2);
 }
 
-/* Scroll line */
-.scroll-line { animation: scrollPulse 2s ease-in-out infinite; }
-@keyframes scrollPulse {
-  0%,100% { opacity: .6; transform: scaleY(1); }
-  50%     { opacity: 1;  transform: scaleY(1.2); }
-}
-
 /* ── Avatar rig ── */
 .avatar-rig { position: relative; width: 340px; height: 340px; }
 

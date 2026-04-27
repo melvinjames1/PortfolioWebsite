@@ -1,84 +1,119 @@
 <!-- ═══════════════════════════════
      AI / ML SECTION
 ════════════════════════════════ -->
-<section id="aiml" class="bg-neutral-950 pt-32 pb-20 px-6">
+<section id="aiml" class="bg-neutral-950 pt-32 pb-20 px-4 sm:px-6">
   <div class="max-w-5xl mx-auto">
 
-    <p class="reveal opacity-0 translate-y-8 transition-all duration-700
-      flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
-      Intelligence <span class="inline-block w-10 h-px bg-red-500"></span>
-    </p>
+    <!-- Section Header -->
+    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 flex items-center gap-3 mb-3">
+      <span class="text-[10px] font-bold tracking-[0.25em] uppercase text-red-500">Intelligence</span>
+      <span class="flex-1 max-w-[60px] h-px bg-gradient-to-r from-red-500 to-transparent"></span>
+    </div>
     <h1 class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-      font-black text-white tracking-tighter mb-4"
-      style="font-size:clamp(2.6rem,7vw,5rem)">
-      AI / ML Projects
+      font-black text-white tracking-tighter mb-3 leading-none"
+      style="font-size:clamp(2.4rem,7vw,5rem)">
+      AI&nbsp;/&nbsp;ML
+      <span class="block text-red-500" style="font-size:clamp(2.4rem,7vw,5rem)">Projects</span>
     </h1>
     <p class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-200
       text-white/35 text-sm leading-relaxed mb-16 max-w-lg">
       Machine learning pipelines, LLM integrations, and AI-powered tools built from scratch.
     </p>
 
-    <div class="flex flex-col gap-20">
+    <div class="flex flex-col gap-16 lg:gap-24">
       <div *ngFor="let project of aiml; let i = index"
         class="reveal opacity-0 translate-y-8 transition-all duration-700
-          grid grid-cols-1 lg:grid-cols-2 gap-10 items-start"
-        [style.transition-delay]="(i * 80) + 'ms'">
+          grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start"
+        [style.transition-delay]="(i * 100) + 'ms'">
 
-        <!-- Code block -->
-        <div [class.lg:order-last]="i % 2 !== 0" class="group">
-          <div class="flex items-center justify-between bg-neutral-800 border border-white/[0.07]
-            border-b-0 rounded-t-xl px-4 py-2.5">
-            <div class="flex items-center gap-1.5">
-              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-              <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-              <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
-            </div>
-            <div class="flex items-center gap-2">
-              <i class="fas fa-robot text-red-500/50" style="font-size:11px"></i>
-              <span class="text-[11px] font-bold tracking-widest uppercase text-white/30">Python · AI/ML</span>
-            </div>
-            <button (click)="copyToClipboard(project.code, 'aiml-' + i)"
-              class="flex items-center gap-1.5 text-white/30 hover:text-red-400
-                text-[11px] font-bold tracking-widest uppercase transition-colors duration-200">
-              <i class="fas fa-copy text-xs"></i>
-              <span [id]="'message-aiml-' + i">Copy</span>
-            </button>
-          </div>
-          <pre class="bg-neutral-900 border border-white/[0.07] border-t-0 rounded-b-xl
-            p-5 overflow-x-auto text-[12px] leading-relaxed text-white/55
-            max-h-80 scrollbar-thin"><code>{{ project.code }}</code></pre>
-        </div>
+        <!-- ── Mobile: title first, then code, then details ── -->
 
-        <!-- Details -->
-        <div class="flex flex-col gap-5">
+        <!-- Badge + Title (always on top in mobile) -->
+        <div class="flex flex-col gap-4 lg:hidden">
           <div class="flex items-center gap-3">
-            <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-red-500/50
-              bg-red-600/[.07] border border-red-600/15 rounded-full px-3 py-1">
+            <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-red-400
+              bg-red-600/10 border border-red-600/20 rounded-full px-3 py-1.5">
               AI · {{ (i + 1).toString().padStart(2,'0') }}
             </span>
             <div class="h-px flex-1 bg-gradient-to-r from-red-600/20 to-transparent"></div>
           </div>
-          <h2 class="font-black text-white tracking-tight leading-none"
-            style="font-size:clamp(1.8rem,4vw,2.4rem)">
+          <h2 class="font-black text-white tracking-tight leading-[0.95]"
+            style="font-size:clamp(1.9rem,8vw,2.6rem)">
             {{ project.title }}
           </h2>
+        </div>
+
+        <!-- Code Block -->
+        <div [class.lg:order-last]="i % 2 !== 0"
+          class="group relative">
+          <!-- Glow effect -->
+          <div class="absolute -inset-px rounded-xl bg-gradient-to-br from-red-600/20 via-transparent to-transparent
+            opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+          <!-- Terminal bar -->
+          <div class="flex items-center justify-between
+            bg-neutral-800/90 border border-white/[0.07] border-b-0
+            rounded-t-xl px-4 py-3 backdrop-blur-sm">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 ring-1 ring-red-400/20"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 ring-1 ring-yellow-400/20"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 ring-1 ring-green-400/20"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-robot text-red-500/40" style="font-size:10px"></i>
+              <span class="text-[10px] font-bold tracking-widest uppercase text-white/25">Python · AI/ML</span>
+            </div>
+            <button (click)="copyToClipboard(project.code, 'aiml-' + i)"
+              class="flex items-center gap-1.5 text-white/30 hover:text-red-400
+                text-[10px] font-bold tracking-widest uppercase
+                transition-all duration-200 hover:scale-105 active:scale-95">
+              <i class="fas fa-copy text-xs"></i>
+              <span [id]="'message-aiml-' + i">Copy</span>
+            </button>
+          </div>
+          <pre class="bg-neutral-900/80 border border-white/[0.07] border-t-0 rounded-b-xl
+            p-4 sm:p-5 overflow-x-auto text-[11.5px] sm:text-[12px] leading-relaxed text-white/55
+            max-h-72 sm:max-h-80 scrollbar-thin scrollbar-thumb-red-600/20 scrollbar-track-transparent
+            backdrop-blur-sm"><code>{{ project.code }}</code></pre>
+        </div>
+
+        <!-- Details Panel -->
+        <div class="flex flex-col gap-4 sm:gap-5">
+          <!-- Desktop-only badge + title -->
+          <div class="hidden lg:flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+              <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-red-400
+                bg-red-600/10 border border-red-600/20 rounded-full px-3 py-1.5">
+                AI · {{ (i + 1).toString().padStart(2,'0') }}
+              </span>
+              <div class="h-px flex-1 bg-gradient-to-r from-red-600/20 to-transparent"></div>
+            </div>
+            <h2 class="font-black text-white tracking-tight leading-[0.95]"
+              style="font-size:clamp(1.8rem,4vw,2.5rem)">
+              {{ project.title }}
+            </h2>
+          </div>
+
           <p class="text-white/40 text-sm leading-relaxed">{{ project.description }}</p>
 
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
             <span *ngFor="let tag of project.tags"
-              class="text-[10px] font-bold tracking-widest uppercase
-                bg-neutral-900 border border-white/[0.08] hover:border-red-600/30
-                text-white/40 hover:text-red-400/70 px-3 py-1 rounded-full
-                transition-all duration-200 cursor-default">
+              class="text-[9px] sm:text-[10px] font-bold tracking-widest uppercase
+                bg-neutral-900 border border-white/[0.07] hover:border-red-600/30
+                text-white/35 hover:text-red-400/70 px-2.5 sm:px-3 py-1 rounded-full
+                transition-all duration-200 cursor-default hover:-translate-y-0.5">
               {{ tag }}
             </span>
           </div>
 
           <a [href]="project.repoLink" target="_blank"
-            class="self-start flex items-center gap-2 bg-neutral-900 border border-white/[0.08]
-              hover:border-red-600/50 text-white/60 hover:text-red-400
-              text-[11px] font-bold tracking-widest uppercase px-5 py-2.5 rounded-full
-              transition-all duration-200 hover:-translate-y-0.5 mt-2">
+            class="self-start flex items-center gap-2
+              bg-neutral-900 border border-white/[0.08] hover:border-red-600/50
+              text-white/60 hover:text-red-400
+              text-[10px] sm:text-[11px] font-bold tracking-widest uppercase
+              px-4 sm:px-5 py-2.5 rounded-full
+              transition-all duration-200 hover:-translate-y-0.5
+              hover:shadow-lg hover:shadow-red-900/20 mt-1">
             <i class="fab fa-github text-sm"></i> GitHub Repo
           </a>
         </div>
@@ -89,97 +124,135 @@
 </section>
 
 <!-- DIVIDER -->
-<div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
+<div class="relative my-0">
+  <div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
+  <div class="absolute inset-0 w-full h-px bg-gradient-to-r from-transparent via-red-400/10 to-transparent blur-sm"></div>
+</div>
 
 <!-- ═══════════════════════════════
      CYBER SECURITY SECTION
 ════════════════════════════════ -->
-<section id="cybersec" class="bg-neutral-950 py-28 px-6">
+<section id="cybersec" class="bg-neutral-950 py-24 sm:py-28 px-4 sm:px-6">
   <div class="max-w-5xl mx-auto">
 
-    <p class="reveal opacity-0 translate-y-8 transition-all duration-700
-      flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
-      Offensive &amp; Defensive <span class="inline-block w-10 h-px bg-red-500"></span>
-    </p>
+    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 flex items-center gap-3 mb-3">
+      <span class="text-[10px] font-bold tracking-[0.25em] uppercase text-red-500">Offensive &amp; Defensive</span>
+      <span class="flex-1 max-w-[60px] h-px bg-gradient-to-r from-red-500 to-transparent"></span>
+    </div>
     <h1 class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-      font-black text-white tracking-tighter mb-4"
-      style="font-size:clamp(2.6rem,7vw,5rem)">
-      Cyber Security
+      font-black text-white tracking-tighter mb-3 leading-none"
+      style="font-size:clamp(2.4rem,7vw,5rem)">
+      Cyber
+      <span class="block text-red-500" style="font-size:clamp(2.4rem,7vw,5rem)">Security</span>
     </h1>
     <p class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-200
       text-white/35 text-sm leading-relaxed mb-16 max-w-lg">
       Security research tools, vulnerability testing scripts, and ethical hacking utilities built for educational purposes.
     </p>
 
-    <div class="flex flex-col gap-20">
+    <div class="flex flex-col gap-16 lg:gap-24">
       <div *ngFor="let project of cybersec; let i = index"
         class="reveal opacity-0 translate-y-8 transition-all duration-700
-          grid grid-cols-1 lg:grid-cols-2 gap-10 items-start"
-        [style.transition-delay]="(i * 80) + 'ms'">
+          grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start"
+        [style.transition-delay]="(i * 100) + 'ms'">
 
-        <!-- Code block -->
-        <div [class.lg:order-last]="i % 2 === 0" class="group">
-          <div class="flex items-center justify-between bg-neutral-800 border border-white/[0.07]
-            border-b-0 rounded-t-xl px-4 py-2.5">
-            <div class="flex items-center gap-1.5">
-              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-              <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-              <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
-            </div>
-            <div class="flex items-center gap-2">
-              <i class="fas fa-shield-halved text-red-500/50" style="font-size:11px"></i>
-              <span class="text-[11px] font-bold tracking-widest uppercase text-white/30">Python · Security</span>
-            </div>
-            <button (click)="copyToClipboard(project.code, 'sec-' + i)"
-              class="flex items-center gap-1.5 text-white/30 hover:text-red-400
-                text-[11px] font-bold tracking-widest uppercase transition-colors duration-200">
-              <i class="fas fa-copy text-xs"></i>
-              <span [id]="'message-sec-' + i">Copy</span>
-            </button>
-          </div>
-          <pre class="bg-neutral-900 border border-white/[0.07] border-t-0 rounded-b-xl
-            p-5 overflow-x-auto text-[12px] leading-relaxed text-white/55
-            max-h-80 scrollbar-thin"><code>{{ project.code }}</code></pre>
-        </div>
-
-        <!-- Details -->
-        <div class="flex flex-col gap-5">
+        <!-- Mobile: title first -->
+        <div class="flex flex-col gap-3 lg:hidden">
           <div class="flex items-center gap-3">
-            <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-red-500/50
-              bg-red-600/[.07] border border-red-600/15 rounded-full px-3 py-1">
+            <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-red-400
+              bg-red-600/10 border border-red-600/20 rounded-full px-3 py-1.5">
               SEC · {{ (i + 1).toString().padStart(2,'0') }}
             </span>
             <div class="h-px flex-1 bg-gradient-to-r from-red-600/20 to-transparent"></div>
           </div>
-          <h2 class="font-black text-white tracking-tight leading-none"
-            style="font-size:clamp(1.8rem,4vw,2.4rem)">
+          <h2 class="font-black text-white tracking-tight leading-[0.95]"
+            style="font-size:clamp(1.7rem,7.5vw,2.4rem)">
             {{ project.title }}
           </h2>
+          <!-- Warning pill on mobile -->
+          <div class="self-start flex items-center gap-2
+            bg-amber-500/[.06] border border-amber-500/20
+            text-amber-400/70 text-[9px] font-bold tracking-widest uppercase
+            px-3 py-1.5 rounded-full">
+            <i class="fas fa-triangle-exclamation" style="font-size:8px"></i>
+            Educational &amp; ethical use only
+          </div>
+        </div>
 
-          <!-- Warning pill -->
-          <div class="self-start flex items-center gap-2 bg-amber-500/[.07] border border-amber-500/20
-            text-amber-400/70 text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full">
-            <i class="fas fa-triangle-exclamation" style="font-size:9px"></i>
-            For educational &amp; ethical use only
+        <!-- Code Block -->
+        <div [class.lg:order-last]="i % 2 === 0" class="group relative">
+          <div class="absolute -inset-px rounded-xl bg-gradient-to-br from-red-600/20 via-transparent to-transparent
+            opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+          <div class="flex items-center justify-between
+            bg-neutral-800/90 border border-white/[0.07] border-b-0
+            rounded-t-xl px-4 py-3">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 ring-1 ring-red-400/20"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 ring-1 ring-yellow-400/20"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 ring-1 ring-green-400/20"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-shield-halved text-red-500/40" style="font-size:10px"></i>
+              <span class="text-[10px] font-bold tracking-widest uppercase text-white/25">Python · Security</span>
+            </div>
+            <button (click)="copyToClipboard(project.code, 'sec-' + i)"
+              class="flex items-center gap-1.5 text-white/30 hover:text-red-400
+                text-[10px] font-bold tracking-widest uppercase
+                transition-all duration-200 hover:scale-105 active:scale-95">
+              <i class="fas fa-copy text-xs"></i>
+              <span [id]="'message-sec-' + i">Copy</span>
+            </button>
+          </div>
+          <pre class="bg-neutral-900/80 border border-white/[0.07] border-t-0 rounded-b-xl
+            p-4 sm:p-5 overflow-x-auto text-[11.5px] sm:text-[12px] leading-relaxed text-white/55
+            max-h-72 sm:max-h-80 scrollbar-thin scrollbar-thumb-red-600/20 scrollbar-track-transparent"><code>{{ project.code }}</code></pre>
+        </div>
+
+        <!-- Details Panel -->
+        <div class="flex flex-col gap-4 sm:gap-5">
+          <!-- Desktop-only header -->
+          <div class="hidden lg:flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+              <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-red-400
+                bg-red-600/10 border border-red-600/20 rounded-full px-3 py-1.5">
+                SEC · {{ (i + 1).toString().padStart(2,'0') }}
+              </span>
+              <div class="h-px flex-1 bg-gradient-to-r from-red-600/20 to-transparent"></div>
+            </div>
+            <h2 class="font-black text-white tracking-tight leading-[0.95]"
+              style="font-size:clamp(1.8rem,4vw,2.5rem)">
+              {{ project.title }}
+            </h2>
+            <div class="self-start flex items-center gap-2
+              bg-amber-500/[.06] border border-amber-500/20
+              text-amber-400/70 text-[9px] font-bold tracking-widest uppercase
+              px-3 py-1.5 rounded-full">
+              <i class="fas fa-triangle-exclamation" style="font-size:8px"></i>
+              For educational &amp; ethical use only
+            </div>
           </div>
 
           <p class="text-white/40 text-sm leading-relaxed">{{ project.description }}</p>
 
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
             <span *ngFor="let tag of project.tags"
-              class="text-[10px] font-bold tracking-widest uppercase
-                bg-neutral-900 border border-white/[0.08] hover:border-red-600/30
-                text-white/40 hover:text-red-400/70 px-3 py-1 rounded-full
-                transition-all duration-200 cursor-default">
+              class="text-[9px] sm:text-[10px] font-bold tracking-widest uppercase
+                bg-neutral-900 border border-white/[0.07] hover:border-red-600/30
+                text-white/35 hover:text-red-400/70 px-2.5 sm:px-3 py-1 rounded-full
+                transition-all duration-200 cursor-default hover:-translate-y-0.5">
               {{ tag }}
             </span>
           </div>
 
           <a [href]="project.repoLink" target="_blank"
-            class="self-start flex items-center gap-2 bg-neutral-900 border border-white/[0.08]
-              hover:border-red-600/50 text-white/60 hover:text-red-400
-              text-[11px] font-bold tracking-widest uppercase px-5 py-2.5 rounded-full
-              transition-all duration-200 hover:-translate-y-0.5 mt-2">
+            class="self-start flex items-center gap-2
+              bg-neutral-900 border border-white/[0.08] hover:border-red-600/50
+              text-white/60 hover:text-red-400
+              text-[10px] sm:text-[11px] font-bold tracking-widest uppercase
+              px-4 sm:px-5 py-2.5 rounded-full
+              transition-all duration-200 hover:-translate-y-0.5
+              hover:shadow-lg hover:shadow-red-900/20 mt-1">
             <i class="fab fa-github text-sm"></i> GitHub Repo
           </a>
         </div>
@@ -190,98 +263,146 @@
 </section>
 
 <!-- DIVIDER -->
-<div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
+<div class="relative my-0">
+  <div class="w-full h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent"></div>
+  <div class="absolute inset-0 w-full h-px bg-gradient-to-r from-transparent via-red-400/10 to-transparent blur-sm"></div>
+</div>
 
 <!-- ═══════════════════════════════
      WEBSITES SECTION
 ════════════════════════════════ -->
-<section id="websites" class="bg-neutral-950 py-28 px-6">
+<section id="websites" class="bg-neutral-950 py-24 sm:py-28 px-4 sm:px-6">
   <div class="max-w-5xl mx-auto">
 
-    <p class="reveal opacity-0 translate-y-8 transition-all duration-700
-      flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] uppercase text-red-500 mb-3">
-      Portfolio <span class="inline-block w-10 h-px bg-red-500"></span>
-    </p>
+    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 flex items-center gap-3 mb-3">
+      <span class="text-[10px] font-bold tracking-[0.25em] uppercase text-red-500">Portfolio</span>
+      <span class="flex-1 max-w-[60px] h-px bg-gradient-to-r from-red-500 to-transparent"></span>
+    </div>
     <h1 class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-      font-black text-white tracking-tighter mb-4"
-      style="font-size:clamp(2.6rem,7vw,5rem)">
-      My Websites
+      font-black text-white tracking-tighter mb-3 leading-none"
+      style="font-size:clamp(2.4rem,7vw,5rem)">
+      My
+      <span class="block text-red-500" style="font-size:clamp(2.4rem,7vw,5rem)">Websites</span>
     </h1>
     <p class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-200
       text-white/35 text-sm leading-relaxed mb-16 max-w-lg">
       A collection of web projects built with modern frameworks and APIs — from productivity tools to data-driven apps.
     </p>
 
-    <div class="flex flex-col gap-24">
+    <div class="flex flex-col gap-16 sm:gap-20 lg:gap-28">
       <div *ngFor="let project of websites; let i = index"
         class="reveal opacity-0 translate-y-8 transition-all duration-700
-          grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
-        [style.transition-delay]="(i * 80) + 'ms'">
+          grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center"
+        [style.transition-delay]="(i * 100) + 'ms'">
 
-        <!-- Image -->
-        <div [class.lg:order-last]="i % 2 === 0" class="relative group">
-          <div class="absolute -inset-1 bg-red-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative rounded-2xl border border-white/[0.07] group-hover:border-red-600/30 transition-colors duration-300 overflow-hidden">
-            <!-- Browser chrome -->
-            <div class="flex items-center gap-3 bg-neutral-800/80 px-4 py-2.5 border-b border-white/[0.06]">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-green-500/70"></span>
-              </div>
-              <div class="flex-1 bg-neutral-700/50 rounded-full px-3 py-1 flex items-center gap-2">
-                <i class="fas fa-lock text-white/20" style="font-size:9px"></i>
-                <span class="text-white/25 text-[10px] font-medium truncate">{{ project.link }}</span>
-              </div>
-            </div>
-            <img [src]="project.image" [alt]="project.title"
-              class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"/>
-            <div class="absolute inset-0 mt-10 bg-gradient-to-t from-black/70 via-transparent to-transparent
-              opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-              <span class="text-white/80 text-xs font-bold tracking-widest uppercase flex items-center gap-1.5">
-                <i class="fas fa-external-link-alt text-red-400" style="font-size:9px"></i> View Project
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Details -->
-        <div class="flex flex-col gap-5">
+        <!-- Mobile: title first -->
+        <div class="flex flex-col gap-3 lg:hidden">
           <div class="flex items-center gap-3">
-            <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-red-500/50
-              bg-red-600/[.07] border border-red-600/15 rounded-full px-3 py-1">
+            <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-red-400
+              bg-red-600/10 border border-red-600/20 rounded-full px-3 py-1.5">
               Project {{ (i + 1).toString().padStart(2,'0') }}
             </span>
             <div class="h-px flex-1 bg-gradient-to-r from-red-600/20 to-transparent"></div>
           </div>
-          <h2 class="font-black text-white tracking-tight leading-none"
-            style="font-size:clamp(1.8rem,4vw,2.6rem)">
+          <h2 class="font-black text-white tracking-tight leading-[0.95]"
+            style="font-size:clamp(1.9rem,8vw,2.6rem)">
             {{ project.title }}
           </h2>
+        </div>
+
+        <!-- Image / Browser Mockup -->
+        <div [class.lg:order-last]="i % 2 === 0" class="relative group">
+          <!-- Ambient glow -->
+          <div class="absolute -inset-3 bg-red-600/10 rounded-3xl blur-2xl
+            opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+          <div class="relative rounded-2xl border border-white/[0.07]
+            group-hover:border-red-600/25 transition-colors duration-500 overflow-hidden
+            shadow-2xl shadow-black/50">
+
+            <!-- Browser chrome -->
+            <div class="flex items-center gap-3 bg-neutral-800/80 px-4 py-2.5
+              border-b border-white/[0.06] backdrop-blur-sm">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/70 ring-1 ring-red-400/20"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70 ring-1 ring-yellow-400/20"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/70 ring-1 ring-green-400/20"></span>
+              </div>
+              <div class="flex-1 bg-neutral-700/40 rounded-full px-3 py-1
+                flex items-center gap-2 border border-white/[0.05]">
+                <i class="fas fa-lock text-white/15" style="font-size:8px"></i>
+                <span class="text-white/20 text-[10px] font-medium truncate">{{ project.link }}</span>
+              </div>
+            </div>
+
+            <!-- Screenshot -->
+            <div class="relative overflow-hidden">
+              <img [src]="project.image" [alt]="project.title"
+                class="w-full h-48 sm:h-56 object-cover
+                  transition-transform duration-700 group-hover:scale-105"/>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent
+                opacity-0 group-hover:opacity-100 transition-opacity duration-400
+                flex items-end p-4">
+                <a [href]="project.link" target="_blank"
+                  class="flex items-center gap-2 text-white text-[10px] font-bold tracking-widest uppercase
+                    bg-red-600/80 backdrop-blur-sm border border-red-500/30
+                    px-4 py-2 rounded-full hover:bg-red-500 transition-colors duration-200">
+                  <i class="fas fa-external-link-alt" style="font-size:9px"></i> View Live
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details Panel -->
+        <div class="flex flex-col gap-4 sm:gap-5">
+          <!-- Desktop-only header -->
+          <div class="hidden lg:flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+              <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-red-400
+                bg-red-600/10 border border-red-600/20 rounded-full px-3 py-1.5">
+                Project {{ (i + 1).toString().padStart(2,'0') }}
+              </span>
+              <div class="h-px flex-1 bg-gradient-to-r from-red-600/20 to-transparent"></div>
+            </div>
+            <h2 class="font-black text-white tracking-tight leading-[0.95]"
+              style="font-size:clamp(1.8rem,4vw,2.6rem)">
+              {{ project.title }}
+            </h2>
+          </div>
+
           <p class="text-white/40 text-sm leading-relaxed">{{ project.description }}</p>
 
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
             <span *ngFor="let tag of project.tags"
-              class="text-[10px] font-bold tracking-widest uppercase
-                bg-neutral-900 border border-white/[0.08] hover:border-red-600/30
-                text-white/40 hover:text-red-400/70 px-3 py-1 rounded-full
-                transition-all duration-200 cursor-default">
+              class="text-[9px] sm:text-[10px] font-bold tracking-widest uppercase
+                bg-neutral-900 border border-white/[0.07] hover:border-red-600/30
+                text-white/35 hover:text-red-400/70 px-2.5 sm:px-3 py-1 rounded-full
+                transition-all duration-200 cursor-default hover:-translate-y-0.5">
               {{ tag }}
             </span>
           </div>
 
-          <div class="flex flex-wrap gap-3 mt-1">
+          <div class="flex flex-wrap gap-2 sm:gap-3 mt-1">
             <a [href]="project.repoLink" target="_blank"
-              class="flex items-center gap-2 bg-neutral-900 border border-white/[0.08]
-                hover:border-red-600/50 text-white/60 hover:text-red-400
-                text-[11px] font-bold tracking-widest uppercase px-5 py-2.5 rounded-full
-                transition-all duration-200 hover:-translate-y-0.5">
+              class="flex items-center gap-2
+                bg-neutral-900 border border-white/[0.08] hover:border-red-600/50
+                text-white/60 hover:text-red-400
+                text-[10px] sm:text-[11px] font-bold tracking-widest uppercase
+                px-4 sm:px-5 py-2.5 rounded-full
+                transition-all duration-200 hover:-translate-y-0.5
+                hover:shadow-lg hover:shadow-red-900/20">
               <i class="fab fa-github text-sm"></i> Source Code
             </a>
             <a [href]="project.link" target="_blank"
-              class="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white
-                text-[11px] font-bold tracking-widest uppercase px-5 py-2.5 rounded-full
-                transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-600/30">
+              class="flex items-center gap-2
+                bg-red-600 hover:bg-red-500 text-white
+                text-[10px] sm:text-[11px] font-bold tracking-widest uppercase
+                px-4 sm:px-5 py-2.5 rounded-full
+                transition-all duration-200 hover:-translate-y-0.5
+                hover:shadow-lg hover:shadow-red-600/30
+                active:scale-95">
               <i class="fas fa-globe text-xs"></i> Live Site
             </a>
           </div>
