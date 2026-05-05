@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, Renderer2, ViewChild,
+  Component, ElementRef, Renderer2,
   OnInit, OnDestroy, AfterViewInit,
   Inject, PLATFORM_ID, HostListener
 } from '@angular/core';
@@ -15,16 +15,11 @@ import Typed from 'typed.js';
   imports: [CommonModule, RouterModule],
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('geoCanvas')   geoCanvasRef!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('avatarPhoto') avatarPhotoRef!: ElementRef<HTMLImageElement>;
-
   private typed!: Typed;
   private skillObserver!: IntersectionObserver;
   private revealObserver!: IntersectionObserver;
-  private geoAnimId!: number;
   private tiltAnimId!: number;
 
-  // Current tilt target (set by mouse, lerped toward)
   private tiltTargetX = 0;
   private tiltTargetY = 0;
   private tiltCurrentX = 0;
@@ -144,7 +139,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         .forEach((el, i) => setTimeout(() => el.classList.add('visible'), i * 130));
     }, 80);
 
-    this.initGeometricCanvas();
     this.initAvatarTiltLoop();
     this.initSkillObserver();
     this.initRevealObserver();
@@ -154,7 +148,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.typed?.destroy();
     this.skillObserver?.disconnect();
     this.revealObserver?.disconnect();
-    cancelAnimationFrame(this.geoAnimId);
     cancelAnimationFrame(this.tiltAnimId);
   }
 
@@ -163,110 +156,27 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   onAvatarMouseMove(event: MouseEvent): void {
     const rig = event.currentTarget as HTMLElement;
     const r   = rig.getBoundingClientRect();
-    const dx  = (event.clientX - (r.left + r.width  / 2)) / (r.width  / 2); // -1 to 1
-    const dy  = (event.clientY - (r.top  + r.height / 2)) / (r.height / 2); // -1 to 1
-
-    this.tiltTargetX = -dy * 22;  // rotateX (negate so tilt follows cursor naturally)
-    this.tiltTargetY =  dx * 22;  // rotateY
+    const dx  = (event.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
+    const dy  = (event.clientY - (r.top  + r.height / 2)) / (r.height / 2);
+    this.tiltTargetX = -dy * 22;
+    this.tiltTargetY =  dx * 22;
     this.isHoveringAvatar = true;
-
-    const photo = this.avatarPhotoRef?.nativeElement;
-    if (photo) photo.classList.add('js-tilt');
   }
 
   onAvatarMouseLeave(): void {
     this.tiltTargetX = 0;
     this.tiltTargetY = 0;
     this.isHoveringAvatar = false;
-
-    const photo = this.avatarPhotoRef?.nativeElement;
-    if (photo) photo.classList.remove('js-tilt');
   }
 
-  // Smooth lerp loop for 3D tilt — runs every frame
   private initAvatarTiltLoop(): void {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const tick = () => {
       this.tiltCurrentX = lerp(this.tiltCurrentX, this.tiltTargetX, 0.1);
       this.tiltCurrentY = lerp(this.tiltCurrentY, this.tiltTargetY, 0.1);
-
-      const photo = this.avatarPhotoRef?.nativeElement;
-      if (photo && this.isHoveringAvatar) {
-        // Combine tilt with a gentle float offset so they don't fight
-        photo.style.transform =
-          `rotateX(${this.tiltCurrentX}deg) rotateY(${this.tiltCurrentY}deg) scale(1.05)`;
-      } else if (photo && (Math.abs(this.tiltCurrentX) > 0.05 || Math.abs(this.tiltCurrentY) > 0.05)) {
-        // Still lerping back to zero
-        photo.style.transform =
-          `rotateX(${this.tiltCurrentX}deg) rotateY(${this.tiltCurrentY}deg) scale(1)`;
-      } else if (photo) {
-        // Back to CSS animation
-        photo.style.transform = '';
-      }
-
       this.tiltAnimId = requestAnimationFrame(tick);
     };
     tick();
-  }
-
-  // ── Geometric canvas background ──────────────────────────────────────────
-
-  private initGeometricCanvas(): void {
-    const canvas = this.geoCanvasRef?.nativeElement;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const resize = () => {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const NODE_COUNT = 60;
-    const MAX_DIST   = 160;
-    const nodes: { x: number; y: number; vx: number; vy: number }[] = [];
-    for (let i = 0; i < NODE_COUNT; i++) {
-      nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-      });
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const n of nodes) {
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-      }
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx   = nodes[i].x - nodes[j].x;
-          const dy   = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < MAX_DIST) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(220,38,38,${(1 - dist / MAX_DIST) * 0.35})`;
-            ctx.lineWidth   = 0.8;
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      for (const n of nodes) {
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(220,38,38,0.5)';
-        ctx.fill();
-      }
-      this.geoAnimId = requestAnimationFrame(draw);
-    };
-    draw();
   }
 
   // ── Skill card glow ──────────────────────────────────────────────────────
