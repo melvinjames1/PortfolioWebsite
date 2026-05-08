@@ -178,9 +178,11 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       <div *ngFor="let category of skills; let ci = index"
-        class="skill-card bg-opacity-100 group relative rounded-2xl p-6 overflow-hidden cursor-default"
-        [style.--delay]="ci * 80 + 'ms'"
-        (mousemove)="onCardMouseMove($event)">
+  class="skill-card group relative rounded-2xl p-6 overflow-hidden cursor-default
+    bg-neutral-900 border border-white/[0.08]
+    hover:border-red-600/30 hover:shadow-[0_8px_40px_rgba(220,38,38,0.1)]"
+  [style.--delay]="ci * 80 + 'ms'"
+  (mousemove)="onCardMouseMove($event)">
 
         <div class="card-glow absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div class="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-red-600/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
