@@ -140,3 +140,11 @@
     opacity: 0;
   }
 }
+
+
+/* ── mobile: restore default cursor ──────────────────── */
+@media (pointer: coarse), (max-width: 768px) {
+  * {
+    cursor: auto !important;
+  }
+}

@@ -17,14 +17,13 @@ export interface SplashDrop { x: number; y: number; tx: string; ty: string; size
 })
 export class GothicCursorComponent implements OnInit, OnDestroy {
 
-  /* ── raw mouse position (dot snaps here instantly) ── */
+  /* ── hide everything on touch/mobile devices ── */
+  isMobile = false;
+
   mx = -200; my = -200;
+  gx = -200; gy = -200;
+  rx = -200; ry = -200;
 
-  /* ── lerped positions ── */
-  gx = -200; gy = -200;   // girl  (slow, haunting)
-  rx = -200; ry = -200;   // ring  (medium)
-
-  /* ── state ── */
   isHovered = false;
   isClicked = false;
   splashId  = 0;
@@ -35,14 +34,12 @@ export class GothicCursorComponent implements OnInit, OnDestroy {
     return 'idle';
   }
 
-  /* ── trail ── */
   trail: BloodDrop[] = Array.from({ length: 10 }, (_, i) => ({
     x: -200, y: -200,
     opacity: +((10 - i) / 10 * 0.45).toFixed(2),
     size:    +(7 - i * 0.6).toFixed(1),
   }));
 
-  /* ── click splash ── */
   splash: SplashDrop[] = [];
 
   private pos: { x: number; y: number }[] = Array(10).fill({ x: -200, y: -200 });
@@ -51,21 +48,28 @@ export class GothicCursorComponent implements OnInit, OnDestroy {
 
   constructor(private zone: NgZone, private cdr: ChangeDetectorRef) {}
 
-  /* ── mouse move ── */
   @HostListener('document:mousemove', ['$event'])
   onMove(e: MouseEvent) { this.mx = e.clientX; this.my = e.clientY; }
 
-  /* ── click ── */
   @HostListener('document:mousedown')
   onDown() {
+    if (this.isMobile) return;
     this.isClicked = true;
     this.spawnSplash(this.mx, this.my);
     setTimeout(() => { this.isClicked = false; this.cdr.markForCheck(); }, 200);
   }
 
   ngOnInit() {
+    /* detect touch/mobile — no real mouse available */
+    this.isMobile = this.detectMobile();
+
+    /* restore default cursor on mobile */
+    if (this.isMobile) {
+      document.documentElement.style.setProperty('cursor', 'auto', 'important');
+      return; // skip loop + hover binding entirely
+    }
+
     this.zone.runOutsideAngular(() => this.loop());
-    // Bind hover to ALL interactive elements — runs after view is ready
     setTimeout(() => this.bindHovers(), 300);
   }
 
@@ -74,16 +78,21 @@ export class GothicCursorComponent implements OnInit, OnDestroy {
     this.cleanups.forEach(fn => fn());
   }
 
-  /* ── animation loop (outside Angular zone for perf) ── */
+  private detectMobile(): boolean {
+    /* coarse pointer = touch screen (phone/tablet) */
+    if (window.matchMedia('(pointer: coarse)').matches) return true;
+    /* also catch very narrow screens just in case */
+    if (window.innerWidth <= 768) return true;
+    return false;
+  }
+
   private loop() {
     const L = (a: number, b: number, t: number) => a + (b - a) * t;
-
     this.rx = L(this.rx, this.mx, 0.18);
     this.ry = L(this.ry, this.my, 0.18);
     this.gx = L(this.gx, this.mx, 0.09);
     this.gy = L(this.gy, this.my, 0.09);
 
-    /* shift trail history */
     for (let i = 9; i > 0; i--) this.pos[i] = this.pos[i - 1];
     this.pos[0] = { x: this.mx, y: this.my };
     this.trail.forEach((d, i) => { d.x = this.pos[i].x; d.y = this.pos[i].y; });
@@ -92,7 +101,6 @@ export class GothicCursorComponent implements OnInit, OnDestroy {
     this.raf = requestAnimationFrame(() => this.loop());
   }
 
-  /* ── splash particles ── */
   private spawnSplash(x: number, y: number) {
     this.splash = Array.from({ length: 16 }, () => {
       const ang  = Math.random() * Math.PI * 2;
@@ -108,7 +116,6 @@ export class GothicCursorComponent implements OnInit, OnDestroy {
     setTimeout(() => { this.splash = []; this.cdr.markForCheck(); }, 850);
   }
 
-  /* ── hover binding — covers links, buttons, and [data-hover] ── */
   bindHovers() {
     const sel = 'a, button, input, textarea, select, [data-hover], [routerLink], [href]';
     document.querySelectorAll<Element>(sel).forEach(el => {
@@ -122,7 +129,6 @@ export class GothicCursorComponent implements OnInit, OnDestroy {
       });
     });
 
-    /* MutationObserver — re-bind when DOM changes (router navigation etc.) */
     const observer = new MutationObserver(() => {
       this.cleanups.forEach(fn => fn());
       this.cleanups = [];
