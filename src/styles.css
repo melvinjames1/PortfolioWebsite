@@ -10,3 +10,10 @@ html {
 }
 /* styles.css */
 
+/* Hide default browser cursor globally on desktop to only show the custom pointer */
+@media (min-width: 769px) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+

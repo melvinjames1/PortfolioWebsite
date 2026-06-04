@@ -101,17 +101,18 @@
       <div class="hero-item opacity-0 translate-x-8 flex justify-center items-center"
         style="transition-delay:0.25s">
 
-        <div class="avatar-rig relative flex justify-center items-center">
-          <!-- Outer pulse ring — matches rig size -->
-          <div class="avatar-ring"></div>
-          <!-- Inner decorative ring -->
-          <div class="avatar-inner-ring absolute rounded-full border border-red-600/20"></div>
+        <div class="avatar-rig relative flex justify-center items-center"
+             (mousemove)="onAvatarMouseMove($event)"
+             (mouseleave)="onAvatarMouseLeave()">
+          <!-- Interactive 3D Orbiting Mesh Canvas -->
+          <canvas #hero3dCanvas class="absolute z-0" style="width:130%; height:130%; top:-15%; left:-15%; pointer-events:none;"></canvas>
 
           <!-- Photo -->
           <img
             src="assets/melvin.jpeg"
             alt="Melvin James"
             class="photo-avatar relative z-10"
+            [style.transform]="'rotateX(' + tiltCurrentX + 'deg) rotateY(' + tiltCurrentY + 'deg)'"
           />
 
           <!-- Floating skill nodes -->

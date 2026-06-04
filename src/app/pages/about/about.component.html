@@ -98,34 +98,53 @@
     <!-- Card grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
-      <!-- ① Bio — full width -->
+      <!-- ① Unified Bio & 3D Cyber Side-Piece Card -->
       <div class="reveal opacity-0 translate-y-8 transition-all duration-700
         lg:col-span-2 bg-gradient-to-br from-neutral-900 to-[#0f0f0f]
         border border-white/[0.06] hover:border-red-600/20
-        rounded-2xl p-7 ">
-        <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/50 mb-4
-          flex items-center gap-2">
-          <i class="fas fa-user" style="font-size:10px"></i> Who I am
-        </p>
-        <p class="text-white/50 text-[0.93rem] leading-relaxed mb-3">
-          Tech enthusiast bridging the gap between
-          <span class="text-white/75 font-semibold">Artificial Intelligence</span> and
-          <span class="text-white/75 font-semibold">Cybersecurity</span>. Currently pursuing
-          my MSc while building tools that are equal parts intelligent and resilient — from
-          local RAG systems and sentiment classifiers to web vulnerability scanners and SQLi demo environments.
-        </p>
-        <p class="text-white/40 text-[0.93rem] leading-relaxed mb-5">
-          When I'm not writing Python pipelines or poking at web apps, I'm shredding on guitar,
-          grinding RPGs, or out on a long ride. I believe the best engineers stay curious about everything.
-        </p>
-        <div class="flex flex-wrap gap-2">
-          <span *ngFor="let chip of chips"
-            class="text-[10px] font-bold tracking-wide uppercase
-              text-red-400/75 bg-red-600/[.08] border border-red-600/20
-              px-3 py-1 rounded-full hover:bg-red-600/15 hover:text-red-300
-              transition-all duration-200 cursor-default">
-            {{ chip }}
-          </span>
+        rounded-2xl p-7 relative overflow-hidden group cursor-default"
+        (mousemove)="onCoreMouseMove($event)"
+        (mouseleave)="onCoreMouseLeave()">
+        
+        <div class="absolute -top-10 -right-10 w-36 h-36 rounded-full pointer-events-none
+          opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style="background:radial-gradient(circle,rgba(220,38,38,0.1) 0%,transparent 70%)"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
+          <!-- Left Col: Bio Text & Chips (60% width) -->
+          <div class="md:col-span-3 flex flex-col justify-between h-full">
+            <div>
+              <p class="text-[10px] font-bold tracking-[0.16em] uppercase text-red-500/50 mb-4
+                flex items-center gap-2">
+                <i class="fas fa-user" style="font-size:10px"></i> Who I am
+              </p>
+              <p class="text-white/50 text-[0.93rem] leading-relaxed mb-3">
+                Tech enthusiast bridging the gap between
+                <span class="text-white/75 font-semibold">Artificial Intelligence</span> and
+                <span class="text-white/75 font-semibold">Cybersecurity</span>. Currently pursuing
+                my MSc while building tools that are equal parts intelligent and resilient — from
+                local RAG systems and sentiment classifiers to web vulnerability scanners and SQLi demo environments.
+              </p>
+              <p class="text-white/40 text-[0.93rem] leading-relaxed mb-5">
+                When I'm not writing Python pipelines or poking at web apps, I'm shredding on guitar,
+                grinding RPGs, or out on a long ride. I believe the best engineers stay curious about everything.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let chip of chips"
+                class="text-[10px] font-bold tracking-wide uppercase
+                  text-red-400/75 bg-red-600/[.08] border border-red-600/20
+                  px-3 py-1 rounded-full hover:bg-red-600/15 hover:text-red-300
+                  transition-all duration-200 cursor-default">
+                {{ chip }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Col: 3D Side Piece (40% width) -->
+          <div class="md:col-span-2 flex items-center justify-center min-h-[220px] md:border-l md:border-white/[0.04] md:pl-6 relative pointer-events-none">
+            <canvas #cyberCoreCanvas class="w-full h-full max-h-[240px] block outline-none"></canvas>
+          </div>
         </div>
       </div>
 
@@ -398,7 +417,9 @@
       <div *ngFor="let card of hobbies; let i = index"
         class="hobby-card reveal opacity-0 translate-y-8 transition-all duration-700
           relative rounded-3xl cursor-default"
-        [style.transition-delay]="(i * 130) + 'ms'">
+        [style.transition-delay]="(i * 130) + 'ms'"
+        (mouseenter)="onHobbyMouseEnter(i)"
+        (mouseleave)="onHobbyMouseLeave(i)">
 
         <div class="hobby-border absolute inset-0 rounded-3xl pointer-events-none z-0"></div>
 
@@ -426,15 +447,11 @@
             {{ card.chip }}
           </div>
 
-          <div class="hobby-orb relative w-16 h-16 flex-shrink-0 mb-5">
-            <div class="absolute inset-0 rounded-full border border-dashed
-              border-red-600/25 hobby-spin-ring"></div>
-            <div class="absolute inset-1.5 rounded-full bg-gradient-to-br
-              from-neutral-800 to-neutral-950 border border-red-600/40
-              flex items-center justify-center hobby-orb-inner
-              shadow-[0_0_20px_rgba(220,38,38,.25),inset_0_0_12px_rgba(0,0,0,.6)]">
-              <div class="absolute inset-0 rounded-full hobby-shine pointer-events-none"></div>
-              <i [class]="card.icon + ' text-red-400 text-lg relative z-10'"></i>
+          <div class="hobby-orb relative w-16 h-16 flex-shrink-0 mb-5 flex items-center justify-center">
+            <canvas #hobbyCanvas class="w-full h-full absolute inset-0 outline-none pointer-events-none" style="width:64px; height:64px;"></canvas>
+            <div class="absolute w-8 h-8 rounded-full bg-black/60 border border-red-600/30 flex items-center justify-center z-10 pointer-events-none
+              shadow-[0_0_15px_rgba(220,38,38,0.2)]">
+              <i [class]="card.icon + ' text-red-500 text-xs'"></i>
             </div>
           </div>
 
