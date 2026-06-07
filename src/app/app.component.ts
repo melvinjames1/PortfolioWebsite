@@ -27,7 +27,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private pointsMaterial?: THREE.PointsMaterial;
   private lineGeometry?: THREE.BufferGeometry;
   private lineMaterial?: THREE.LineBasicMaterial;
-  private gridHelper?: THREE.GridHelper;
+  private holoGeometry?: THREE.PlaneGeometry;
+  private holoMaterial?: THREE.ShaderMaterial;
+  private holoPlane?: THREE.Mesh;
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {}
 
@@ -47,14 +49,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this.pointsMaterial?.dispose();
     this.lineGeometry?.dispose();
     this.lineMaterial?.dispose();
-    if (this.gridHelper) {
-      this.gridHelper.geometry.dispose();
-      if (Array.isArray(this.gridHelper.material)) {
-        this.gridHelper.material.forEach(m => m.dispose());
-      } else {
-        this.gridHelper.material.dispose();
-      }
-    }
+    this.holoGeometry?.dispose();
+    this.holoMaterial?.dispose();
     this.renderer?.dispose();
   }
 
@@ -74,25 +70,80 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer = renderer;
 
-    // Grid floor setup representing cyber network grid
-    const gridSize = 2400;
-    const gridDivisions = 60;
-    const gridHelper = new THREE.GridHelper(gridSize, gridDivisions, 0xdc2626, 0xdc2626);
-    gridHelper.position.y = -350;
-    gridHelper.position.z = 0;
-    if (Array.isArray(gridHelper.material)) {
-      gridHelper.material.forEach(m => {
-        m.transparent = true;
-        m.opacity = 0.16;
-        m.depthWrite = false;
-      });
-    } else {
-      gridHelper.material.transparent = true;
-      gridHelper.material.opacity = 0.16;
-      gridHelper.material.depthWrite = false;
-    }
-    scene.add(gridHelper);
-    this.gridHelper = gridHelper;
+    // Holographic Plane Setup using custom GLSL shaders
+    const holoGeometry = new THREE.PlaneGeometry(3000, 3000, 100, 100);
+    this.holoGeometry = holoGeometry;
+
+    const holoMaterial = new THREE.ShaderMaterial({
+      vertexShader: `
+        uniform float uTime;
+        varying vec3 vPosition;
+        void main() {
+          vec3 pos = position;
+          float dist = length(pos.xy);
+          
+          // Cyber wave displacement
+          float wave = sin(pos.x * 0.005 + uTime * 1.5) * cos(pos.y * 0.005 + uTime * 1.5) * 50.0;
+          wave += sin(pos.x * 0.01 - uTime * 2.0) * 15.0;
+          
+          // Dampen waves near center and outer edges to prevent harsh boundaries
+          float damping = smoothstep(0.0, 200.0, dist) * (1.0 - smoothstep(800.0, 1500.0, dist));
+          pos.z += wave * damping;
+          
+          vPosition = pos;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform float uTime;
+        uniform vec3 uColor;
+        varying vec3 vPosition;
+        void main() {
+          float dist = length(vPosition.xy);
+          
+          // 1. Grid lines calculation
+          vec2 gridCoord = vPosition.xy / 40.0;
+          vec2 gridDist = abs(fract(gridCoord - 0.5) - 0.5);
+          float lineWidth = 0.06;
+          vec2 gridLineVec = smoothstep(lineWidth, 0.0, gridDist);
+          float gridLine = max(gridLineVec.x, gridLineVec.y);
+          
+          // 2. Pulse wave propagating outwards
+          float pulse = sin(dist * 0.003 - uTime * 2.0) * 0.5 + 0.5;
+          pulse = pow(pulse, 8.0);
+          
+          // 3. Scanline overlay
+          float scanline = sin(vPosition.y * 0.2 + uTime * 6.0) * 0.1 + 0.9;
+          
+          // 4. Smooth outer fade
+          float fade = 1.0 - smoothstep(300.0, 1300.0, dist);
+          
+          // Combine final transparency and color
+          float alpha = (gridLine * 0.25 + pulse * 0.4) * fade;
+          vec3 color = uColor;
+          color += vec3(0.5, 0.1, 0.1) * pulse; // Extra glow on pulse wave
+          color *= scanline;
+          
+          if (alpha < 0.01) discard;
+          gl_FragColor = vec4(color, alpha);
+        }
+      `,
+      uniforms: {
+        uTime: { value: 0 },
+        uColor: { value: new THREE.Color(0xdc2626) }
+      },
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      side: THREE.DoubleSide
+    });
+    this.holoMaterial = holoMaterial;
+
+    const holoPlane = new THREE.Mesh(holoGeometry, holoMaterial);
+    holoPlane.rotation.x = -Math.PI / 2;
+    holoPlane.position.y = -350;
+    scene.add(holoPlane);
+    this.holoPlane = holoPlane;
 
     // 2. Constants and boundaries
     const NODE_COUNT = 90;
@@ -249,12 +300,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       particleSystem.rotation.y += 0.0002;
       connectionLines.rotation.y += 0.0002;
 
-      // Scroll grid floor for cyber effect
-      if (gridHelper) {
-        gridHelper.position.z += 0.8;
-        if (gridHelper.position.z >= 40) {
-          gridHelper.position.z = 0;
-        }
+      // Update holographic plane time uniform
+      if (holoMaterial) {
+        holoMaterial.uniforms['uTime'].value += 0.016;
       }
 
       renderer.render(scene, camera);
