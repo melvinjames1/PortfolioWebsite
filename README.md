@@ -2,7 +2,7 @@
 
 This is a personal portfolio website showcasing projects, skills, and contact information. The project is built with **Angular** for a modular and dynamic front-end, **Tailwind CSS** for styling, and is deployed on **Vercel** for high-performance hosting.
 
-## Demo
+## Live Site
 You can view the live website here: [melvinjames.vercel.app](https://melvinjames.vercel.app)
 
 ## Features
