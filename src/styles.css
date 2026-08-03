@@ -2,18 +2,176 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: rgb(0, 0, 0);
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — Melvin James Portfolio
+   Font stack: Space Grotesk (display) · Inter (body) · JetBrains Mono (code)
+   ════════════════════════════════════════════════════════ */
+:root {
+  /* ── Brand colours ── */
+  --red: #e02020;
+  --red-dim: #b91515;
+  --red-glow: rgba(224, 32, 32, 0.18);
+  --red-ghost: rgba(224, 32, 32, 0.07);
+
+  /* ── Backgrounds ── */
+  --bg: #080808;
+  --bg-card: #101010;
+  --bg-card-2: #0c0c0c;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-red: rgba(224, 32, 32, 0.25);
+
+  /* ── Typography ── */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Spacing tokens ── */
+  --section-py: 7rem;
+  --section-px: 1.5rem;
+  --max-w: 64rem;
+
+  /* ── Button sizes ── */
+  --btn-px: 1.75rem;
+  --btn-py: 0.875rem;
+
+  /* ── Easing curves ── */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
+
+/* ── Base resets ─────────────────────────────────────── */
 html {
-    scroll-behavior: smooth;
-}
-/* styles.css */
-
-/* Hide default browser cursor globally on desktop to only show the custom pointer */
-@media (min-width: 769px) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
+  scroll-behavior: smooth;
 }
 
+body {
+  background-color: var(--bg);
+  /* Inter for body text — most readable screen font */
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* ── Display headings use Space Grotesk ──────────────── */
+h1,
+h2,
+h3,
+h4,
+.font-black,
+.font-bold,
+.font-semibold {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+/* ── Mono for code / terminal text ──────────────────── */
+.mono,
+code,
+pre,
+.jetbrains {
+  font-family: var(--font-mono);
+}
+
+/* ── Paragraph base ─────────────────────────────────── */
+p {
+  font-family: var(--font-body);
+  line-height: 1.7;
+}
+
+/* ── Shared scrollbar ────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(224, 32, 32, 0.25);
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════
+   SHARED UTILITIES (used across pages)
+   ════════════════════════════════════════ */
+
+/* Section divider */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(224, 32, 32, 0.35), transparent);
+}
+
+/* Eyebrow label */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ef4444;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Primary CTA button ──────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: var(--btn-py) var(--btn-px);
+  border-radius: 9999px;
+  border: none;
+  transition: background 0.2s var(--ease-out),
+    transform 0.2s var(--ease-spring),
+    box-shadow 0.2s var(--ease-out);
+}
+
+.btn-primary:hover {
+  background: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(224, 32, 32, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* ── Ghost CTA button ────────────────────────────────── */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: var(--btn-py) var(--btn-px);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s, color 0.2s, transform 0.2s var(--ease-spring);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(224, 32, 32, 0.5);
+  color: #f87171;
+  transform: translateY(-2px);
+}
+
+.btn-ghost:active {
+  transform: scale(0.97);
+}
