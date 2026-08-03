@@ -43,11 +43,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (!isPlatformBrowser(this.platformId)) return;
-    // NOTE: includes both top-level route sections (home/skills/projects/
-    // about/contact) AND each page's internal sub-sections — About's
-    // (education/experience/hobbies) and Projects' (aiml/cybersec/websites)
-    // — so the 3D bg keeps reacting as the user scrolls through those pages,
-    // not just freezing on the first top-level match.
     const sections = [
       'home', 'skills', 'projects', 'about', 'contact',
       'education', 'experience', 'certifications', 'hobbies',
@@ -93,7 +88,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const scene = new THREE.Scene();
     this.scene = scene;
 
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 3000);
     camera.position.z = 500;
     this.camera = camera;
 
@@ -102,8 +97,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer = renderer;
 
-    // Holographic Plane Setup using custom GLSL shaders
-    const holoGeometry = new THREE.PlaneGeometry(3000, 3000, 100, 100);
+    // Expanded Holographic Plane Setup (6000x6000 with updated vertex/fragment shader bounds)
+    const holoGeometry = new THREE.PlaneGeometry(6000, 6000, 120, 120);
     this.holoGeometry = holoGeometry;
 
     const holoMaterial = new THREE.ShaderMaterial({
@@ -118,8 +113,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
           float wave = sin(pos.x * 0.005 + uTime * 1.5) * cos(pos.y * 0.005 + uTime * 1.5) * 50.0;
           wave += sin(pos.x * 0.01 - uTime * 2.0) * 15.0;
           
-          // Dampen waves near center and outer edges to prevent harsh boundaries
-          float damping = smoothstep(0.0, 200.0, dist) * (1.0 - smoothstep(800.0, 1500.0, dist));
+          // Expanded damping limits so waves remain visible over a larger area
+          float damping = smoothstep(0.0, 300.0, dist) * (1.0 - smoothstep(1600.0, 2800.0, dist));
           pos.z += wave * damping;
           
           vPosition = pos;
@@ -147,8 +142,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
           // 3. Scanline overlay
           float scanline = sin(vPosition.y * 0.2 + uTime * 6.0) * 0.1 + 0.9;
           
-          // 4. Smooth outer fade
-          float fade = 1.0 - smoothstep(300.0, 1300.0, dist);
+          // 4. Smooth outer fade extended from 1300 to 2800 units
+          float fade = 1.0 - smoothstep(400.0, 2800.0, dist);
           
           // Combine final transparency and color
           float alpha = (gridLine * 0.25 + pulse * 0.4) * fade;
@@ -173,12 +168,12 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     const holoPlane = new THREE.Mesh(holoGeometry, holoMaterial);
     holoPlane.rotation.x = -Math.PI / 2;
-    holoPlane.position.y = -350;
+    holoPlane.position.y = -450; // Lowered slightly to account for the larger surface area
     scene.add(holoPlane);
     this.holoPlane = holoPlane;
 
-    // Central Morphing Core — Torus Knot
-    const coreGeometry = new THREE.TorusKnotGeometry(65, 18, 120, 16);
+    // Central Morphing Core — Scaled up Torus Knot
+    const coreGeometry = new THREE.TorusKnotGeometry(100, 26, 120, 16);
     this.coreGeometry = coreGeometry;
 
     const coreMaterial = new THREE.MeshBasicMaterial({
@@ -193,7 +188,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     scene.add(coreMesh);
     this.coreMesh = coreMesh;
-
 
     // 2. Constants and boundaries
     const NODE_COUNT = 90;
@@ -233,7 +227,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this.pointsGeometry = pointsGeometry;
 
     const pointsMaterial = new THREE.PointsMaterial({
-      color: 0xdc2626, // Crimson red matching the brand style
+      color: 0xdc2626,
       size: 3.5,
       transparent: true,
       opacity: 0.65,

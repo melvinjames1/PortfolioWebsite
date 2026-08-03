@@ -5,25 +5,25 @@
   <div class="absolute left-[3px] top-2 bottom-2 w-px bg-white/[0.04] overflow-hidden">
     <div class="bg-red-600 w-full transition-all duration-200" [style.height.%]="scrollPercent"></div>
   </div>
-  
-  <button (click)="scrollToSection('home')" 
-          [class.active-step]="activeSection === 'home'" 
-          class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
-    <span class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
+
+  <button (click)="scrollToSection('home')" [class.active-step]="activeSection === 'home'"
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
+    <span
+      class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">01 // SYS_INIT</span>
   </button>
-  
-  <button (click)="scrollToSection('skills')" 
-          [class.active-step]="activeSection === 'skills'" 
-          class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
-    <span class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
+
+  <button (click)="scrollToSection('skills')" [class.active-step]="activeSection === 'skills'"
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
+    <span
+      class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">02 // HARDWARE_SPECS</span>
   </button>
 
-  <button (click)="scrollToSection('contact')" 
-          [class.active-step]="activeSection === 'contact'" 
-          class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
-    <span class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
+  <button (click)="scrollToSection('contact')" [class.active-step]="activeSection === 'contact'"
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
+    <span
+      class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">03 // COMS_STATION</span>
   </button>
 </div>
@@ -31,7 +31,8 @@
 <!-- ═══════════════════════════════════════════
      RIGHT HUD: SYSTEM METRICS DASHBOARD
      ════════════════════════════════════════════ -->
-<div class="fixed right-6 bottom-8 z-40 hidden xl:flex flex-col gap-1 font-mono text-[9px] text-white/20 text-right select-none pointer-events-none">
+<div
+  class="fixed right-6 bottom-8 z-40 hidden xl:flex flex-col gap-1 font-mono text-[9px] text-white/20 text-right select-none pointer-events-none">
   <div>SYSTEM_CORE: <span class="text-red-500/60 font-bold">ONLINE</span></div>
   <div>SECTOR: DEVS_OPS_SEC</div>
   <div>ACTIVE_NODES: 90 / 90</div>
@@ -48,23 +49,28 @@
   <section id="home" class="min-h-screen relative flex items-center px-6 md:px-24 py-28 border-b border-white/[0.02]">
     <div class="max-w-5xl mx-auto w-full">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         <!-- Bio and Main Text (Col-8) -->
         <div class="lg:col-span-8 flex flex-col gap-6">
           <div class="hero-item opacity-0 -translate-x-8 transition-all duration-700">
-            <span class="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase border border-red-500/30 px-3 py-1 bg-red-500/5 rounded">
+            <span
+              class="font-mono text-[10px] tracking-[0.2em] text-red-500 uppercase border border-red-500/30 px-3 py-1 bg-red-500/5 rounded">
               SYSTEM INITIALIZED // SEC_CORE
             </span>
           </div>
 
           <div class="hero-item opacity-0 -translate-x-8 transition-all duration-700" style="transition-delay:0.1s">
-            <h1 class="font-black text-white leading-[0.9] tracking-tight uppercase" style="font-size:clamp(3.5rem, 8vw, 6.2rem);">
+            <h1 class="font-black text-white leading-[0.9] tracking-tight uppercase"
+              style="font-size:clamp(3.5rem, 8vw, 6.2rem);">
               MELVIN<br>
-              <span class="outlined-text text-transparent" style="-webkit-text-stroke: 1.5px rgba(255,255,255,0.85);">JAMES</span>
+              <span class="outlined-text text-transparent"
+                style="-webkit-text-stroke: 1.5px rgba(255,255,255,0.85);">JAMES</span>
             </h1>
           </div>
 
-          <div class="hero-item opacity-0 -translate-x-8 transition-all duration-700 font-mono text-sm tracking-tight text-white/50" style="transition-delay:0.2s">
+          <div
+            class="hero-item opacity-0 -translate-x-8 transition-all duration-700 font-mono text-sm tracking-tight text-white/50"
+            style="transition-delay:0.2s">
             <span class="text-red-500 font-bold">$ locate role --filter="</span>
             <span class="type text-white"></span>
             <span class="text-red-500 font-bold">"</span>
@@ -72,12 +78,14 @@
 
           <div class="hero-item opacity-0 -translate-x-8 transition-all duration-700" style="transition-delay:0.3s">
             <p class="text-white/40 text-[14px] leading-relaxed max-w-lg font-light">
-              MSc AI & Cybersecurity student in Bangalore. I write automated security tools, harden CI/CD pipelines, and build things that actually run in production.
+              MSc AI & Cybersecurity student in Bangalore. I write automated security tools, harden CI/CD pipelines, and
+              build things that run in production.
             </p>
           </div>
 
           <!-- CTAs -->
-          <div class="hero-item opacity-0 -translate-x-8 transition-all duration-700 flex flex-wrap gap-3 mt-4" style="transition-delay:0.4s">
+          <div class="hero-item opacity-0 -translate-x-8 transition-all duration-700 flex flex-wrap gap-3 mt-4"
+            style="transition-delay:0.4s">
             <button (click)="scrollToSection('skills')" class="btn-primary">
               SEE MY STACK <i class="fas fa-arrow-down text-xs"></i>
             </button>
@@ -91,8 +99,10 @@
         </div>
 
         <!-- System Logs Console HUD (Col-4) -->
-        <div class="lg:col-span-4 hero-item opacity-0 translate-x-8 transition-all duration-700 hidden lg:block" style="transition-delay:0.2s">
-          <div class="rounded-xl border border-white/[0.05] bg-black/60 backdrop-blur p-5 font-mono text-[9px] text-white/40 flex flex-col gap-2.5">
+        <div class="lg:col-span-4 hero-item opacity-0 translate-x-8 transition-all duration-700 hidden lg:block"
+          style="transition-delay:0.2s">
+          <div
+            class="rounded-xl border border-white/[0.05] bg-black/60 backdrop-blur p-5 font-mono text-[9px] text-white/40 flex flex-col gap-2.5">
             <div class="flex items-center justify-between border-b border-white/[0.06] pb-2">
               <span class="text-red-500 font-semibold uppercase">TELEMETRY_LOGS</span>
               <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
@@ -108,11 +118,12 @@
             </div>
           </div>
         </div>
-        
+
       </div>
-      
+
       <!-- Bottom scroll indicator -->
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-30 select-none">
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-30 select-none">
         <span class="text-white/40 text-[9px] font-mono tracking-[0.25em] uppercase">SCROLL_DOWN</span>
         <div class="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"></div>
       </div>
@@ -129,19 +140,22 @@
           <i class="fas fa-bolt text-xs"></i> CORE MODULES <span class="inline-block w-8 h-px bg-red-500/60"></span>
         </p>
         <h2 class="font-bold text-white tracking-tight uppercase mb-4" style="font-size:clamp(2.2rem, 6vw, 3.8rem);">
-          TOOLS I ACTUALLY USE
+          TOOLS I USE
         </h2>
         <p class="text-white/35 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
-          The tools I reach for daily — security auditing, container pipelines, web apps, and scripting. Click any icon to open the docs.
+          The tools I reach for daily — security auditing, container pipelines, web apps, and scripting. Click any icon
+          to open the docs.
         </p>
       </div>
 
       <!-- Skill grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700" style="transition-delay:0.1s">
-        <div *ngFor="let category of skills; let ci = index" 
-             class="skill-card rounded-xl border border-white/[0.04] bg-neutral-950/45 p-6 hover:border-red-500/30 transition-all duration-300 relative group cursor-default">
-          
-          <div class="absolute top-0 right-0 p-3 font-mono text-[9px] text-white/10 tracking-widest group-hover:text-red-500/20 transition-all">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700"
+        style="transition-delay:0.1s">
+        <div *ngFor="let category of skills; let ci = index"
+          class="skill-card rounded-xl border border-white/[0.04] bg-neutral-950/45 p-6 hover:border-red-500/30 transition-all duration-300 relative group cursor-default">
+
+          <div
+            class="absolute top-0 right-0 p-3 font-mono text-[9px] text-white/10 tracking-widest group-hover:text-red-500/20 transition-all">
             MOD_{{ ci + 1 }}
           </div>
 
@@ -151,10 +165,10 @@
           </h3>
 
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <div *ngFor="let sk of category.skills" 
-                 (click)="openDocs(sk.url)" 
-                 class="flex items-center gap-2 px-3 py-2 bg-white/[0.02] border border-white/[0.04] rounded-lg hover:border-white/15 hover:bg-white/[0.04] cursor-pointer transition-all duration-150">
-              <img [src]="sk.icon" [alt]="sk.name" width="13" height="13" class="opacity-55 group-hover:opacity-100 object-contain" />
+            <div *ngFor="let sk of category.skills" (click)="openDocs(sk.url)"
+              class="flex items-center gap-2 px-3 py-2 bg-white/[0.02] border border-white/[0.04] rounded-lg hover:border-white/15 hover:bg-white/[0.04] cursor-pointer transition-all duration-150">
+              <img [src]="sk.icon" [alt]="sk.name" width="13" height="13"
+                class="opacity-55 group-hover:opacity-100 object-contain" />
               <span class="text-white/45 text-[11px] font-medium transition-all group-hover:text-white/80 select-none">
                 {{ sk.name }}
               </span>
@@ -164,16 +178,22 @@
       </div>
 
       <!-- Page links teaser -->
-      <div class="reveal opacity-0 translate-y-8 transition-all duration-700 mt-16 grid grid-cols-1 md:grid-cols-2 gap-5" style="transition-delay:0.2s">
+      <div
+        class="reveal opacity-0 translate-y-8 transition-all duration-700 mt-16 grid grid-cols-1 md:grid-cols-2 gap-5"
+        style="transition-delay:0.2s">
         <!-- Projects teaser card -->
         <div (click)="navigateTo('/projects')"
-             class="group rounded-xl border border-white/[0.05] bg-neutral-950/45 p-7 hover:border-red-500/40 transition-all duration-300 cursor-pointer hover:-translate-y-1 relative overflow-hidden">
-          <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/10 transition-all duration-500 pointer-events-none"></div>
+          class="group rounded-xl border border-white/[0.05] bg-neutral-950/45 p-7 hover:border-red-500/40 transition-all duration-300 cursor-pointer hover:-translate-y-1 relative overflow-hidden">
+          <div
+            class="absolute -bottom-8 -right-8 w-32 h-32 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/10 transition-all duration-500 pointer-events-none">
+          </div>
           <div class="relative">
             <p class="font-mono text-[9px] tracking-[0.2em] text-red-500 uppercase mb-3">// CYBER LAB</p>
             <h3 class="text-white font-bold text-xl tracking-tight mb-2 uppercase">My Projects</h3>
-            <p class="text-white/35 text-[12px] leading-relaxed mb-5">Security scanners, ML pipelines, SQL injection sandboxes, and web utilities — all open source.</p>
-            <span class="inline-flex items-center gap-2 font-mono text-[10px] text-red-500 group-hover:gap-3 transition-all duration-200">
+            <p class="text-white/35 text-[12px] leading-relaxed mb-5">Security scanners, ML pipelines, SQL injection
+              sandboxes, and web utilities — all open source.</p>
+            <span
+              class="inline-flex items-center gap-2 font-mono text-[10px] text-red-500 group-hover:gap-3 transition-all duration-200">
               EXPLORE LAB <i class="fas fa-arrow-right text-[9px]"></i>
             </span>
           </div>
@@ -181,13 +201,17 @@
 
         <!-- About teaser card -->
         <div (click)="navigateTo('/about')"
-             class="group rounded-xl border border-white/[0.05] bg-neutral-950/45 p-7 hover:border-red-500/40 transition-all duration-300 cursor-pointer hover:-translate-y-1 relative overflow-hidden">
-          <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/10 transition-all duration-500 pointer-events-none"></div>
+          class="group rounded-xl border border-white/[0.05] bg-neutral-950/45 p-7 hover:border-red-500/40 transition-all duration-300 cursor-pointer hover:-translate-y-1 relative overflow-hidden">
+          <div
+            class="absolute -bottom-8 -right-8 w-32 h-32 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/10 transition-all duration-500 pointer-events-none">
+          </div>
           <div class="relative">
             <p class="font-mono text-[9px] tracking-[0.2em] text-red-500 uppercase mb-3">// BIO_METRICS</p>
             <h3 class="text-white font-bold text-xl tracking-tight mb-2 uppercase">About Me</h3>
-            <p class="text-white/35 text-[12px] leading-relaxed mb-5">Education, experience, hobbies, and what I'm working on right now. Guitar, games, motorcycles included.</p>
-            <span class="inline-flex items-center gap-2 font-mono text-[10px] text-red-500 group-hover:gap-3 transition-all duration-200">
+            <p class="text-white/35 text-[12px] leading-relaxed mb-5">Education, experience, hobbies, and what I'm
+              working on right now. Guitar, games, motorcycles included.</p>
+            <span
+              class="inline-flex items-center gap-2 font-mono text-[10px] text-red-500 group-hover:gap-3 transition-all duration-200">
               VIEW BIO <i class="fas fa-arrow-right text-[9px]"></i>
             </span>
           </div>
@@ -201,7 +225,7 @@
        ════════════════════════════════ -->
   <section id="contact" class="min-h-screen flex items-center px-6 md:px-24 py-28">
     <div class="max-w-5xl mx-auto w-full">
-      
+
       <div class="reveal opacity-0 translate-y-8 transition-all duration-700 mb-10">
         <p class="eyebrow">
           <i class="fas fa-envelope text-xs"></i> COMS STATION <span class="inline-block w-8 h-px bg-red-500/60"></span>
@@ -215,44 +239,55 @@
       </div>
 
       <!-- Contact form -->
-      <div class="reveal opacity-0 translate-y-8 transition-all duration-700 rounded-xl border border-white/[0.05] bg-neutral-950/45 p-8 md:p-12 relative overflow-hidden" style="transition-delay:0.1s">
-        <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-red-600/5 rounded-full blur-3xl pointer-events-none select-none"></div>
+      <div
+        class="reveal opacity-0 translate-y-8 transition-all duration-700 rounded-xl border border-white/[0.05] bg-neutral-950/45 p-8 md:p-12 relative overflow-hidden"
+        style="transition-delay:0.1s">
+        <div
+          class="absolute -bottom-24 -right-24 w-64 h-64 bg-red-600/5 rounded-full blur-3xl pointer-events-none select-none">
+        </div>
 
         <form action="https://formspree.io/f/xnnakrka" method="POST" class="relative z-10 flex flex-col gap-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="flex flex-col gap-2">
               <label class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/30">CLIENT_NAME</label>
-              <input type="text" name="name" placeholder="John Doe" required class="bg-black/55 border-b border-white/10 hover:border-white/20 focus:border-red-500 px-1 py-3 text-white text-[13px] placeholder-white/15 outline-none transition-all" />
+              <input type="text" name="name" placeholder="John Doe" required
+                class="bg-black/55 border-b border-white/10 hover:border-white/20 focus:border-red-500 px-1 py-3 text-white text-[13px] placeholder-white/15 outline-none transition-all" />
             </div>
-            
+
             <div class="flex flex-col gap-2">
               <label class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/30">CLIENT_EMAIL</label>
-              <input type="email" name="email" placeholder="john@domain.com" required class="bg-black/55 border-b border-white/10 hover:border-white/20 focus:border-red-500 px-1 py-3 text-white text-[13px] placeholder-white/15 outline-none transition-all" />
+              <input type="email" name="email" placeholder="john@domain.com" required
+                class="bg-black/55 border-b border-white/10 hover:border-white/20 focus:border-red-500 px-1 py-3 text-white text-[13px] placeholder-white/15 outline-none transition-all" />
             </div>
-            
+
             <div class="flex flex-col gap-2 md:col-span-2">
               <label class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/30">TRANSMISSION_BODY</label>
-              <textarea name="message" rows="4" placeholder="Enter your message..." required class="bg-black/55 border-b border-white/10 hover:border-white/20 focus:border-red-500 px-1 py-3 text-white text-[13px] placeholder-white/15 outline-none transition-all resize-none"></textarea>
+              <textarea name="message" rows="4" placeholder="Enter your message..." required
+                class="bg-black/55 border-b border-white/10 hover:border-white/20 focus:border-red-500 px-1 py-3 text-white text-[13px] placeholder-white/15 outline-none transition-all resize-none"></textarea>
             </div>
           </div>
-          
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-t border-white/[0.04] pt-6 mt-2">
+
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-t border-white/[0.04] pt-6 mt-2">
             <!-- Social links -->
             <div class="flex items-center gap-3">
-              <a href="https://github.com/melvinjames1" target="_blank" class="w-8 h-8 rounded border border-white/[0.06] hover:border-red-500/50 flex items-center justify-center text-white/30 hover:text-red-400 transition-all hover:-translate-y-0.5">
+              <a href="https://github.com/melvinjames1" target="_blank"
+                class="w-8 h-8 rounded border border-white/[0.06] hover:border-red-500/50 flex items-center justify-center text-white/30 hover:text-red-400 transition-all hover:-translate-y-0.5">
                 <i class="fab fa-github text-xs"></i>
               </a>
-              <a href="https://www.linkedin.com/in/melvin-james-mj/" target="_blank" class="w-8 h-8 rounded border border-white/[0.06] hover:border-red-500/50 flex items-center justify-center text-white/30 hover:text-red-400 transition-all hover:-translate-y-0.5">
+              <a href="https://www.linkedin.com/in/melvin-james-mj/" target="_blank"
+                class="w-8 h-8 rounded border border-white/[0.06] hover:border-red-500/50 flex items-center justify-center text-white/30 hover:text-red-400 transition-all hover:-translate-y-0.5">
                 <i class="fab fa-linkedin text-xs"></i>
               </a>
-              <a href="mailto:melvin.mj576@gmail.com" class="w-8 h-8 rounded border border-white/[0.06] hover:border-red-500/50 flex items-center justify-center text-white/30 hover:text-red-400 transition-all hover:-translate-y-0.5">
+              <a href="mailto:melvin.mj576@gmail.com"
+                class="w-8 h-8 rounded border border-white/[0.06] hover:border-red-500/50 flex items-center justify-center text-white/30 hover:text-red-400 transition-all hover:-translate-y-0.5">
                 <i class="fas fa-envelope text-xs"></i>
               </a>
               <button (click)="downloadResume()" type="button" class="btn-ghost text-[10px] font-mono ml-2">
                 RESUME <i class="fas fa-scroll text-xs"></i>
               </button>
             </div>
-            
+
             <button type="submit" class="btn-primary font-mono text-[10px]">
               SEND MESSAGE <i class="fas fa-paper-plane text-xs"></i>
             </button>
@@ -262,11 +297,13 @@
 
       <!-- Back to top -->
       <div class="flex justify-center mt-12">
-        <button (click)="scrollToSection('home')" class="w-10 h-10 rounded-full border border-white/10 hover:border-red-600 bg-neutral-950 text-white/30 hover:text-red-400 flex items-center justify-center transition-all hover:-translate-y-1" title="Back to top">
+        <button (click)="scrollToSection('home')"
+          class="w-10 h-10 rounded-full border border-white/10 hover:border-red-600 bg-neutral-950 text-white/30 hover:text-red-400 flex items-center justify-center transition-all hover:-translate-y-1"
+          title="Back to top">
           <i class="fas fa-arrow-up text-xs"></i>
         </button>
       </div>
-      
+
     </div>
   </section>
 

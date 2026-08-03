@@ -16,18 +16,29 @@
   </a>
 
   <!-- Desktop Nav -->
-  <nav class="hidden md:flex items-center gap-0.5">
-    <a (click)="navigateTo('/')"
-      class="nav-link relative text-white/50 hover:text-white text-[13px] font-medium tracking-wide px-4 py-2 rounded-lg transition-all duration-200 hover:bg-white/[0.04] no-underline cursor-pointer">
+  <nav class="hidden md:flex items-center gap-1">
+    <a routerLink="/" routerLinkActive="text-white" [routerLinkActiveOptions]="{ exact: true }" #home="routerLinkActive"
+      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/50 transition-colors duration-300 hover:text-white">
       Home
+      <span
+        class="absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-red-500 transition-all duration-300"
+        [class.w-0]="!home.isActive" [class.w-6]="home.isActive"></span>
     </a>
-    <a (click)="navigateTo('/projects')"
-      class="nav-link relative text-white/50 hover:text-white text-[13px] font-medium tracking-wide px-4 py-2 rounded-lg transition-all duration-200 hover:bg-white/[0.04] no-underline cursor-pointer">
+
+    <a routerLink="/projects" routerLinkActive="text-white" #projects="routerLinkActive"
+      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/50 transition-colors duration-300 hover:text-white">
       Projects
+      <span
+        class="absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-red-500 transition-all duration-300"
+        [class.w-0]="!projects.isActive" [class.w-6]="projects.isActive"></span>
     </a>
-    <a (click)="navigateTo('/about')"
-      class="nav-link relative text-white/50 hover:text-white text-[13px] font-medium tracking-wide px-4 py-2 rounded-lg transition-all duration-200 hover:bg-white/[0.04] no-underline cursor-pointer">
+
+    <a routerLink="/about" routerLinkActive="text-white" #about="routerLinkActive"
+      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/50 transition-colors duration-300 hover:text-white">
       About
+      <span
+        class="absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-red-500 transition-all duration-300"
+        [class.w-0]="!about.isActive" [class.w-6]="about.isActive"></span>
     </a>
   </nav>
 
