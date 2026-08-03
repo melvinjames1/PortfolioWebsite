@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, Inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -31,7 +31,37 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private holoMaterial?: THREE.ShaderMaterial;
   private holoPlane?: THREE.Mesh;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+  private coreMesh?: THREE.Mesh;
+  private coreGeometry?: THREE.BufferGeometry;
+  private coreMaterial?: THREE.MeshBasicMaterial;
+
+  private currentLookAt = new THREE.Vector3(0, 0, 0);
+  activeSection = 'home';
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any) { }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    // NOTE: includes both top-level route sections (home/skills/projects/
+    // about/contact) AND each page's internal sub-sections — About's
+    // (education/experience/hobbies) and Projects' (aiml/cybersec/websites)
+    // — so the 3D bg keeps reacting as the user scrolls through those pages,
+    // not just freezing on the first top-level match.
+    const sections = [
+      'home', 'skills', 'projects', 'about', 'contact',
+      'education', 'experience', 'certifications', 'hobbies',
+      'aiml', 'cybersec', 'websites'
+    ];
+    const scrollPos = window.scrollY + window.innerHeight / 3;
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollPos && el.offsetTop + el.offsetHeight > scrollPos) {
+        this.activeSection = id;
+        break;
+      }
+    }
+  }
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -51,6 +81,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this.lineMaterial?.dispose();
     this.holoGeometry?.dispose();
     this.holoMaterial?.dispose();
+    this.coreGeometry?.dispose();
+    this.coreMaterial?.dispose();
     this.renderer?.dispose();
   }
 
@@ -145,6 +177,24 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     scene.add(holoPlane);
     this.holoPlane = holoPlane;
 
+    // Central Morphing Core — Torus Knot
+    const coreGeometry = new THREE.TorusKnotGeometry(65, 18, 120, 16);
+    this.coreGeometry = coreGeometry;
+
+    const coreMaterial = new THREE.MeshBasicMaterial({
+      color: 0xdc2626,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.35,
+      blending: THREE.AdditiveBlending
+    });
+    this.coreMaterial = coreMaterial;
+
+    const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
+    scene.add(coreMesh);
+    this.coreMesh = coreMesh;
+
+
     // 2. Constants and boundaries
     const NODE_COUNT = 90;
     const maxDistance = 140;
@@ -232,12 +282,109 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     };
     window.addEventListener('resize', this.resizeHandler);
 
+    // Camera targets based on activeSection
+    const targetCam = new THREE.Vector3(0, 0, 500);
+    const targetLook = new THREE.Vector3(0, 0, 0);
+    let targetCoreScale = 1.0;
+    let targetCoreOpacity = 0.35;
+    let speedMult = 1.0;
+
     // 6. Draw Loop
     const draw = () => {
-      // Smoothly interpolate camera position for organic parallax
-      camera.position.x += (mouseX - camera.position.x) * 0.025;
-      camera.position.y += (-mouseY - camera.position.y) * 0.025;
-      camera.lookAt(scene.position);
+      if (this.activeSection === 'home') {
+        targetCam.set(0, 0, 500);
+        targetLook.set(0, 0, 0);
+        targetCoreScale = 1.0;
+        targetCoreOpacity = 0.35;
+        speedMult = 0.8;
+      } else if (this.activeSection === 'skills') {
+        targetCam.set(220, 100, 420);
+        targetLook.set(100, 0, 0);
+        targetCoreScale = 1.25;
+        targetCoreOpacity = 0.45;
+        speedMult = 1.3;
+      } else if (this.activeSection === 'projects') {
+        targetCam.set(-300, -180, 250);
+        targetLook.set(0, -50, 0);
+        targetCoreScale = 2.2;
+        targetCoreOpacity = 0.12;
+        speedMult = 0.6;
+      } else if (this.activeSection === 'about') {
+        targetCam.set(0, 420, 300);
+        targetLook.set(0, 0, 0);
+        targetCoreScale = 0.75;
+        targetCoreOpacity = 0.4;
+        speedMult = 0.5;
+      } else if (this.activeSection === 'contact') {
+        targetCam.set(0, 0, 180);
+        targetLook.set(0, 0, 0);
+        targetCoreScale = 0.55;
+        targetCoreOpacity = 0.75;
+        speedMult = 2.2;
+      } else if (this.activeSection === 'education') {
+        targetCam.set(-260, 180, 360);
+        targetLook.set(-90, 60, 0);
+        targetCoreScale = 1.0;
+        targetCoreOpacity = 0.3;
+        speedMult = 0.5;
+      } else if (this.activeSection === 'experience') {
+        targetCam.set(280, -60, 320);
+        targetLook.set(110, -20, 0);
+        targetCoreScale = 1.45;
+        targetCoreOpacity = 0.5;
+        speedMult = 0.9;
+      } else if (this.activeSection === 'certifications') {
+        targetCam.set(-220, -100, 300);
+        targetLook.set(-70, -30, 0);
+        targetCoreScale = 1.3;
+        targetCoreOpacity = 0.45;
+        speedMult = 0.7;
+      } else if (this.activeSection === 'hobbies') {
+        targetCam.set(0, -260, 260);
+        targetLook.set(0, -60, 0);
+        targetCoreScale = 1.85;
+        targetCoreOpacity = 0.55;
+        speedMult = 1.6;
+      } else if (this.activeSection === 'aiml') {
+        targetCam.set(-320, 140, 300);
+        targetLook.set(-100, 30, 0);
+        targetCoreScale = 1.6;
+        targetCoreOpacity = 0.4;
+        speedMult = 0.9;
+      } else if (this.activeSection === 'cybersec') {
+        targetCam.set(300, 40, 260);
+        targetLook.set(110, 0, 0);
+        targetCoreScale = 2.4;
+        targetCoreOpacity = 0.55;
+        speedMult = 1.4;
+      } else if (this.activeSection === 'websites') {
+        targetCam.set(0, -220, 320);
+        targetLook.set(0, -40, 0);
+        targetCoreScale = 1.15;
+        targetCoreOpacity = 0.25;
+        speedMult = 0.7;
+      }
+
+      // Smooth camera interpolation
+      camera.position.lerp(targetCam, 0.04);
+      this.currentLookAt.lerp(targetLook, 0.04);
+      camera.lookAt(this.currentLookAt);
+
+      // Add mouse parallax on top of camera position
+      camera.position.x += (mouseX - camera.position.x) * 0.02;
+      camera.position.y += (-mouseY - camera.position.y) * 0.02;
+
+      // Animate morphing core
+      if (this.coreMesh) {
+        this.coreMesh.rotation.x += 0.005;
+        this.coreMesh.rotation.y += 0.007;
+        const currentScale = this.coreMesh.scale.x;
+        const nextScale = THREE.MathUtils.lerp(currentScale, targetCoreScale, 0.04);
+        this.coreMesh.scale.setScalar(nextScale);
+        if (this.coreMaterial) {
+          this.coreMaterial.opacity = THREE.MathUtils.lerp(this.coreMaterial.opacity, targetCoreOpacity, 0.04);
+        }
+      }
 
       const posAttr = pointsGeometry.attributes['position'] as THREE.BufferAttribute;
       const linePosAttr = lineGeometry.attributes['position'] as THREE.BufferAttribute;
@@ -246,9 +393,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       // Update particles
       for (let i = 0; i < NODE_COUNT; i++) {
         const node = nodes[i];
-        node.x += node.vx;
-        node.y += node.vy;
-        node.z += node.vz;
+        node.x += node.vx * speedMult;
+        node.y += node.vy * speedMult;
+        node.z += node.vz * speedMult;
 
         // Soft bounce at virtual boundaries
         if (Math.abs(node.x) > bounds.x) node.vx *= -1;
@@ -279,13 +426,20 @@ export class AppComponent implements AfterViewInit, OnDestroy {
             vertexIdx += 2;
 
             const alpha = (1 - dist / maxDistance) * 0.3;
-            const r = (220 / 255) * alpha;
-            const g = (38 / 255) * alpha;
-            const b = (38 / 255) * alpha;
+            let r = (220 / 255) * alpha;
+            let g = (38 / 255) * alpha;
+            let b = (38 / 255) * alpha;
+
+            if (this.activeSection === 'contact') {
+              r = (255 / 255) * alpha;
+              g = (60 / 255) * alpha;
+              b = (60 / 255) * alpha;
+            }
 
             lineColorAttr.setXYZ(colorIdx, r, g, b);
             lineColorAttr.setXYZ(colorIdx + 1, r, g, b);
-            colorIdx += 2;
+            colorIdx++;
+            colorIdx++;
 
             numConnections++;
           }
@@ -297,12 +451,12 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       lineColorAttr.needsUpdate = true;
 
       // Slow constant orbital rotation
-      particleSystem.rotation.y += 0.0002;
-      connectionLines.rotation.y += 0.0002;
+      particleSystem.rotation.y += 0.00015;
+      connectionLines.rotation.y += 0.00015;
 
       // Update holographic plane time uniform
-      if (holoMaterial) {
-        holoMaterial.uniforms['uTime'].value += 0.016;
+      if (this.holoMaterial) {
+        this.holoMaterial.uniforms['uTime'].value += 0.016;
       }
 
       renderer.render(scene, camera);

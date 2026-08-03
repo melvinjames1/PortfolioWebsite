@@ -1,25 +1,62 @@
-import { Component, ElementRef, Renderer2, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, Renderer2, OnInit, OnDestroy, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
   templateUrl: './projects.component.html',
-  styleUrls: [],
-  imports: [CommonModule],
+  styleUrl: './projects.component.css',
+  imports: [CommonModule, RouterModule],
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
 
   private revealObserver!: IntersectionObserver;
+  activeSection = 'aiml';
+  scrollPercent = 0;
+
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) { }
+
+  get totalProjects(): number {
+    return this.aiml.length + this.cybersec.length + this.websites.length;
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    this.scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    const sections = ['aiml', 'cybersec', 'websites'];
+    const scrollPos = window.scrollY + window.innerHeight / 3;
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollPos && el.offsetTop + el.offsetHeight > scrollPos) {
+        this.activeSection = id;
+      }
+    }
+  }
+
+  scrollToSection(id: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    this.activeSection = id;
+  }
 
   // ─── AI / ML ─────────────────────────────────────────────────────────────────
   aiml = [
     {
-      title: 'Local RAG System',
+      title: 'Local RAG Compliance Auditor',
       description:
-        'A fully local Retrieval-Augmented Generation pipeline that lets you query your own PDF documents using open-source LLMs — no cloud APIs, no data leaving your machine. Uses ChromaDB for persistent vector storage, HuggingFace embeddings, and Mistral via Ollama for private, offline question answering.',
+        'A local Retrieval-Augmented Generation pipeline designed to scan security policies, codebases, and compliance standards (e.g., OWASP, SOC2, HIPAA) completely offline — no cloud APIs, no data leaving your machine. Uses ChromaDB for vector storage, HuggingFace embeddings, and Mistral via Ollama to query policy violations without cloud data exposure.',
       repoLink: 'https://github.com/melvinjames1/Local-RAG',
-      tags: ['Python', 'LangChain', 'ChromaDB', 'HuggingFace', 'Ollama', 'Mistral', 'RAG'],
+      tags: ['Python', 'LangChain', 'ChromaDB', 'Offline LLM', 'Security Policy Auditing'],
       code: `import os
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -99,11 +136,11 @@ if __name__ == "__main__":
     main()`,
     },
     {
-      title: 'Sentiment Analysis',
+      title: 'Automated Security Log Classifier',
       description:
-        'Performs sentiment classification on a text dataset using TF-IDF vectorization and Logistic Regression. Evaluates with accuracy score, classification report, and confusion matrix — then exports predictions to CSV.',
+        'A log classification pipeline using machine learning (TF-IDF and Logistic Regression) to analyze access records, system events, and security logs. Automatically labels logs as suspicious or benign, generating confusion matrices and exporting predictions to trigger security alerts.',
       repoLink: 'https://github.com/melvinjames1/Sentiment-Analysis/blob/main/sentimentanalysis.py',
-      tags: ['Python', 'scikit-learn', 'TF-IDF', 'Logistic Regression', 'NLP', 'pandas'],
+      tags: ['Python', 'Log Classification', 'NLP', 'Security Logs', 'Anomaly Detection'],
       code: `import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -144,11 +181,11 @@ print("Predictions saved to sentiment_predictions.csv")`,
   // ─── CYBER SECURITY ──────────────────────────────────────────────────────────
   cybersec = [
     {
-      title: 'WAVS — Web App Vulnerability Scanner',
+      title: 'WAVS — CI/CD Pipeline Vulnerability Scanner',
       description:
-        'A full-featured web application vulnerability scanner that automates the security testing process. Runs SQL injection, XSS, security header checks, directory listing detection, and open port scanning against a target URL — then generates detailed HTML and PDF reports.',
+        'An automated security scanner built for CI/CD integrations. Scans containerized web applications for SQL injection, XSS, insecure headers, and directory listing vulnerabilities during the pipeline build phase — then generates detailed HTML and PDF reports to block vulnerable builds.',
       repoLink: 'https://github.com/melvinjames1/WAVS',
-      tags: ['Python', 'SQL Injection', 'XSS', 'Port Scanner', 'Security Headers', 'HTML/PDF Report'],
+      tags: ['DevSecOps', 'CI/CD Scanning', 'SQLi / XSS Testing', 'Automation', 'Audit Reports'],
       code: `import urllib.parse
 from .vulnerabilities import (
     sql_injection, xss,
@@ -186,12 +223,12 @@ class Scanner:
         generate_pdf(report, self.target, filename)`,
     },
     {
-      title: 'SQL Injection Demo Site',
+      title: 'SQL Injection Sandbox & Secure Coding Tutor',
       description:
-        'An interactive demo site where you can perform SQL injection attacks in a fully controlled environment. The database is hardcoded to safely visualise how SQL injection exploits work and how they affect the underlying data — built for learning and awareness.',
+        'An interactive sandbox application showing SQL injection vulnerabilities and remediation techniques. Used to train development teams on secure coding guidelines, illustrating raw query flaws versus parameterised query fixes in a fully controlled environment.',
       repoLink: 'https://github.com/melvinjames1/SQL-Injection-Test',
       link: 'https://sql-injection-test-liard.vercel.app',
-      tags: ['SQL Injection', 'Demo', 'Security Education', 'Vercel', 'Hardcoded DB'],
+      tags: ['Secure Coding', 'SQL Injection', 'Sandbox', 'DevSecOps Training'],
       code: `-- Hardcoded demo database schema
 -- Safe sandboxed environment for SQL injection testing
 
@@ -263,10 +300,10 @@ WHERE username = '' OR '1'='1'
     },
   ];
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
-
   ngOnInit(): void {
-    this.loadAssets();
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadAssets();
+    }
     setTimeout(() => this.initReveal(), 100);
   }
 
@@ -292,15 +329,9 @@ WHERE username = '' OR '1'='1'
   private initReveal(): void {
     const els = this.el.nativeElement.querySelectorAll('.reveal') as NodeListOf<HTMLElement>;
     this.revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            (e.target as HTMLElement).classList.remove('opacity-0', 'translate-y-8');
-          } else {
-            (e.target as HTMLElement).classList.add('opacity-0', 'translate-y-8');
-          }
-        });
-      },
+      (entries) => entries.forEach((e) => {
+        (e.target as HTMLElement).classList.toggle('visible', e.isIntersecting);
+      }),
       { threshold: 0.08 }
     );
     els.forEach((el) => this.revealObserver.observe(el));

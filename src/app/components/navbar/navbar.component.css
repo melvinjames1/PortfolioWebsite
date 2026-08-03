@@ -1,123 +1,57 @@
-.header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem 5%;
-    background: rgba(0,0,0,.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
+/* ─────────────────────────────────────────────────────────
+   Navbar Component Styles
+   Font: Inter (body) · Space Grotesk (logo)
+─────────────────────────────────────────────────────────── */
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to right, #b91515, #e02020, #f87171);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  transform-origin: left;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 8px rgba(224,32,32,0.5);
 }
 
-
-.Name{
-    margin-left: 10px;
-    padding: 5px;
-    font-size: 25px;
-    font-weight: 700;
-    color: whitesmoke;
-    text-align: center;
-    vertical-align: middle;
-    bottom: 10px;
-    font-family: 'Inter', sans-serif;
+/* Header scroll-aware transition */
+.nav-header {
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.nav-header.scrolled {
+  background-color: rgba(8, 8, 8, 0.88) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04),
+              0 8px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
-a{
-    color: whitesmoke;
-    font-size: medium;
-    padding-left: 50px;
-    font-weight: 600;
-    font-size: 25px;
-    font-family: 'Inter', sans-serif;
+/* Active nav link — clean underline instead of color-only */
+.nav-link.active-route {
+  color: rgba(255,255,255,0.9) !important;
+  position: relative;
 }
-.project{
-    font-size: small;
+.nav-link.active-route::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 1.5px;
+  background: #e02020;
+  border-radius: 999px;
 }
-#check{
-    display: none;
-}
-.icons{
-    position: absolute;
-    font-size: 2.8rem;
-    right: 5%;
-    color: whitesmoke;
-    cursor: pointer;
-    display: none;
-}
-i{
-    color: whitesmoke;
-    padding: 10px;
-    padding-bottom: 15px;
-}
-i:hover{
-    color: gray;
-}
-i:active{
-    color:red;
-}
-nav a:hover{
-    color: rgb(94, 94, 94);
-    transition: ease-in .2s;
-}
-.active{
-    color: red;
-    transition: ease-in .2s;
-}
-@media (max-width: 762px){
-    .icons{
-        display: inline-flex;
-    }
-    .icons #close{
-        display: none;
-    }
-    #check:checked~.icons #menu{
-        display: none;
-    }
-    #check:checked~.icons #close{
-        display: block;
-    }
-    .navbar{
-        position: absolute;
-        display: inline;
-        flex-direction: column;
-        top: 100%;
-        left:0;
-        width: 100%;
-        height: 0;
-        background: rgba(255, 255, 255, 0.0);
-        overflow: hidden;
-        transition: height 0.3s ease; 
-        }
-        #check:checked~.navbar{
-            height: 14.7rem;
-            transition: ease .3s;
-        }
-        .navbar a{
-            display: block;
-            font-size: 1.1rem;
-            margin: 1.5rem 0;
-            text-align: center;
-            transform: translateY(-50px);
-            opacity: 0;
-            transition: .3s ease;
-            padding-left: 0;
-        }
-        #check:checked~.navbar a {
-            transform:  translateY(0);
-            opacity: 1;
-            transition-delay: calc(.15s * var(--i)) ;
-        }
-        .active{
-            border-bottom : 0px solid whitesmoke;
-            
-        }
-        #check:checked~.navbar {
-            height: 14.7rem;
-        }
 
-  .header{
-   background-color:  rgba(255, 255, 255, 0.03);
-  }
+/* Mobile drawer slide-in */
+@keyframes drawerIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

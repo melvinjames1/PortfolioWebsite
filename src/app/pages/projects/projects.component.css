@@ -1,6 +1,70 @@
-#mw{
-    font-family: "Tiny5", sans-serif;    
+/* ── Host ──────────────────────────────────────────────────────────── */
+:host {
+  display: block;
 }
-h2{
-    font-family: "Tiny5", sans-serif;    
+
+/* ── Scroll reveal animations ─────────────────────────────────────── */
+.reveal {
+  transition: opacity .8s cubic-bezier(.22, 1, .36, 1),
+    transform .8s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal.visible,
+.reveal:not(.opacity-0) {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ── Stepper Navigation (matches home.component.css) ─────────────── */
+.step-item {
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.step-item.active-step {
+  color: #ffffff !important;
+}
+
+.step-item.active-step .step-dot {
+  background-color: #dc2626 !important;
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 10px #dc2626, 0 0 20px rgba(220, 38, 38, 0.4);
+  transform: scale(1.25);
+}
+
+/* ── Outlined display text ────────────────────────────────────────── */
+.outlined-text {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.85);
+  color: transparent;
+}
+
+/* ── Project card hover ───────────────────────────────────────────── */
+.skill-card {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Terminal code drawer ─────────────────────────────────────────── */
+.terminal-drawer {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.terminal-drawer::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal-drawer::-webkit-scrollbar-track {
+  background: #020202;
+}
+
+.terminal-drawer::-webkit-scrollbar-thumb {
+  background: rgba(220, 38, 38, 0.3);
+  border-radius: 2px;
 }

@@ -1,16 +1,17 @@
-
-.Socials{
+.Socials {
     color: whitesmoke;
     font-size: larger;
 }
+
 :host {
-    position: relative; 
-    width: 100%; 
-    padding: 1px; 
-    box-sizing: border-box; 
-    bottom: 0; 
+    position: relative;
+    width: 100%;
+    padding: 1px;
+    box-sizing: border-box;
+    bottom: 0;
 }
-button{
+
+button {
     margin-top: 25px;
     padding: 5px;
     border-radius: 20px;
@@ -18,16 +19,20 @@ button{
     padding-right: 8px;
     background-color: rgba(0, 181, 0, 0.269);
 }
-svg{
+
+svg {
     color: whitesmoke;
 }
-.contact{
+
+.contact {
     color: whitesmoke;
 }
-button:hover{
+
+button:hover {
     background-color: gray;
 }
-svg:hover{
+
+svg:hover {
     box-shadow: 0 0 5px #ffffff;
     background-color: rgba(255, 255, 255, 0.342);
     border-radius: 10px;
