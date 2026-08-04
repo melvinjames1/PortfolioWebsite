@@ -7,21 +7,21 @@
   </div>
 
   <button (click)="scrollToSection('aiml')" [class.active-step]="activeSection === 'aiml'"
-    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">01 // AI_ML</span>
   </button>
 
   <button (click)="scrollToSection('cybersec')" [class.active-step]="activeSection === 'cybersec'"
-    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">02 // SECURITY</span>
   </button>
 
   <button (click)="scrollToSection('websites')" [class.active-step]="activeSection === 'websites'"
-    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">03 // WEBSITES</span>
@@ -32,7 +32,7 @@
      RIGHT HUD: SYSTEM METRICS DASHBOARD
      ════════════════════════════════════════════ -->
 <div
-  class="fixed right-6 bottom-8 z-40 hidden xl:flex flex-col gap-1 font-mono text-[9px] text-white/20 text-right select-none pointer-events-none">
+  class="fixed right-6 bottom-8 z-40 hidden xl:flex flex-col gap-1 font-mono text-[9px] text-white/95 text-right select-none pointer-events-none">
   <div>REPO_INDEX: <span class="text-red-500/60 font-bold">{{ totalProjects }} ENTRIES</span></div>
   <div>SECTOR: {{ activeSection | uppercase }}</div>
   <div>STACK: PY // TS // SQL</div>
@@ -68,8 +68,8 @@
           </div>
 
           <div class="reveal opacity-0 translate-y-8 transition-all duration-700" style="transition-delay:0.2s">
-            <p class="text-white/40 text-[14px] leading-relaxed max-w-lg font-light">
-              Stuff I actually built — from offline ML pipelines that classify security logs to scanners that break
+            <p class="text-white/95 text-[14px] leading-relaxed max-w-lg font-light">
+              Stuff I built — from offline ML pipelines that classify security logs to scanners that break
               websites (ethically). Click around, poke the code.
             </p>
           </div>
@@ -92,7 +92,7 @@
         <div class="lg:col-span-4 reveal opacity-0 translate-y-8 transition-all duration-700 hidden lg:block"
           style="transition-delay:0.2s">
           <div
-            class="rounded-xl border border-white/[0.05] bg-black/60 backdrop-blur p-5 font-mono text-[9px] text-white/40 flex flex-col gap-2.5">
+            class="rounded-xl border border-white/[0.05] bg-black/60 backdrop-blur p-5 font-mono text-[9px] text-white/95 flex flex-col gap-2.5">
             <div class="flex items-center justify-between border-b border-white/[0.06] pb-2">
               <span class="text-red-500 font-semibold uppercase">MANIFEST_LOGS</span>
               <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
@@ -127,7 +127,7 @@
         <h2 class="font-bold text-white tracking-tight uppercase mb-4" style="font-size:clamp(2.2rem, 6vw, 3.8rem);">
           AI / ML PROJECTS
         </h2>
-        <p class="text-white/35 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
+        <p class="text-white/95 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
           Machine learning pipelines built from scratch — offline RAG systems, log classifiers, no tutorials, no
           copy-paste.
         </p>
@@ -139,7 +139,7 @@
           [style.transition-delay]="(i * 100) + 'ms'">
 
           <div
-            class="absolute top-0 right-0 p-3 font-mono text-[9px] text-white/10 tracking-widest group-hover:text-red-500/20 transition-all">
+            class="absolute top-0 right-0 p-3 font-mono text-[9px] text-white/95 tracking-widest group-hover:text-red-500/20 transition-all">
             AI_{{ (i + 1).toString().padStart(2,'0') }}
           </div>
 
@@ -156,12 +156,12 @@
                 style="font-size:clamp(1.5rem,3.4vw,2.1rem)">
                 {{ project.title }}
               </h3>
-              <p class="text-white/40 text-[13px] leading-relaxed font-light">{{ project.description }}</p>
+              <p class="text-white/95 text-[13px] leading-relaxed font-light">{{ project.description }}</p>
 
               <div class="flex flex-wrap gap-2">
                 <span *ngFor="let tag of project.tags" class="text-[9px] font-mono font-semibold tracking-widest uppercase
                     bg-white/[0.02] border border-white/[0.06] hover:border-red-600/30
-                    text-white/35 hover:text-red-400/70 px-2.5 py-1 rounded
+                    text-white/95 hover:text-red-400/70 px-2.5 py-1 rounded
                     transition-all duration-200 cursor-default">
                   {{ tag }}
                 </span>
@@ -180,9 +180,9 @@
                   <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
                   <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
                 </div>
-                <span class="text-[9px] font-mono font-bold tracking-widest uppercase text-white/25">PYTHON //
+                <span class="text-[9px] font-mono font-bold tracking-widest uppercase text-white/95">PYTHON //
                   AI_ML</span>
-                <button (click)="copyToClipboard(project.code, 'aiml-' + i)" class="flex items-center gap-1.5 text-white/30 hover:text-red-400
+                <button (click)="copyToClipboard(project.code, 'aiml-' + i)" class="flex items-center gap-1.5 text-white/95 hover:text-red-400
                     text-[9px] font-mono font-bold tracking-widest uppercase transition-all duration-200">
                   <i class="fas fa-copy text-xs"></i>
                   <span [id]="'message-aiml-' + i">COPY</span>
@@ -190,7 +190,7 @@
               </div>
               <pre
                 class="terminal-drawer bg-black/60 backdrop-blur border border-white/[0.05] border-t-0 rounded-b-xl
-                p-4 sm:p-5 overflow-x-auto text-[11px] leading-relaxed text-white/50 max-h-72"><code>{{ project.code }}</code></pre>
+                p-4 sm:p-5 overflow-x-auto text-[11px] leading-relaxed text-white/95 max-h-72"><code>{{ project.code }}</code></pre>
             </div>
 
           </div>
@@ -215,7 +215,7 @@
         <h2 class="font-bold text-white tracking-tight uppercase mb-4" style="font-size:clamp(2.2rem, 6vw, 3.8rem);">
           CYBER SECURITY
         </h2>
-        <p class="text-white/35 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
+        <p class="text-white/95 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
           Tools that scan, break, and fix things — built for educational purposes only. One of the good guys, I promise.
         </p>
       </div>
@@ -226,7 +226,7 @@
           [style.transition-delay]="(i * 100) + 'ms'">
 
           <div
-            class="absolute top-0 right-0 p-3 font-mono text-[9px] text-white/10 tracking-widest group-hover:text-red-500/20 transition-all">
+            class="absolute top-0 right-0 p-3 font-mono text-[9px] text-white/95 tracking-widest group-hover:text-red-500/20 transition-all">
             SEC_{{ (i + 1).toString().padStart(2,'0') }}
           </div>
 
@@ -247,12 +247,12 @@
                 style="font-size:clamp(1.5rem,3.4vw,2.1rem)">
                 {{ project.title }}
               </h3>
-              <p class="text-white/40 text-[13px] leading-relaxed font-light">{{ project.description }}</p>
+              <p class="text-white/95 text-[13px] leading-relaxed font-light">{{ project.description }}</p>
 
               <div class="flex flex-wrap gap-2">
                 <span *ngFor="let tag of project.tags" class="text-[9px] font-mono font-semibold tracking-widest uppercase
                     bg-white/[0.02] border border-white/[0.06] hover:border-red-600/30
-                    text-white/35 hover:text-red-400/70 px-2.5 py-1 rounded
+                    text-white/95 hover:text-red-400/70 px-2.5 py-1 rounded
                     transition-all duration-200 cursor-default">
                   {{ tag }}
                 </span>
@@ -276,8 +276,8 @@
                   <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
                   <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
                 </div>
-                <span class="text-[9px] font-mono font-bold tracking-widest uppercase text-white/25">SECURITY</span>
-                <button (click)="copyToClipboard(project.code, 'sec-' + i)" class="flex items-center gap-1.5 text-white/30 hover:text-red-400
+                <span class="text-[9px] font-mono font-bold tracking-widest uppercase text-white/95">SECURITY</span>
+                <button (click)="copyToClipboard(project.code, 'sec-' + i)" class="flex items-center gap-1.5 text-white/95 hover:text-red-400
                     text-[9px] font-mono font-bold tracking-widest uppercase transition-all duration-200">
                   <i class="fas fa-copy text-xs"></i>
                   <span [id]="'message-sec-' + i">COPY</span>
@@ -285,7 +285,7 @@
               </div>
               <pre
                 class="terminal-drawer bg-black/60 backdrop-blur border border-white/[0.05] border-t-0 rounded-b-xl
-                p-4 sm:p-5 overflow-x-auto text-[11px] leading-relaxed text-white/50 max-h-72"><code>{{ project.code }}</code></pre>
+                p-4 sm:p-5 overflow-x-auto text-[11px] leading-relaxed text-white/95 max-h-72"><code>{{ project.code }}</code></pre>
             </div>
 
           </div>
@@ -310,7 +310,7 @@
         <h2 class="font-bold text-white tracking-tight uppercase mb-4" style="font-size:clamp(2.2rem, 6vw, 3.8rem);">
           WEBSITES
         </h2>
-        <p class="text-white/35 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
+        <p class="text-white/95 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
           Side projects I shipped — timers, blogs, API dashboards. Nothing earth-shattering, but they work and they're
           live.
         </p>
@@ -322,7 +322,7 @@
           [style.transition-delay]="(i * 100) + 'ms'">
 
           <div
-            class="absolute top-0 right-0 p-3 z-10 font-mono text-[9px] text-white/20 tracking-widest group-hover:text-red-500/40 transition-all">
+            class="absolute top-0 right-0 p-3 z-10 font-mono text-[9px] text-white/95 tracking-widest group-hover:text-red-500/40 transition-all">
             WEB_{{ (i + 1).toString().padStart(2,'0') }}
           </div>
 
@@ -335,8 +335,8 @@
               </div>
               <div
                 class="flex-1 bg-white/[0.03] rounded-full px-3 py-1 flex items-center gap-2 border border-white/[0.05]">
-                <i class="fas fa-lock text-white/15" style="font-size:8px"></i>
-                <span class="text-white/25 text-[10px] font-mono truncate">{{ project.link }}</span>
+                <i class="fas fa-lock text-white/95" style="font-size:8px"></i>
+                <span class="text-white/95 text-[10px] font-mono truncate">{{ project.link }}</span>
               </div>
             </div>
             <div class="relative overflow-hidden">
@@ -353,12 +353,12 @@
 
           <div class="p-6 flex flex-col gap-3">
             <h3 class="font-black text-white tracking-tight uppercase text-lg">{{ project.title }}</h3>
-            <p class="text-white/40 text-[12.5px] leading-relaxed font-light">{{ project.description }}</p>
+            <p class="text-white/95 text-[12.5px] leading-relaxed font-light">{{ project.description }}</p>
 
             <div class="flex flex-wrap gap-2">
               <span *ngFor="let tag of project.tags" class="text-[9px] font-mono font-semibold tracking-widest uppercase
                   bg-white/[0.02] border border-white/[0.06] hover:border-red-600/30
-                  text-white/35 hover:text-red-400/70 px-2.5 py-1 rounded
+                  text-white/95 hover:text-red-400/70 px-2.5 py-1 rounded
                   transition-all duration-200 cursor-default">
                 {{ tag }}
               </span>
@@ -379,7 +379,7 @@
       <!-- Back to top -->
       <div class="flex justify-center mt-20">
         <button (click)="scrollToSection('aiml')"
-          class="w-10 h-10 rounded-full border border-white/10 hover:border-red-600 bg-neutral-950 text-white/30 hover:text-red-400 flex items-center justify-center transition-all hover:-translate-y-1"
+          class="w-10 h-10 rounded-full border border-white/10 hover:border-red-600 bg-neutral-950 text-white/95 hover:text-red-400 flex items-center justify-center transition-all hover:-translate-y-1"
           title="Back to top">
           <i class="fas fa-arrow-up text-xs"></i>
         </button>

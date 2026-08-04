@@ -18,7 +18,7 @@
   <!-- Desktop Nav -->
   <nav class="hidden md:flex items-center gap-1">
     <a routerLink="/" routerLinkActive="text-white" [routerLinkActiveOptions]="{ exact: true }" #home="routerLinkActive"
-      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/50 transition-colors duration-300 hover:text-white">
+      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/95 transition-colors duration-300 hover:text-white">
       Home
       <span
         class="absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-red-500 transition-all duration-300"
@@ -26,7 +26,7 @@
     </a>
 
     <a routerLink="/projects" routerLinkActive="text-white" #projects="routerLinkActive"
-      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/50 transition-colors duration-300 hover:text-white">
+      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/95 transition-colors duration-300 hover:text-white">
       Projects
       <span
         class="absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-red-500 transition-all duration-300"
@@ -34,7 +34,7 @@
     </a>
 
     <a routerLink="/about" routerLinkActive="text-white" #about="routerLinkActive"
-      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/50 transition-colors duration-300 hover:text-white">
+      class="group relative px-4 py-2 text-[13px] font-medium tracking-wide text-white/95 transition-colors duration-300 hover:text-white">
       About
       <span
         class="absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-red-500 transition-all duration-300"
@@ -64,15 +64,15 @@
     overflow-hidden shadow-2xl shadow-black/60">
 
     <nav class="flex flex-col p-3 gap-1">
-      <a (click)="navigateTo('/')" class="flex items-center gap-3 text-white/50 hover:text-white hover:bg-white/[0.04]
+      <a (click)="navigateTo('/')" class="flex items-center gap-3 text-white/95 hover:text-white hover:bg-white/[0.04]
           text-[14px] font-medium px-4 py-3 rounded-xl transition-all duration-150 no-underline cursor-pointer">
         Home
       </a>
-      <a (click)="navigateTo('/projects')" class="flex items-center gap-3 text-white/50 hover:text-white hover:bg-white/[0.04]
+      <a (click)="navigateTo('/projects')" class="flex items-center gap-3 text-white/95 hover:text-white hover:bg-white/[0.04]
           text-[14px] font-medium px-4 py-3 rounded-xl transition-all duration-150 no-underline cursor-pointer">
         Projects
       </a>
-      <a (click)="navigateTo('/about')" class="flex items-center gap-3 text-white/50 hover:text-white hover:bg-white/[0.04]
+      <a (click)="navigateTo('/about')" class="flex items-center gap-3 text-white/95 hover:text-white hover:bg-white/[0.04]
           text-[14px] font-medium px-4 py-3 rounded-xl transition-all duration-150 no-underline cursor-pointer">
         About
       </a>
