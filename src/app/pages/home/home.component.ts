@@ -111,10 +111,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.typed = new Typed('.type', {
       strings: [
         'DevSecOps Engineer',
-        'Cybersecurity Student',
-        'AI Enthusiast',
         'Full Stack Developer',
-        'Tech Enthusiast',
+        'Cybersecurity Specialist',
+        'Automation Architect',
+        'The Guy Who Does It Better',
       ],
       typeSpeed: 70,
       backSpeed: 40,

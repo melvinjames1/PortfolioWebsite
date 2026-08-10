@@ -40,17 +40,17 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsVisible = false;
 
   stats = [
-    { value: '2', suffix: '+', label: 'Years MSc Experience' },
-    { value: '15', suffix: '+', label: 'Security & Dev Automation Projects' },
+    { value: '2', suffix: '+', label: 'Years Experience' },
+    { value: '15', suffix: '+', label: 'Security & Web Projects' },
     { value: '10', suffix: '+', label: 'SecOps Pipelines Hardened' },
     { value: '99', suffix: '%', label: 'Pipeline Build Success' },
   ];
 
   currently = [
-    { active: true, title: 'MSc AI & Cybersecurity', body: 'Writing security scanners, studying cryptography, and training ML models that catch intruders.' },
+    { active: true, title: 'MSc AI & Cybersecurity', body: 'Writing security scanners, studying cryptography, and building automated security tools.' },
     { active: true, title: 'Securing Deployments', body: 'Plugging automated security checks into git pipelines so bad code never ships.' },
-    { active: false, title: 'CTF Competitive Prep', body: 'Sharpening web exploitation skills in private labs — legally, of course.' },
-    { active: false, title: 'Infrastructure Hardening', body: 'Locking down Docker containers and writing isolation policies that actually hold up.' }
+    { active: false, title: 'CTF Competitive Prep', body: 'Sharpening web exploitation skills in private labs.' },
+    { active: false, title: 'Infrastructure Hardening', body: 'Locking down Docker containers and writing isolation policies that hold up.' }
   ];
 
   // ─── EDUCATION (from resume) ──────────────────────────────────────────────

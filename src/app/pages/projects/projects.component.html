@@ -7,21 +7,21 @@
   </div>
 
   <button (click)="scrollToSection('aiml')" [class.active-step]="activeSection === 'aiml'"
-    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">01 // AI_ML</span>
   </button>
 
   <button (click)="scrollToSection('cybersec')" [class.active-step]="activeSection === 'cybersec'"
-    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">02 // SECURITY</span>
   </button>
 
   <button (click)="scrollToSection('websites')" [class.active-step]="activeSection === 'websites'"
-    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">03 // WEBSITES</span>
@@ -32,7 +32,7 @@
      RIGHT HUD: SYSTEM METRICS DASHBOARD
      ════════════════════════════════════════════ -->
 <div
-  class="fixed right-6 bottom-8 z-40 hidden xl:flex flex-col gap-1 font-mono text-[9px] text-white/95 text-right select-none pointer-events-none">
+  class="fixed right-6 bottom-8 z-40 hidden xl:flex flex-col gap-1 font-mono text-[9px] text-white/20 text-right select-none pointer-events-none">
   <div>REPO_INDEX: <span class="text-red-500/60 font-bold">{{ totalProjects }} ENTRIES</span></div>
   <div>SECTOR: {{ activeSection | uppercase }}</div>
   <div>STACK: PY // TS // SQL</div>
@@ -69,8 +69,7 @@
 
           <div class="reveal opacity-0 translate-y-8 transition-all duration-700" style="transition-delay:0.2s">
             <p class="text-white/95 text-[14px] leading-relaxed max-w-lg font-light">
-              Stuff I built — from offline ML pipelines that classify security logs to scanners that break
-              websites (ethically). Click around, poke the code.
+              Stuff I built from scratch — offline ML pipelines that parse security logs, scanners that break bad builds, and web apps built to actual professional standards.
             </p>
           </div>
 
@@ -103,7 +102,7 @@
             <div>[OK] REPO_LINKS: VERIFIED</div>
             <div class="text-[8px] text-red-500/60 mt-3 pt-2 border-t border-white/[0.05]">
               $ git log --oneline -n 1<br>
-              INFO: All builds passing on main.
+              INFO: All builds passing with top performance.
             </div>
           </div>
         </div>
@@ -125,11 +124,10 @@
           <i class="fas fa-brain text-xs"></i> INTELLIGENCE <span class="inline-block w-8 h-px bg-red-500/60"></span>
         </p>
         <h2 class="font-bold text-white tracking-tight uppercase mb-4" style="font-size:clamp(2.2rem, 6vw, 3.8rem);">
-          AI / ML PROJECTS
+          AI &amp; ML PROJECTS
         </h2>
         <p class="text-white/95 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
-          Machine learning pipelines built from scratch — offline RAG systems, log classifiers, no tutorials, no
-          copy-paste.
+          Machine learning pipelines built from scratch — offline RAG systems, log classifiers, zero copy-pasting.
         </p>
       </div>
 
@@ -216,7 +214,7 @@
           CYBER SECURITY
         </h2>
         <p class="text-white/95 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
-          Tools that scan, break, and fix things — built for educational purposes only. One of the good guys, I promise.
+          Tools I built to scan, break, and harden systems — built to real industry standards.
         </p>
       </div>
 
@@ -308,11 +306,10 @@
             class="inline-block w-8 h-px bg-red-500/60"></span>
         </p>
         <h2 class="font-bold text-white tracking-tight uppercase mb-4" style="font-size:clamp(2.2rem, 6vw, 3.8rem);">
-          WEBSITES
+          WEBSITES &amp; APPS
         </h2>
         <p class="text-white/95 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
-          Side projects I shipped — timers, blogs, API dashboards. Nothing earth-shattering, but they work and they're
-          live.
+          Clean web applications shipped live — high performance, custom features, and zero compromises on design.
         </p>
       </div>
 

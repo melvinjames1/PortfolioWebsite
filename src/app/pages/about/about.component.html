@@ -51,7 +51,7 @@
                 style="-webkit-text-stroke: 1.5px rgba(255,255,255,0.85);">JAMES</span>
             </h1>
             <p class="font-mono text-[11px] font-bold tracking-[0.18em] uppercase text-red-500 mt-4">
-              // the guy who breaks things to make them safer
+              // the guy who breaks things to make them safer (and does it better)
             </p>
           </div>
           <span class="self-start sm:self-auto inline-flex items-center gap-2
@@ -77,17 +77,13 @@
 
           <div class="relative">
             <p class="font-mono text-[9px] tracking-[0.2em] text-red-500 uppercase mb-4">// WHO_I_AM</p>
-            <p class="text-white/50 text-[0.93rem] leading-relaxed mb-3 font-light">
-              I'm a grad student obsessed with the intersection of
-              <span class="text-white/75 font-semibold">CI/CD Automation</span> and
-              <span class="text-white/75 font-semibold">Cybersecurity</span>. I build tools that scan codebases for
-              vulnerabilities, harden Docker containers, and automate compliance checks — basically, I try to make
-              deployment pipelines harder to break.
+            <p class="text-white/80 text-[0.93rem] leading-relaxed mb-3">
+              I'm a developer focused on the intersection of
+              <span class="text-white font-semibold">CI/CD Automation</span> and
+              <span class="text-white font-semibold">Cybersecurity</span>. I build tools that scan codebases for vulnerabilities, harden Docker containers, and automate compliance checks — making sure bad code never touches production.
             </p>
-            <p class="text-white/40 text-[0.93rem] leading-relaxed mb-6 font-light">
-              When I'm not writing Python scripts or poking at web apps, you'll find me shredding guitar solos,
-              grinding RPGs, or out on a long motorcycle ride. I think the best engineers are the ones who
-              stay curious about everything — not just code.
+            <p class="text-white/65 text-[0.93rem] leading-relaxed mb-6">
+              When I'm not writing Python scripts or building web apps, you'll find me shredding guitar solos, grinding RPGs, or out on a long motorcycle ride. I just believe in doing everything at the highest standard.
             </p>
             <div class="flex flex-wrap gap-2">
               <span *ngFor="let chip of chips" class="font-mono text-[10px] font-bold tracking-wide uppercase
@@ -108,8 +104,8 @@
           <div class="flex flex-col gap-4">
             <div *ngFor="let skill of skills; let i = index" class="skill-row">
               <div class="flex justify-between items-center mb-1.5">
-                <span class="text-[12px] font-semibold text-white/55">{{ skill.name }}</span>
-                <span class="font-mono text-[11px] font-bold text-red-500/70">{{ skill.pct }}%</span>
+                <span class="text-[12px] font-semibold text-white/80">{{ skill.name }}</span>
+                <span class="font-mono text-[11px] font-bold text-red-400">{{ skill.pct }}%</span>
               </div>
               <div class="h-[3px] rounded-full bg-white/[.05] overflow-hidden">
                 <div class="skill-bar h-full rounded-full bg-gradient-to-r from-red-600 to-red-400
@@ -125,7 +121,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700
           rounded-xl border border-white/[0.05] bg-neutral-950/45
           hover:border-red-500/40 transition-all duration-300 p-7" style="transition-delay:0.15s">
-          <p class="font-mono text-[9px] tracking-[0.2em] text-red-500 uppercase mb-5">// AT_A_GLANCE</p>
+          <p class="font-mono text-[9px] tracking-[0.2em] text-red-500 uppercase mb-5">// METRICS</p>
           <div class="grid grid-cols-2 gap-3">
             <div *ngFor="let stat of stats" class="bg-white/[.02] border border-white/[.04] rounded-lg p-4
                 hover:border-red-600/20 hover:bg-red-600/[.04]
@@ -133,8 +129,8 @@
               <p class="font-black text-white leading-none mb-1.5 tracking-tight" style="font-size:1.9rem">
                 {{ stat.value }}<span class="text-red-500 text-xl">{{ stat.suffix }}</span>
               </p>
-              <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-white/30
-                group-hover:text-white/45 transition-colors duration-300">
+              <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-white/55
+                group-hover:text-white/75 transition-colors duration-300">
                 {{ stat.label }}
               </p>
             </div>
@@ -162,8 +158,8 @@
                   'animate-pulse': item.active
                 }"></span>
               <div>
-                <p class="text-white/75 font-semibold text-[13px] mb-0.5">{{ item.title }}</p>
-                <p class="text-white/35 text-[12px] leading-relaxed font-light">{{ item.body }}</p>
+                <p class="text-white/90 font-semibold text-[13px] mb-0.5">{{ item.title }}</p>
+                <p class="text-white/65 text-[12px] leading-relaxed">{{ item.body }}</p>
               </div>
             </div>
           </div>
@@ -237,11 +233,11 @@
             </div>
             <p class="font-mono text-[10px] font-bold tracking-[0.18em] uppercase text-red-500 mb-1">{{ item.year }}</p>
             <h3 class="text-white font-bold text-[1.05rem] mb-2 leading-snug">{{ item.title }}</h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-3 font-light">{{ item.body }}</p>
+            <p class="text-white/70 text-sm leading-relaxed mb-3">{{ item.body }}</p>
             <div class="flex flex-wrap gap-2">
-              <span *ngFor="let tag of item.tags" class="font-mono text-[10px] font-semibold bg-white/[0.02] border border-white/[0.04]
-                  text-white/40 px-3 py-1 rounded-lg hover:border-red-600/30
-                  hover:text-red-400/60 transition-all duration-200 cursor-default">
+              <span *ngFor="let tag of item.tags" class="font-mono text-[10px] font-semibold bg-white/[0.03] border border-white/[0.08]
+                  text-white/55 px-3 py-1 rounded-lg hover:border-red-600/30
+                  hover:text-red-400/70 transition-all duration-200 cursor-default">
                 {{ tag }}
               </span>
             </div>
@@ -291,11 +287,11 @@
             </div>
             <p class="font-mono text-[10px] font-bold tracking-[0.18em] uppercase text-red-500 mb-1">{{ item.year }}</p>
             <h3 class="text-white font-bold text-[1.05rem] mb-2 leading-snug">{{ item.title }}</h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-3 font-light">{{ item.body }}</p>
+            <p class="text-white/70 text-sm leading-relaxed mb-3">{{ item.body }}</p>
             <div class="flex flex-wrap gap-2">
-              <span *ngFor="let tag of item.tags" class="font-mono text-[10px] font-semibold bg-white/[0.02] border border-white/[0.04]
-                  text-white/40 px-3 py-1 rounded-lg hover:border-red-600/30
-                  hover:text-red-400/60 transition-all duration-200 cursor-default">
+              <span *ngFor="let tag of item.tags" class="font-mono text-[10px] font-semibold bg-white/[0.03] border border-white/[0.08]
+                  text-white/55 px-3 py-1 rounded-lg hover:border-red-600/30
+                  hover:text-red-400/70 transition-all duration-200 cursor-default">
                 {{ tag }}
               </span>
             </div>
@@ -353,11 +349,11 @@
               </span>
             </div>
             <h3 class="text-white font-bold text-[1.05rem] mb-2 leading-snug">{{ item.title }}</h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-3 font-light">{{ item.body }}</p>
+            <p class="text-white/70 text-sm leading-relaxed mb-3">{{ item.body }}</p>
             <div class="flex flex-wrap gap-2">
-              <span *ngFor="let tag of item.tags" class="font-mono text-[10px] font-semibold bg-white/[0.02] border border-white/[0.04]
-                  text-white/40 px-3 py-1 rounded-lg hover:border-red-600/30
-                  hover:text-red-400/60 transition-all duration-200 cursor-default">
+              <span *ngFor="let tag of item.tags" class="font-mono text-[10px] font-semibold bg-white/[0.03] border border-white/[0.08]
+                  text-white/55 px-3 py-1 rounded-lg hover:border-red-600/30
+                  hover:text-red-400/70 transition-all duration-200 cursor-default">
                 {{ tag }}
               </span>
             </div>
@@ -384,7 +380,7 @@
           <i class="fas fa-guitar text-xs"></i> OFF DUTY <span class="inline-block w-8 h-px bg-red-500/60"></span>
         </p>
         <h2 class="font-bold text-white tracking-tight uppercase mb-12" style="font-size:clamp(2.2rem, 6vw, 3.8rem)">
-          BEYOND CODE
+          BEYOND THE CODE
         </h2>
       </div>
 

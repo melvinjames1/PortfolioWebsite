@@ -7,21 +7,21 @@
   </div>
 
   <button (click)="scrollToSection('home')" [class.active-step]="activeSection === 'home'"
-    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">01 // SYS_INIT</span>
   </button>
 
   <button (click)="scrollToSection('skills')" [class.active-step]="activeSection === 'skills'"
-    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">02 // HARDWARE_SPECS</span>
   </button>
 
   <button (click)="scrollToSection('contact')" [class.active-step]="activeSection === 'contact'"
-    class="step-item group flex items-center gap-4 text-white/95 hover:text-white transition-all duration-300">
+    class="step-item group flex items-center gap-4 text-white/20 hover:text-white transition-all duration-300">
     <span
       class="step-dot w-2 h-2 rounded-full border border-white/20 bg-transparent group-hover:border-red-500 transition-all duration-300"></span>
     <span class="tracking-widest">03 // COMS_STATION</span>
@@ -32,7 +32,7 @@
      RIGHT HUD: SYSTEM METRICS DASHBOARD
      ════════════════════════════════════════════ -->
 <div
-  class="fixed right-6 bottom-8 z-40 hidden xl:flex flex-col gap-1 font-mono text-[9px] text-white/95 text-right select-none pointer-events-none">
+  class="fixed right-6 bottom-8 z-40 hidden xl:flex flex-col gap-1 font-mono text-[9px] text-white/20 text-right select-none pointer-events-none">
   <div>SYSTEM_CORE: <span class="text-red-500/60 font-bold">ONLINE</span></div>
   <div>SECTOR: DEVS_OPS_SEC</div>
   <div>ACTIVE_NODES: 90 / 90</div>
@@ -77,9 +77,8 @@
           </div>
 
           <div class="hero-item opacity-0 -translate-x-8 transition-all duration-700" style="transition-delay:0.3s">
-            <p class="text-white/95 text-[14px] leading-relaxed max-w-lg font-light">
-              MSc AI & Cybersecurity student in Bangalore. I write automated security tools, harden CI/CD pipelines, and
-              build things that run in production.
+            <p class="text-white/85 text-[14px] leading-relaxed max-w-lg">
+              Full Stack &amp; DevSecOps developer based in Bangalore. I write bulletproof security tools, harden CI/CD pipelines, and build production apps that run flawlessly on the first try.
             </p>
           </div>
 
@@ -107,14 +106,14 @@
               <span class="text-red-500 font-semibold uppercase">TELEMETRY_LOGS</span>
               <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
             </div>
-            <div>[OK] NODE_LIST_PARSED: 90 items</div>
-            <div>[OK] GLSL_SHADER: cyber_grid_wave.vert</div>
-            <div>[OK] SHADER_UNIFORM_LOAD: uTime, uColor</div>
-            <div>[OK] CUSTOM_CURSOR: GOTHIC_AVATAR_RENDERED</div>
-            <div>[WARN] SEC_COMPLIANCE: OFFLINE_RAG_LOADED</div>
+            <div>[OK] CODE_QUALITY: FLAWLESS</div>
+            <div>[OK] PIPELINES: HARDENED</div>
+            <div>[OK] BUILD_STATUS: PASSING</div>
+            <div>[OK] SECURITY_AUDIT: CLEAN</div>
+            <div>[OK] STANDARDS: UNCOMPROMISED</div>
             <div class="text-[8px] text-red-500/60 mt-3 pt-2 border-t border-white/[0.05]">
               $ tail -n 1 /var/log/secure<br>
-              INFO: Session authenticated securely.
+              INFO: Clean builds. Zero excuses.
             </div>
           </div>
         </div>
@@ -142,9 +141,8 @@
         <h2 class="font-bold text-white tracking-tight uppercase mb-4" style="font-size:clamp(2.2rem, 6vw, 3.8rem);">
           TOOLS I USE
         </h2>
-        <p class="text-white/95 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
-          The tools I reach for daily — security auditing, container pipelines, web apps, and scripting. Click any icon
-          to open the docs.
+        <p class="text-white/75 text-[13px] font-light max-w-lg mb-12 leading-relaxed">
+          The tools I reach for daily — security auditing, container pipelines, web apps, and scripting. I don't just use them; I master them. Click any icon to view docs.
         </p>
       </div>
 
@@ -190,8 +188,7 @@
           <div class="relative">
             <p class="font-mono text-[9px] tracking-[0.2em] text-red-500 uppercase mb-3">// CYBER LAB</p>
             <h3 class="text-white font-bold text-xl tracking-tight mb-2 uppercase">My Projects</h3>
-            <p class="text-white/95 text-[12px] leading-relaxed mb-5">Security scanners, ML pipelines, SQL injection
-              sandboxes, and web utilities — all open source.</p>
+            <p class="text-white/70 text-[12px] leading-relaxed mb-5">Security scanners, ML pipelines, SQL injection sandboxes, and web utilities — built to actual high standards.</p>
             <span
               class="inline-flex items-center gap-2 font-mono text-[10px] text-red-500 group-hover:gap-3 transition-all duration-200">
               EXPLORE LAB <i class="fas fa-arrow-right text-[9px]"></i>
@@ -208,8 +205,7 @@
           <div class="relative">
             <p class="font-mono text-[9px] tracking-[0.2em] text-red-500 uppercase mb-3">// BIO_METRICS</p>
             <h3 class="text-white font-bold text-xl tracking-tight mb-2 uppercase">About Me</h3>
-            <p class="text-white/95 text-[12px] leading-relaxed mb-5">Education, experience, hobbies, and what I'm
-              working on right now. Guitar, games, motorcycles included.</p>
+            <p class="text-white/70 text-[12px] leading-relaxed mb-5">Education, experience, hobbies, and what I'm working on right now. Guitar, gaming, and motorcycles included.</p>
             <span
               class="inline-flex items-center gap-2 font-mono text-[10px] text-red-500 group-hover:gap-3 transition-all duration-200">
               VIEW BIO <i class="fas fa-arrow-right text-[9px]"></i>
@@ -234,7 +230,7 @@
           LET'S TALK
         </h2>
         <p class="text-white/95 text-[13px] font-light max-w-lg leading-relaxed">
-          Got a project, collaboration idea, or just want to connect? Drop a message and I'll get back to you.
+          Got a project, collaboration idea, or want someone on your team who actually delivers top-tier code? Drop a message.
         </p>
       </div>
 

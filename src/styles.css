@@ -175,3 +175,41 @@ p {
 .btn-ghost:active {
   transform: scale(0.97);
 }
+
+/* ── Ghost button — better readable state ──────────── */
+.btn-ghost {
+  color: rgba(255, 255, 255, 0.70);
+}
+
+/* ── Equaliser animation for music button ─────────── */
+@keyframes eq1 {
+  0%, 100% { height: 30%; }
+  50%       { height: 90%; }
+}
+@keyframes eq2 {
+  0%, 100% { height: 80%; }
+  50%       { height: 25%; }
+}
+@keyframes eq3 {
+  0%, 100% { height: 55%; }
+  50%       { height: 100%; }
+}
+
+/* ── Readability: bump base paragraph contrast ───────
+   Tailwind text-white/* utilities override this where needed.
+   This targets plain <p> tags that have no utility class.  */
+p {
+  color: rgba(255, 255, 255, 0.80);
+}
+
+/* Timeline body text */
+.timeline-body {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* Skill-card sub-text helper */
+.text-readable {
+  color: rgba(255, 255, 255, 0.72) !important;
+}

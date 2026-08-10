@@ -54,7 +54,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     {
       title: 'Local RAG Compliance Auditor',
       description:
-        'A local Retrieval-Augmented Generation pipeline designed to scan security policies, codebases, and compliance standards (e.g., OWASP, SOC2, HIPAA) completely offline — no cloud APIs, no data leaving your machine. Uses ChromaDB for vector storage, HuggingFace embeddings, and Mistral via Ollama to query policy violations without cloud data exposure.',
+        'A custom offline RAG pipeline I built to scan security policies, codebases, and compliance standards (OWASP, SOC2, HIPAA) completely locally. Zero cloud APIs, zero data leaving the machine — just pure local intelligence running on ChromaDB, HuggingFace embeddings, and Mistral.',
       repoLink: 'https://github.com/melvinjames1/Local-RAG',
       tags: ['Python', 'LangChain', 'ChromaDB', 'Offline LLM', 'Security Policy Auditing'],
       code: `import os
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     {
       title: 'Automated Security Log Classifier',
       description:
-        'A log classification pipeline using machine learning (TF-IDF and Logistic Regression) to analyze access records, system events, and security logs. Automatically labels logs as suspicious or benign, generating confusion matrices and exporting predictions to trigger security alerts.',
+        'A smart log classification pipeline using TF-IDF and Logistic Regression. Automatically parses system events, flags suspicious entries, and exports clean predictions way faster than manual auditing.',
       repoLink: 'https://github.com/melvinjames1/Sentiment-Analysis/blob/main/sentimentanalysis.py',
       tags: ['Python', 'Log Classification', 'NLP', 'Security Logs', 'Anomaly Detection'],
       code: `import pandas as pd
@@ -183,7 +183,7 @@ print("Predictions saved to sentiment_predictions.csv")`,
     {
       title: 'WAVS — CI/CD Pipeline Vulnerability Scanner',
       description:
-        'An automated security scanner built for CI/CD integrations. Scans containerized web applications for SQL injection, XSS, insecure headers, and directory listing vulnerabilities during the pipeline build phase — then generates detailed HTML and PDF reports to block vulnerable builds.',
+        'An automated security scanner built for CI/CD integrations. Aggressively tests containerized web apps for SQLi, XSS, insecure headers, and directory listing flaws during pipeline builds — shutting down bad code before it reaches production.',
       repoLink: 'https://github.com/melvinjames1/WAVS',
       tags: ['DevSecOps', 'CI/CD Scanning', 'SQLi / XSS Testing', 'Automation', 'Audit Reports'],
       code: `import urllib.parse
@@ -225,7 +225,7 @@ class Scanner:
     {
       title: 'SQL Injection Sandbox & Secure Coding Tutor',
       description:
-        'An interactive sandbox application showing SQL injection vulnerabilities and remediation techniques. Used to train development teams on secure coding guidelines, illustrating raw query flaws versus parameterised query fixes in a fully controlled environment.',
+        'An interactive training sandbox demonstrating SQL injection vulnerabilities and secure coding remediation. Built to show developers why raw queries break and how parameterised queries prevent auth bypasses.',
       repoLink: 'https://github.com/melvinjames1/SQL-Injection-Test',
       link: 'https://sql-injection-test-liard.vercel.app',
       tags: ['Secure Coding', 'SQL Injection', 'Sandbox', 'DevSecOps Training'],
@@ -266,7 +266,7 @@ WHERE username = '' OR '1'='1'
       title: 'Pomodoro Timer',
       image: 'assets/pt.png',
       description:
-        'A productivity tool built with HTML, CSS and JavaScript implementing the Pomodoro Technique. Supports customizable work intervals, short and long breaks, and a visual timer — helping users stay focused and manage time efficiently.',
+        'A sleek, custom Pomodoro productivity tool I built to optimize my own work intervals. Features clean visual timers, break controls, and zero clutter.',
       link: 'https://pomodoro-timer12.netlify.app/',
       repoLink: 'https://github.com/melvinjames1/pomodoro-timer',
       tags: ['HTML', 'CSS', 'JavaScript'],
@@ -275,7 +275,7 @@ WHERE username = '' OR '1'='1'
       title: 'Favourite Movie Blog',
       image: 'assets/fmb.png',
       description:
-        'An Angular app showcasing favourite movies from Hollywood, Bollywood, and Anime. Features a responsive Tailwind CSS design with movies organized into categories, each with detailed descriptions.',
+        'An Angular & Tailwind application categorizing favorite movies across Hollywood, Bollywood, and Anime with smooth category filters and responsive layouts.',
       link: 'https://main--myfavouritemoviesblog1.netlify.app/Favourite-Movies-Blog/',
       repoLink: 'https://github.com/melvinjames1/FMB',
       tags: ['Angular', 'Tailwind CSS'],
@@ -284,7 +284,7 @@ WHERE username = '' OR '1'='1'
       title: 'Joke Generator',
       image: 'assets/JokeGen.png',
       description:
-        'A React app that fetches and displays random jokes from the Random Joke API using Axios. Users can generate new jokes with a click — clean UI, real-time API calls, and seamless state updates.',
+        'A fast React app that pulls random jokes from an API using Axios with instant state updates and zero lag.',
       link: 'https://main--jokegenarator.netlify.app/',
       repoLink: 'https://github.com/melvinjames1/joke-generator',
       tags: ['React', 'Axios', 'REST API'],
@@ -293,7 +293,7 @@ WHERE username = '' OR '1'='1'
       title: "Traveller's Guide",
       image: 'assets/Tg.png',
       description:
-        'A country info tool built with HTML, CSS, and JavaScript. Users enter a country name and get details like capital, population, currency, and official languages — powered by the REST Countries API.',
+        'A country info tool powered by the REST Countries API. Type any country name and fetch capital, population, currency, and language data instantly.',
       link: 'https://main--travellersguide576.netlify.app/',
       repoLink: 'https://github.com/melvinjames1',
       tags: ['HTML', 'CSS', 'JavaScript', 'REST API'],
